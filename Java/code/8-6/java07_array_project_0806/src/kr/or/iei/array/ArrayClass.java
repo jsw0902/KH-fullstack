@@ -1,6 +1,7 @@
 package kr.or.iei.array;
 
 import java.util.Scanner;
+import java.util.Arrays;
 import java.util.Random;
 
 public class ArrayClass {
@@ -169,7 +170,7 @@ public class ArrayClass {
 	}
 	
 	//배열 - 재선언
-	// 오류는 안나지만 재선언하면 새로운 배열 취급한다.
+	// 오류는 안나지만 재선언하면 주소값이 변경됨
 	public void arrayTest7() {
 		int [] arr = new int [5];
 		
@@ -252,11 +253,12 @@ public class ArrayClass {
 		int n1 = sc.nextInt();
 		int sum = 0;
 		int [] intArr = new int[n1];
+		//풀이
 		for(int i=0; i<intArr.length; i++) {
 			intArr[i] = ran.nextInt(100)+1;
 		}
 		for(int i = 0; i<intArr.length; i++) {
-			System.out.print(i + "번째 인덱스 값 " + intArr[i]);
+			System.out.print(i + "번째 인덱스 값 " + intArr[i]); //회사에 가면 디버깅 코드는 지워줘야됨 그 이유는 성능에 영향이 가기때문에
 			if(intArr[i]%2==0) {
 				System.out.print(" -> 짝수");
 				sum+=intArr[i]; 
@@ -264,7 +266,7 @@ public class ArrayClass {
 			System.out.println(); //개행 처리
 		}
 		/*
-		//v1
+		//작성 코드
 		int sum = 0;
 		for(int i = 0; i<n1; i++) {
 			num = ran.nextInt(100)+1;
@@ -304,9 +306,9 @@ public class ArrayClass {
 		
 		for(int i = 0; i<arr.length-1; i++) {
 			System.out.print(strArr[i] +" 점수 입력 : ");
-			int n = sc.nextInt();
-			arr[i] = n;
-			sum+=n;
+			int num = sc.nextInt();
+			arr[i] = num;
+			sum+=num;
 		}
 		arr[arr.length-1] = sum;
 		
@@ -317,5 +319,308 @@ public class ArrayClass {
 		System.out.printf("평균 점수 : %.2f점", (double)arr[3]/3);
 		
 		
+	}
+	//배열 - 정렬 - 버블 정렬
+	/*
+	 버블 정렬 : 현재 인덱스와 다음 인덱스 값을 비교하여,
+	 		   현재 인덱스 값이 다음 인덱스 값보다 크면
+	 		   각 인덱스의 값을 바꿔주는 정렬 방식
+	 */
+	public void bubbleSort() {
+		int [] arr = {5,4,2,1,3}; //길이가 5인 정수형 배열
+		
+		/* v1
+		if(arr[0] > arr[1]) { //5 와 4 비교 후 바꿈
+			//앞에 있는 인덱스의 값이, 뒤에 있는 인덱스의 값보다 클 때
+			int temp = arr[0];
+			arr[0] = arr[1];
+			arr[1] = temp;
+		}
+		
+		for(int i = 0; i<arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+		
+		if(arr[1] > arr[2]) { //5와 2 비교 후 바꿈
+			int temp = arr[1];
+			arr[1] = arr[2]; 
+			arr[2] = temp;
+		}
+		
+		
+		for(int i = 0; i<arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+		
+		if(arr[2] > arr[3]) { //5와 1 비교 후 바꿈
+			int temp = arr[2];
+			arr[2] = arr[3]; 
+			arr[3] = temp;
+		}
+		
+		for(int i = 0; i<arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+		
+		if(arr[3] > arr[4]) { // 5와 3 비교 후 바꿈
+			int temp = arr[3];
+			arr[3] = arr[4]; 
+			arr[4] = temp;
+		}
+		
+		for(int i = 0; i<arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+		*/
+		
+		//v2
+		/*
+		//i가 4일 때, i+1은 5 즉, 마지막은 비교가 불필요하기 때문에 length-1처리
+		for(int i=0; i<arr.length-1; i++) { //length 뒤에 -1을 해줘야됨 
+			if(arr[i] > arr[i+1]) {
+				int temp = arr[i];
+				arr[i] = arr[i+1]; 
+				arr[i+1] = temp;
+			}
+		}
+		
+		//위 for문 작업을 3번 더 진행하고 있음.
+		
+		
+		for(int i = 0; i<arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+		
+		for(int i=0; i<arr.length-1; i++) { //length 뒤에 -1을 해줘야됨 
+			if(arr[i] > arr[i+1]) {
+				int temp = arr[i];
+				arr[i] = arr[i+1]; 
+				arr[i+1] = temp;
+			}
+		}
+		
+		for(int i=0; i<arr.length-1; i++) { //length 뒤에 -1을 해줘야됨 
+			if(arr[i] > arr[i+1]) {
+				int temp = arr[i];
+				arr[i] = arr[i+1]; 
+				arr[i+1] = temp;
+			}
+		}
+		
+		for(int i=0; i<arr.length-1; i++) { //length 뒤에 -1을 해줘야됨 
+			if(arr[i] > arr[i+1]) {
+				int temp = arr[i];
+				arr[i] = arr[i+1]; 
+				arr[i+1] = temp;
+			}
+		}
+		*/
+		
+		//위 동일한 for문이 총 4번 반복되고 있음
+		//반복안에 반복함. -> 중첩 반복문
+		/*
+		외부 for문의 조건식을 length-1로 작성한 이유 : length-1만큼 반복하여 진행하면, 
+		맨 앞의 값은 가장 작은 숫자로 고정되니 비교하지 않아도 됨
+		 
+		 */
+		/*
+		//v3
+		for(int k = 0; k<arr.length-1; k++) {
+			for(int i = 0; i<arr.length-1-k; i++) { //-k : 고정된 값을 각 회차별로 불필요한 비교 연산을 진행하고 있음.
+				System.out.println(arr[i] + " vs " + arr[i+1]);
+				if(arr[i] > arr[i+1]) {
+					int temp = arr[i];
+					arr[i] = arr[i+1]; 
+					arr[i+1] = temp;
+				}
+			}
+			System.out.println();
+		}
+		*/
+		
+		//Arrays.sort(arr); //정렬 기능 위에 코드 굳이 안써도 쉽게 버블 정렬 가능
+		for(int i = 0; i<arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+	}
+	
+	//배열 - 2차원 배열
+	/*
+	 [표현식]
+	 
+	 자료형 [][] 배열명칭 = new 자료형[행길이][행길이];
+	 
+	 
+	 */
+	public void arrayTest13() {
+		int [][] arr =  new int[3][3];
+	
+		//할당 - 첫번째 행
+		arr[0][0] = 1; 
+		arr[0][1] = 2; 
+		arr[0][2] = 3; 
+		
+		//할당 - 두번째 행
+		arr[1][0] = 4;
+		arr[1][1] = 5;
+		arr[1][2] = 6;
+		
+		//할당 - 세번째 행
+		arr[2][0] = 7;
+		arr[2][1] = 8;
+		arr[2][2] = 9;
+		
+		for(int i=0; i<arr.length; i++) {
+			//System.out.println(arr[i]); //확인용
+			for(int k = 0; k<arr[i].length; k++) {
+				System.out.print(arr[i][k] + " "); //행은 i
+			}
+			System.out.println();
+		}
+	}
+	
+	/*
+	 배열 - 2차원 배열 - 다른 생성 방법
+	*/
+	public void arrayTest14() {
+		int [][] arr = {{1,2,3},{4,5,6},{7,8,9}};
+		
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr.length; k++) {
+				System.out.print(arr[i][k] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void arrayTest15() {
+		int [][] arr = new int [5][5];
+		
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr[i].length; k++) {
+				arr[i][k] = k+1;
+			}
+		}
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr.length; k++) {
+				System.out.print(arr[i][k] + " ");
+			}
+			System.out.println();
+		}
+	}
+	/*
+	 ---출력--- 
+	 1 1 1 1 1
+	 2 2 2 2 2
+	 3 3 3 3 3
+	 4 4 4 4 4
+	 5 5 5 5 5
+	 */
+	public void arrayTest16() {
+		int [][] arr = new int [5][5];
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr[i].length; k++) {
+				arr[i][k] = i+1;	
+			}
+		}
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr.length; k++) {
+				System.out.print(arr[i][k] + " ");
+			}
+			System.out.println();
+		}
+	}
+	/*
+	 1 2 3 4 5
+	 2 3 4 5 6
+	 3 4 5 6 7
+	 4 5 6 7 8
+	 5 6 7 8 9 
+	 
+	 */
+	public void arrayTest17() {
+		
+		//해주신 코드 v1
+		int [][] arr = new int [5][5];
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr[i].length; k++) {
+				arr[i][k] = k+1+i;	
+			}
+		}
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr.length; k++) {
+				System.out.print(arr[i][k] + " ");
+			}
+			System.out.println();
+		}
+		
+		/*
+		//직접한 코드 v2
+		int [][] arr = new int [5][5];
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr[i].length; k++) {
+				arr[i][k] = i+1;	
+			}
+		}
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr.length; k++) {
+				int sum = arr[i][k] + k;
+				System.out.print(sum + " ");
+			}
+			System.out.println();
+		}
+		*/
+	}
+	
+	//배열 - 가변 배열
+	//2차원 배열에서의 가변 배열 : 배열 생성 시, 행의 길이만 지정하고, 열의 길이를 나중에 지정.
+	/*
+	 [표현식]
+	 
+	 자료형 [][] 배열명칭 = new int[행길이][];
+	 
+	 배열명칭[행번호] = new int[행길이]; //0번째 행
+	 배열명칭[행번호] = new int[행길이]; //1번째 행
+	 배열명칭[행번호] = new int[행길이]; //2번째 행
+	 */
+	public void arrayTest18() {
+		
+		int[][] arr = new int[3][];
+		
+		arr[0] = new int[3]; //0번째 행에 길이 3짜리 배열 생성
+		arr[1] = new int[4]; //2번째 행에 길이 4짜리 배열 생성
+		arr[2] = new int[2]; //1번째 행에 길이 2짜리 배열 생성
+		
+		//할당 - 첫번째 행
+		arr[0][0] = 1;
+		arr[0][1] = 2;
+		arr[0][2] = 3;
+
+		// 할당 - 두번째 행
+		arr[1][0] = 4;
+		arr[1][1] = 5;
+		arr[1][2] = 6;
+		arr[1][3] = 7;
+		
+		// 할당 - 세번째 행
+		arr[2][0] = 8;
+		arr[2][1] = 9;
+		
+		
+		System.out.println(arr);
+		
+		System.out.println("==================================");
+		
+		for(int i = 0; i<arr.length; i++) {
+			for(int k=0; k<arr[i].length; k++) {
+				System.out.print(arr[i][k] + " ");			
+			}
+			System.out.println();
+		}
 	}
 }

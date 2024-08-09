@@ -29,10 +29,9 @@ public class RandomClass {
 		
 		System.out.println("num4 : " + num);
 		
+		
 		//10~30 사이의 숫자 중, 임의의 수 반환
-		
-		num = ran.nextInt(21)+10;
-		
+		num = ran.nextInt(21)+10;		
 		/*
 		 ran.nextInt(갯수)+시작숫자;
 		 
