@@ -50,7 +50,7 @@ public class ArrayController {
 		
 		//특정 값이 존재하는지
 		System.out.println("list에 정수 33이 존재하는가? : " + list.contains(33));
-		System.out.println("list에 정수 33이 존재하는가? : " + list.contains(4));
+		System.out.println("list에 정수 4이 존재하는가? : " + list.contains(4));
 		
 		//삭제
 		list.remove(4); // 4번 인덱스의 값 삭제(15)
