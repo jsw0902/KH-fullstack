@@ -6,15 +6,17 @@ public class Start {
 
 	public static void main(String[] args) {
 		
-		/*
+		
 		//Point 관리 프로그램
 		MapPointController mpc = new MapPointController();
 		mpc.mainMtd();
-		*/
 		
+		
+		/*
 		//Student 관리 프로그램
 		MapStudentController mps = new MapStudentController();
 		mps.mainMtd();
+		*/
 	}
 
 }
