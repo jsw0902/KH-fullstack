@@ -8,9 +8,9 @@ public class Start {
 		Exam ex = new Exam();
 		
 		//ex.ex01();
-		ex.ex02();
+		//ex.ex02();
 		//ex.ex03();
-		//ex.ex04();
+		ex.ex04();
 		//ex.ex05();
 		//ex.ex06();
 		//ex.ex07();

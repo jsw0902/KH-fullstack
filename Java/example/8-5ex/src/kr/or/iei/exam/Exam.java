@@ -15,7 +15,7 @@ public class Exam {
 		}
 	}
 	
-	public void ex02() { // 못함
+	public void ex02() {
 		Scanner sc = new Scanner(System.in);
 		int sum = 0;
 		for(int i=0; i<5; i++) {
@@ -42,17 +42,23 @@ public class Exam {
 		}
 	}
 	
-	public void ex04() { //못함
+	public void ex04() { //보류
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("첫번째 수 입력 : ");		
 		int n1 = sc.nextInt();
 		System.out.print("두번째 수 입력 : ");
 		int n2 = sc.nextInt();
-		
-		//for(int i = n1; i<=n2; i++) {
+		int sum = 0;
+		for(int i=n1; i<=n2; i++) {
+			
+			sum+=i;
 			
 		}
+		System.out.printf("%d ~ %d의 정수의 합: %d", n1, n2, sum);
+		
+			
+	}
 
 	
 	public void ex05() {
@@ -65,13 +71,14 @@ public class Exam {
 		}
 	}
 	
-	public void ex06() {
-		System.out.println("중첩 for문을 이용한 구구단 전체 출력1");
-		for(int i = 2; i<=9; i++) {
-			for(int j = 1; j<=9; j++) {
-				System.out.print(i + "*" + j +"=" + j*i + " ");
-			}
-			System.out.println();
+	public void ex06() { //보류
+		System.out.println("중첩 for문을 이용한 구구단 전체 출력2");
+		for (int i = 2; i <= 9; i++) {
+			
+            for (int j = 1; j <= 9; j++) {
+            	System.out.print(i + "*" + j +"=" + i*j + " ");
+            }
+            System.out.println(); 
 		}
 	}
 	
@@ -129,15 +136,26 @@ public class Exam {
 		
 		//Q7
 		//못함
-		
-		//Q8
+
 		for(int i = 0; i<5; i++) {
-			for(int k = 1; k<=5; k++) {
-				if(k==i) {
-					System.out.print("*");
-				}
+			for(int k = 5; k>=1; k--) {
+				System.out.print(k + 1);
 			}
+			System.out.println();
 		}
+		//Q8
+		//못함
+		
+		//Q9
+		/*
+		for(int i = 0; i<5; i++) {
+			for(int k= )
+		}
+		*/
 	}
+	public void ex08() {
+		
+	}
+		
 }
 
