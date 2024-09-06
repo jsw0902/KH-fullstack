@@ -1,0 +1,135 @@
+1.
+1.1.원인 
+1. for(int i = 0; i<=pArr.length; i++){ 이 부분에서 배열은 <=이걸 사용할 수 없다. 사용하게 되면 범위를 초과하는거라 오류가 발생한다.
+++ 2. 배열을 선언해줬지만 Person이라는 클래스를 넣어주지 않아서 오류가 난다.
+
+1.2.해결 방안
+for(int i = 0; i<pArr.length; i++){ 으로 고쳐주면 된다.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2.
+2.1. 원인
+1.ArrayList로 저장된 Fruit는 값을 두개를 넣어야되는데 list.add("맛있는 과일");에는 값이 하나이다.
+2.for(int i = 0; i<=list.size(); i++) 이 부분에서 list는 값이 크거나 같게 선언해주면 안된다.
+
+2.2. 해결방안
+1. list.add("맛있는 과일");을 없애 주거나 list.add(new Fruit("맛있는 과일", "값"); 값이라고 적은 곳에 값을 하나 더 추가 시켜주면 된다.
+2. for(int i = 0; i<list.size(); i++)로 고쳐주면 된다.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. 
+3.1. 원인
+//public class Food<String,Integer>{ <-틀림
+
+public class Food implements Serializable{ <- 수정한거
+private String name;
+
+private int kcal;
+
+
+
+public Food(){
+
+}
+
+
+
+public Food(String name, int kcal){
+
+this.name = name;
+
+this.kcal = kcal;
+
+}
+
+
+
+
+public String getName(){
+
+return name;
+
+}
+
+public void setName(String name){
+
+this.name = name;
+
+}
+
+
+
+public int getKcal(){
+
+return kcal;
+
+}
+
+public void setName(int kcal){
+
+this.kcal = kcal;
+
+}
+
+public toString(){
+
+return "이름 : "+ name + "칼로리 : "+ kcal;​
+
+}
+}
+
+3.2. 해결 방안
+
+import kh.model.vo.Food;
+
+
+public void fileSave(String fileName){
+
+Food food = new Food();
+
+File fileName = new File(food);
+
+ 
+
+try{
+
+FileoutputStream fos = new FileoutputStream();
+objcetoutputStream ++ 
+
+Filewrite fw = new Filewrite(fos);
+
+fw.(fileName);
+
+catch(IOException){
+
+e.
+
+} catch (FileNotFountException){
+
+
+
+
+
+} finally{
+
+try{
+
+fw.close();
+
+}
+
+catch(IOException){
+
+
+
+e.
+
+
+
+}
+
+}
+
+}

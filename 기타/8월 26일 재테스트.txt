@@ -1,0 +1,116 @@
+1.1 
+1. list.add(100); 이 부분에서 값을 한 개 더 해줘야한다.
+2. for(int i = 0; i<= list.size(); i++) 이 부분에서 배열은 0부터 시작해서 <= 를 사용하면 범위를 벗어나서 오류가 난다
+
+1.2
+1. list.add(100);을 없애주거나 위에 코드처럼 형식을 맞춰서 코드를 수정하면 된다.
+2. for(int i = 0; i< list.size(); i++){으로 수정해주면 된다
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.1
+1. Student 배열 인덱스에 Student 값이 없어서 for문으로 getScore()값을 출력하려고 하면 오류가 발생한다.
+2. for(int i = 0; i<= sArr.length; i++){ 에서 배열은 0부터 시작해서 i<=sArr.length;를 하면 배열 인덱스 범위가 벗어나서 오류가 발생한다
+2.2
+1.Student 배열 각 인덱스에 Student 객체 값을 넣어주면 된다.
+2. for(int i = 0; i< sArr.length; i++){ 으로 수정해주면 된다.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+3.1
+public class Book implements Serializable{
+private String title;​
+private int  price;
+
+public Book(){
+}
+public Book(String title, int price){
+
+this.title = title;
+
+this.price = price
+
+}
+
+public String getTitle(){
+
+return title;
+
+}
+
+public int getPrice(){
+
+return price;
+
+}
+
+public void setTitle(String title){
+
+this.title = title
+
+}
+
+public void setPrice(int price){
+
+this.price = price;
+
+}
+
+
+
+@Overried
+
+public void toString(){
+
+return "Title : " + title  +" Price :" + price ;
+
+}
+
+}
+
+3.2
+
+public void fileSave(String fileName){
+
+
+Book book = new Book("자바를 정복하자", 35000);
+
+String fileName = "book.txt";
+
+bufferedOutputStream bos= null;
+
+
+
+try{
+
+FileOutputStream fos = new FileOutputStream(fileName);
+
+bos = new bufferedOutputStream​(fos);
+
+FileWrite fw = new FileWrite(bos);
+
+
+
+fw.bos(book);
+
+
+
+} catch (IOException e ){
+
+e.printStackTrace();​
+
+} finally{
+
+try{
+
+fw.close();
+
+} catch (IOException e​){
+
+e.printStackTrace();​​
+
+}
+
+}
+
+
+
+}

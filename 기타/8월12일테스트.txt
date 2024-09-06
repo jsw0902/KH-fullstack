@@ -1,0 +1,89 @@
+1번 문제
+1.1원인
+===================================
+1.while 값에 true 값이 와야됨
+
+2. string을 비교할려면 .equls()를 사용해야됨 <- 오타 equals
+
+3. while문을 종료시킬려면 true를 false로 바꿔줘야됨
+
+1.2 해결
+===================================
+package com.kh.test;
+
+
+
+import java.util.Scanner;
+
+
+
+public class Test{
+
+	public void count(){
+
+		Scanner sc = new Scanner(System.in);
+
+		boolean power = true;
+
+		while(power){
+
+			System.out.print("문자열을 입력해주세요.");
+
+			String str = sc.nextLine();
+
+			if(str.equls("exit")){ <- 오타 str.equals("exit")
+
+				power = false;
+				System.out.println("프로그램을 종료합니다.");​
+
+				break;
+
+			}else{
+
+				System.out.println(str.length()+"글자 입니다.");
+			}
+
+		}
+
+	}
+
+}
+===================================
+2. 문제
+2.1 원인
+====================================
+1. Circle 클래스에 getRadius에 this.이 빠짐
+
+2. Clrcle 클래서 안에 pulic Circle()를 선언 안해줌
+
+3. radius는 private로 선언되서 c.raius로 불러오면 안됨 
+
+4. PI 선언해놓고 안씀
+
+2.2 해결방안
+===================================
+1. public double gettRadius() 안에 return this.radius;로 바꿔줌
+
+2. public Circle(double radius)를 선언 하기전에 먼저 매개변수가 없는 public Circle()를 먼저 선언해줘야됨
+
+3. radius를 c.raius로 불러오지 말고 c.getRaius로 불러와야됨
+
+4. PI를 final로 값 변경 못하게 선언해놓고 안씀
+
+=================================== 
+3. 문제
+3.1 원인
+==================================
+5, 7번 서로 변수명은 다르지만 같은 자료형때매 에러남
+
+6, 11번 서로 변수명은 다르지만 같은 자료형때매 에러남
+					
+12번 return 0으로 반환하면 안됨 <-틀림 
+
+					+ 1번 12번 둘다 자료형 선언을 안해줬지만 같아서 에러남
+
+3.2 해결
+==================================
+1,5,6,7,11,12번 모두 서로 다른 자료형 사용하면 됨
+
+12번은 return 0;이 아닌 return test;로 반환해야됨
