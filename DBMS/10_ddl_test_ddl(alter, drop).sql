@@ -101,10 +101,13 @@ Select * From TBL_DEPT_Copy;
 
 -- DEPT_Title 컬럼에 Unique 제약조건 추가 제약조건 이름은 Title_UNQ
 Alter Table TBL_DEPT_Copy Add Constraint Title_UNQ Unique(DEPT_Title);
+
 -- DEPT_Title 컬럼에 Primary Key 제약조건 추가 제약조건 이름은 ID_PRI
 Alter Table TBL_DEPT_Copy Add Constraint ID_PRI Primary Key(DEPT_ID);
+
 -- TBL_DEPT_Copy_NN.DEPT_ID 컬럼이 TBL_DEPT_Copy_NN.DEPT_ID 컬럼을 참조할 수 있도록 외래키 제약조건 추가
 Alter Table TBL_DEPT_Copy_NN Add Foreign Key(DEPT_ID) references TBL_DEPT_Copy(DEPT_ID);
+
 -- TBL_DEPT_Copy 테이블의 Location_ID 컬럼의 Not Null 제약 조건을 -> Null 허용으로 변경
 Alter Table TBL_DEPT_Copy Modify Location_ID Null;-- Add가 아닌 Modify
 Alter Table TBL_DEPT_Copy Modify Location_ID Not Null;
