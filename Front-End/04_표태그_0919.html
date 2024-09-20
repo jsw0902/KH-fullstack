@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표태그</title>
+</head>
+<body>
+    <!-- 행과 열로 이루어진 표 형태의 태그-->
+
+    <h2>테이블 태그</h2>
+    <table border="1">
+        <tr> <!-- 1개의 행을 나타내는 태그 -->
+            <th>첫번째 행의 첫번째 열</th> <!-- 열을 나타내는 태그(제목) -->
+            <td>두번째 행의 두번째 열</td> <!-- 열을 나타내는 태그(본문)-->
+        </tr>
+        <tr>
+            <th>2-1</th> <!-- th는 제목을 나타내는 태그로, 글씨 굵게 && 가운데 정렬 -->
+            <td>2-2</td> 
+        </tr>
+    </table>
+
+    <br>
+
+    <table border="1">
+        <caption><b>표의 제목</b></caption>
+        <thead> <!-- 표의 제목 열을 나타내는 행을 작성할 때 thead 내부에 작성 -->
+            <tr>
+                <th>제목1</th>
+                <th>제목2</th>
+                <th>제목3</th>
+            </tr>
+        </thead>
+        <tbody> <!-- 표의 본문 열을 나타내는 행을 작성할 때 tbody 내부에 작성 -->
+            <tr>
+                <td>본문1</td>
+                <td>본문2</td>
+                <td>본문3</td>
+            </tr>
+            <tr>
+                <td>본문1</td>
+                <td>본문2</td>
+                <td>본문3</td>
+            </tr>
+            <tr>
+                <td>본문1</td>
+                <td>본문2</td>
+                <td>본문3</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h3>colspan과 rowspan</h3>
+
+    <table border="1">
+        <tr>
+            <td colspan="2">1행 1열과 1행 2열 병합</td>
+            <td>1행 3열</td>
+        </tr>
+        <tr>
+            <td>2행 1열</td>
+            <td>2행 2열</td>
+            <td>2행 3열</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table border="1">
+        <tr>
+            <td rowspan="2">1행 1열과 2행 1열 결합</td>
+            <td>1행 2열</td>
+            <td>1행 3열</td>
+        </tr>
+        <tr> <!-- 두번째 행의 첫번째 열은 병합되었으므로 작성하지 않는다. -->
+            <td>2행 2열</td>
+            <td>2행 3열</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table border="1">
+        <tr>
+            <td rowspan="2" colspan="2" height="150px" width="120px">사진</td>
+            <td width="80px">이름</td>
+            <td width="200px"></td>
+        </tr>
+        <tr>
+            <td>연락처</td>   
+            <td></td>   
+        </tr>
+        <tr>
+            <td height="50px" width="70px">주소</td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td height="120px">자기소개</td>
+            <td colspan="3"></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table border="1">
+        <tr>
+            <td colspan="5" align="center">이력서</td>
+        </tr>
+        <tr>
+            <td rowspan="5" align="center">사진</td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td colspan="3">dadadadada</td>
+        </tr>
+        <tr>
+            <td>주소</td>
+            <td colspan="3">dadadadada</td>
+        </tr>
+        <tr>
+            <td>전화번호</td>
+            <td>1321546546</td>
+        </tr>
+        <tr>
+            <td>이메일</td>
+            <td>1234564646</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table border="1">
+        <tr>
+            <td></td>
+            <td width="100px" align="center">기간</td>
+            <td>출신학교</td>
+            <td width="65px" align="center">전공</td>
+            <td>졸업여부</td>
+            <td>학점</td>
+        </tr>
+        <tr>
+            <td rowspan="2" height="50px">학력사항</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table border="1">
+        <tr>
+            <td></td>
+            <td width="100px" align="center">기간</td>
+            <td width="120px" align="center">시행처</td>
+            <td width="150px" align="center">취득일</td>
+        </tr>
+        <tr>
+            <td rowspan="2" height="50px" align="center">자격증</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+</html>

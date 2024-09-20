@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼 태그</title>
+</head>
+<body>
+    <!-- 
+        form 태그 : HTML 문서에서 사용자 입력을 받아, 서버로 전송하기 위한 영역을 정의하는데 사용되는 태그
+
+        - 로그인, 검색, 게시글 작성,  게시글 수정....
+        
+        action : 전송 데이터를 전달 받을 프로그램의 주소값
+        method : 전송 방식
+                 - get : 전송 시, URL에 쿼리 스트림 형식으로 데이터를 전송
+                    1) URL에 데이터를 붙여 전송하므로, 길이에 제약
+                    2) 보안에 취약하다.
+                 - post : URL의 body 영역에 데이터를 담아서 전송하는 방식
+                    1) 길이에 제약이 없다.
+                    2) 상대적으로 GET 방식보다 보안성이 우수하다.
+    -->
+
+    <form action="test.html" method="get">
+        <fieldset> <!-- 양식을 그룹화하는데 사용되는 태그 -->
+            <legend>로그인</legend>
+            ID : <input type="text" name="memberId"><br> <!-- name 속성의 길이, 서버로 전송될 때 데이터들을 구분해주는 key가 됨 -->
+            PW : <input type="password" name="memberPw"><br> <!-- type:password는 입력 문자를 '점'으로 표기한다, -->
+
+            <br>
+
+            <input type="submit" value="서버로 전송!"> <!-- type:submit은 데이터를 서버로 전송하기 위한 양식 -->
+            <input type="reset" value="초기화"> <!-- tupe:reset은 form 태그 내부 입력 양식을 초기화 -->
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <!-- 서버로 데이터 전송 시, 노출되면 안되는 중요한 데이터를 전송할때는 method를 post로 지정!! -->
+    <form action="test.html" method="post">
+        <fieldset> <!-- 양식을 그룹화하는데 사용되는 태그 -->
+            <legend>로그인</legend>
+            ID : <input type="text" name="memberId" placeholder="아이디 입력"><br> <!-- placeholder는 사용자에게 입력할 값의 양식을 알랴주기 위한 용도 -->
+            PW : <input type="password" name="memberPw" placeholder="비밀번호 입력"><br> <!-- -->
+
+            <br>
+
+            <input type="submit" value="서버로 전송 Post"> 
+            <input type="reset" value="초기화"> 
+        </fieldset>
+    </form>
+
+    <br>
+
+    <h3>input 태그의 속성(type 속성 제외)</h3>
+
+
+    <form action="test.html" method="get">
+        <fieldset>
+            <legend>input 태그 속성 테스트 (type 속성 제와)</legend>
+            <div>
+                <span>기본 : </span>
+                <!-- name : 서버로 데이터를 전송할 때, 각 데이터를 구분해주는 key -->
+                <input type="text" name="input1">
+            </div>
+            <div>
+                <span>value : </span>
+                <!-- value : 입력 양식의 기본 입력값 -->
+                <input type="text" name="input2" value="기본값">
+            </div>
+            <div>
+                <span>placeholder : </span>
+                <!-- placeholder : 입력값의 형식(양식)을 사용자에게 제공해주기 위한 용도(입력 시 지워짐) -->
+                <input type="text" name="input3" placeholder="010-0000-0000">
+            </div>
+            <div>
+                <span>readonly : </span>
+                <!-- readonly : 읽기 전용이지만 서버로 데이터가 전송됨 -->
+                <input type="text" name="input4" value="읽기전용" readonly>
+            </div>
+            <div>
+                <span>disabled : </span>
+                <!-- disabled : 읽기 전용이지만 서버로 데이터가 전송되지 않는다. -->
+                <input type="text" name="input5" value="읽기전용 및 서버로 전송안됨" disabled>
+            </div>
+            <div>
+                <span>required : </span>
+                <input type="text" name="input6" required>
+            </div>
+            <input type="submit" value="서버로 전송">
+        </fieldset>
+    </form>
+
+
+    <hr>
+
+    <h3>input type 속성의 종류</h3>
+
+    <form action="test.html" method="get">
+        <fieldset>
+            <legend>input type 속성</legend>
+            <div>
+                <span> text : </span> 
+                <!-- text : 문자열을 입력 -->
+                <input type="text" name="key1">
+            </div>
+            <div>
+                <span> password : </span>
+                <input type="password" name="key2"> <!-- password : 입력값을 마스킹 처리 -->
+            </div>
+            <div>
+                <span> hidden :</span>
+                <!-- hidden : 서버로 전송되지만 사용자 화면에 표출되지는 않음.(회원 정보 수정할때 고객이 회원 번호를 수정하면 안되기때문에 회원번호 같은 걸 숨기는데 사용함) -->
+                <input type="hidden" name="key3" value="hiddeninput">
+            </div>
+            <div>
+                <span>button : </span>
+                <!-- button : submit과 생김새는 같지만 전송 목적이 아니고 기능을 부여하기 위한 목적으로 작성 -->
+                <input type="button" name="key4" value="버튼이름">
+                <button type="button">안녕?</button> <!-- * 주의사항 : form 태그 내부에서 button 태그 작성 시 type 지정을 하지 않으면 서버로 전송하는 submit 기능을 가짐 -->
+            </div>
+            <div>
+                <span> file : </span>
+                <input type="file" name="key5" accept=".jpg" multiple> <!-- file : 파일 업로드 시 작성하는 태그 (파일 형식을 제한하고 싶으면 accept로 제한해줌, 파일 여러개를 업로드 하고 싶으면 multiple을 사용하면 됨) -->
+            </div>
+            <div>
+                <span> radio : </span> <!-- radio : 제시한 선택값들 중, 하나만 선택 가능
+                                                    - 단, name 속성의 값이 동일해야 함 
+                                                    - 선택 후, 실제로 서버에 전송되는 값은 value 속성의 값!
+                                                    - checked : 기본 선택 값 지정할 때 사용
+                                        -->
+                <span>다음 중, 가장 어려운 것은?</span><br>
+                <input type="radio" name="key6" value="java">1. JAVA<br>
+                <input type="radio" name="key6" value="oracle">2. ORACLE<br>
+                <input type="radio" name="key6" value="jdbc">3. JDBC <br>
+                <input type="radio" name="key6" value="html">4. HTML<br>
+                <input type="radio" name="key6" value="all">5. 전부 다; 그걸 말이라고 하나<br>
+
+                <br>
+                <!-- 위 5개의 radio 버튼과 name값이 다르므로, 별도 선택 가능 -->
+                <input type="radio" name="key7" value="M">남자<br>
+                <input type="radio" name="key7" value="W">여자<br>
+            </div>
+            <br>
+            <div>
+                <span>checkbox : </span><br>
+                <span>다음 중, 가장 어려운것은?</span>
+                <input type="checkbox" name="key8" value="java">1.JAVA<br>
+                <input type="checkbox" name="key8" value="oracle">2.ORACLE<br>
+                <input type="checkbox" name="key8" value="jdbc">3.JDBC<br>
+                <input type="checkbox" name="key8" value="html">4.HTML<br>
+                <input type="checkbox" name="key8" value="html">5.전부<br>
+            </div>
+            <div>
+                <input type="submit" value="전송">
+                <input type="reset" value="초기화">
+            </div>
+        </fieldset>
+    </form>
+
+    <br>
+
+    <form action="test.html" method="get">
+        <fieldset>
+            <legend>label</legend>
+            <div>
+                <span>다음 중, 가장 어려운 것은?</span><br>
+                <label><input type="radio" name="key6" value="java" checked>1. JAVA</label><br>
+                <input type="radio" id="tagId" name="key6" value="oracle"><label for="tagId">2. ORACLE</label><br>
+                <input type="radio" name="key6" value="jdbc">3. JDBC <br>
+                <input type="radio" name="key6" value="html">4. HTML<br>
+                <input type="radio" name="key6" value="all">5. 전부 다; 그걸 말이라고 하나<br>
+            </div>
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <h3>input type 기타 속성값</h3>
+
+    <form action="test.html" method="get">
+        <fieldset>
+            <legend>HTML5에서 추가된 type 속성 값</legend>
+            <div>
+                <span>color</span>
+                <input type="color" name="key1">
+            </div>
+            <div>
+                <span>date | month | week | time | datetime-local</span><br>
+                <input type="date" name="key2" min="2024-09-16" max="2024-09-25"><br> <!-- min max를 사용해서 최소값, 최대값을 지정해줄 수 있다. -->
+                <input type="month" name="key3"><br>
+                <input type="week" name="key4"><br>
+            </div>
+            <div>
+                <span>number</span>
+                <input type="number" name="key5" min="0" max="10" value="3"> <!-- min,max,value를 사용해서 최소값,최대값,기본값을 지정해줄 수 있다. -->
+            </div>
+            <div>
+                <span>range</span>
+                <input type="range" name="key6" min="0" max="100" step="20">
+            </div>
+            <div>
+                <span>url</span>
+                <input type="url" name="key7">
+            </div>
+            <div>
+                <span>email</span>
+                <input type="email" name="key8">
+            </div>
+            <div>
+                <input type="submit" value="전송">
+            </div>
+        </fieldset>
+    </form>
+
+    <hr>
+
+    <h3>select와 option 태그</h3>
+    <!-- 
+        제시한 여러개의 목록(option)들 중에서 한가지를 선택할 수 있도록 제공 
+        서버에 전송 시, 목록중에 선택된 목록(option)의 value 값이 전송된다.
+     -->
+    <form action="test.html" method="get">
+        <fieldset>
+            <legend>input외 전송 가능한 태그</legend>
+            <div>
+                <span>select와 option</span><br>
+                <!-- 
+                    select에 지정된 name 값이 key가 되고,
+                    선택한 option의 value 값이 전송 데이터가 됨. 
+                 -->
+                <select name="key1">
+                    <option value="a">일</option>
+                    <option value="b" selected>이</option> <!-- 페이지 로드 시, 기본 선택값 지정 -->
+                    <option value="c">삼</option>
+                    <option value="d">사</option>
+                </select>
+            </div>
+            <div>
+                <span>textarea</span><br>
+                <!-- 
+                    게시글 본문과 같이, 여러줄을 입력해야 할 때 사용하는 태그
+                    resize:nono은 textarea의 사이즈를 사용자가 조절할 수 없도록 지정하는 스타일.
+                  -->
+                <textarea name="key2" cols="50" rows="20" style="resize: none;">본문 내용</textarea>
+            </div>
+            <div>
+                <input type="submit" value="전송">
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>
