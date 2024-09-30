@@ -1,0 +1,61 @@
+.div{
+    width: 200px;
+    height: 200px;
+    background-color: bisque;
+    border: 10px solid black;
+    padding: 50px;
+}
+.d1{
+    box-sizing: content-box;
+}
+.d2{
+    box-sizing: border-box;
+}
+
+.div{
+    width: 1000px;
+    overflow: hidden;
+}
+.div1>div{
+    width: 200px;
+    height: 20px;
+    background-color: red;
+    float: left;
+    border: 1px solid black;
+}
+
+.outer{
+    background-color: black;
+    width: 500px;
+    height: 500px;
+}
+.in1{
+    width: 300px;
+    height: 300px;
+    background-color: cadetblue;
+    top: 20px;
+    left: 20px;
+}
+.in2{
+    width: 200px;
+    height: 200px;
+    background-color: tomato;
+}
+.in3{
+    width: 50px;
+    height: 50px;
+    background-color: royalblue;
+}
+.outer>div{
+    position: absolute;
+}
+
+.fixed{
+    width: 100px;
+    height: 100px;
+    background-color: violet;
+
+    position: fixed;
+    top: 50px;
+    left: 50px;
+}

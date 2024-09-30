@@ -1,0 +1,70 @@
+
+.group-menu li{ /* 자손 && 후손 */
+    list-style-type: none;
+}
+.group-menu {
+    position: relative;
+}
+.group-menu>li{
+    width: 130px;
+    height: 50px;
+    background-color: blanchedalmond;
+    text-align: center;
+    float: left; /* 내부 요소 가로 배치 */
+}
+.group-menu>li>a {
+    color: dodgerblue;
+    text-decoration: none;
+    line-height: 50px;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.group-menu>li:first-child{
+    border-top-left-radius: 20px;
+}
+.group-menu>li:last-child{
+    border-top-right-radius: 20px;
+}
+.group-menu>li:hover{
+    background-color: dodgerblue;
+}
+.group-menu>li:hover>a{
+    color: blanchedalmond;
+    font-weight: bold;
+}
+.group-menu>li:hover>ul{
+    /* 마우스 올렸을 때 서브메뉴가 보이도록 */
+    display: block;
+}
+.sub-menu{
+    display: none;
+    /* 상위 요소 중, relative 요소 기준으로 요소들을 겹칠 수 있게 */
+    position: absolute;
+    /* ul 태그의 기본 속성에 padding-inline-start가 40px이므로 */
+    left: 40px;
+    padding: 0;
+}
+.sub-menu>li{
+    width: 130px;
+    height: 50px;
+    background-color: dodgerblue;
+    text-align: center;
+    float: left;
+}
+.sub-menu>li>a{
+    color: blanchedalmond;
+    line-height: 50px;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+.sub-menu>li:first-child{
+    border-bottom-left-radius: 20px;
+}
+.sub-menu>li:last-child{
+    border-bottom-right-radius: 20px;
+}

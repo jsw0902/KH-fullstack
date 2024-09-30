@@ -1,0 +1,117 @@
+.bc{
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+}
+.div1{
+    background-color: #7D6167;
+}
+
+.clip-wrap>div{
+    width: 200px;
+    height: 200px;
+    border: 5px dashed black;
+    margin: 20px;
+    padding: 20px;
+    background-color: blue;
+    float: left;
+}
+.clip-wrap{
+    overflow: hidden;
+}
+.clip1{
+    /* border 영역에도 배경색이 적용됨 */
+    background-clip: border-box;
+}
+.clip2{
+    /* border 영역을 제외한 padding 영역과 content 영역에 적용 */
+    background-clip: padding-box;
+}
+.clip3{
+    /* border, padding 영역을 제회한 content 영역에만 적용 */
+    background-clip: content-box;
+}
+
+.bg-img{
+    background-image: url(../css/img/dog.jpg);
+    height: 1000px;
+}
+
+.test-div{
+    width: 100px;
+    height: 100px;
+    margin: 30px;
+    border: 1px solid black;
+    float:  left;
+    background-image: url(../css/img/kakao.jpg);
+}
+.repeat-wrap{
+    overflow: hidden;
+}
+.repeat-1{
+    /* 요소 크기만큼 이미지 반복 */
+    background-repeat: repeat;
+}
+.repeat-2{
+    /* x축 (가로)으로만 반복 */
+    background-repeat: repeat-x;
+}
+.repeat-3{
+    /* y축 (세로)으로만 반복 */
+    background-repeat: repeat-y;
+}
+.repeat-4{
+    /* 반복하지 않음. */
+    background-repeat: no-repeat;
+}
+.position-wrap{
+    overflow: hidden;
+}
+.position-wrap>*{
+    background-repeat: no-repeat;
+}
+.po1{
+    /* 좌우(좌측), 상하(가운데) */
+    background-position: left center;
+}
+.po2{
+    /* 좌우(우측), 상하(하) */
+    background-position: right bottom;
+}
+.po3{
+    /* 좌우(가운데), 상하(가운데) */
+    background-position: center center;
+}
+.po4{
+    /* 좌우(요소 width 기준 30%), 상하(요소 height 기준 60%) */
+    background-position: 30% 60%;
+}
+
+.size-wrap{
+    overflow: hidden;
+}
+.size-wrap>*{
+    background-repeat: no-repeat;
+}
+.size1{
+    background-size: auto;
+}
+.size2{
+    background-size: contain;
+}
+.size3{
+    background-size: cover;
+}
+.size4{
+    background-size: 30%;
+}
+
+body{
+    /*
+        배경을 이미지로 채우고, 반복되지 않도록 설정
+        스크롤을 상, 하로 이동해도 배경이미지가 위치에 고정됨.
+    */
+    background-image: url(../css/img/flower1.PNG);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

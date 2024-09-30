@@ -1,0 +1,226 @@
+.span1{
+    background-color: aquamarine;
+
+    /*
+        인라인 요소에 직접적으로 크기 지정 불가능,
+        아래 속성들은 무시됨.
+    */
+    width: 100px;
+    height: 300px;
+}
+
+.div1{
+    background-color: red;
+    width: 100px;
+    height: 200px;
+    
+}
+
+.div2{
+    background-color: bisque;
+    width: 500px;
+    height: 100px;
+}
+
+.div3{
+    background-color: aquamarine;
+    width: 50%;
+}
+
+.div4{
+    background-color: darkcyan;
+    /*
+        부모 요소인 div에, height를 지정하니
+        바로 다음 요소인 div7이 지정한 height 밑에 붙어버림.
+        즉, div4의 자식 요소들(div5, div6)과 div7이 겹쳐보이는 현상이 발생
+
+        이러한 현상을 발생시키지 않기 위해, 부모 요소(div4)의 넓이는 
+        자식 요소들(div5, div6)의 합만큼 지정할 수 있도록 작성
+    */
+    /*height: 150px;*/
+}
+
+.div5{
+    width: 200px;
+    height: 300px;
+    background-color: aquamarine;
+}
+
+.div6{
+    width: 100px;
+    height: 100px;
+    background-color: darkgreen;
+}
+
+.div7{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+}
+
+.div8{
+    background-color: darkgoldenrod;
+    width: 500px;
+}
+
+.div9{
+    height: 50px;
+    width: 50%;
+    background-color: blueviolet;
+}
+
+.div10>*{
+    width: 200px;
+    height: 200px;
+    background-color: sandybrown;
+}
+
+.div12{
+    /*
+        블록 => 인라인
+        - 크기 지정 불가능
+        - 다른 요소와 한 줄에 나열됨
+    */
+    display: inline;
+    width: 300px;
+    height: 400px;
+}
+
+.span3{
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+.span4{
+    display: none;
+}
+
+.div13>ul{
+    display: none;
+}
+/*
+    클래스명이 div13 하위의 div 요소에 마우스를 올렸을 때
+    바로 다음 ul 요소에 스타일 지정.
+*/
+.div13>div:hover+ul{
+    display: block;
+}
+
+.div14>*{
+    width: 200px;
+    height: 200px;
+    background-color: brown;
+    display: inline-block;
+}
+
+.container {
+    background-color: tomato;
+}
+
+.container>div{
+    border: 1px solid black;
+}
+/*
+    메인축 : 가로축 (왼쪽에서 오른쪽)
+*/
+.container1{
+    display: flex;
+    /*
+        flex-start : 방향의 시작점으로 [기본값]
+        flex-end : 방향의 끝점으로
+        center : 가운데로
+        space-between : 아이템 사이에만 균등한 여백이 존재. 양끝에는 여백이 없음
+        space-around : 아이템 양 끝에 여백이 존재하고, 아이템 사이에도 여백이 존재하지만 양 끝의 여백이 더 좁다
+        space-evenly : 아이템 양 끝 여백 && 아이템 사이의 여백 모두 균등하게 배분
+    */
+
+    justify-content: flex-start;
+    justify-content: flex-end;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    justify-content: space-evenly;
+}
+
+.container2{
+    /*
+        display flex : 기본적으로 가로 방향으로 배치
+        justify-content : 가로축의 중앙 정렬
+        height : 컨테이너 요소에 높이 지정 (내부 아이템 높이도 늘어남)
+        slign-items : 세로축의 중앙 정렬.
+    */
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    align-items: center;
+}
+/*
+    메인축 : 세로축(위에서 아래로)
+*/
+.container3{
+    display: flex;
+    flex-direction: column; /* 메인축을 세로축으로 지정(웨에서 아래)*/
+    /*가로축의 정렬*/
+    align-items: flex-start;
+    align-items: flex-end;
+    align-items: center;
+}
+
+.container4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 300px;
+    justify-content: center;
+}
+
+/*
+    display : flex는 flex로 지정한 요소 내부의 자식 요소들을 유연하게 배치할 때 사용
+
+    축은 가로축(왼쪽에서 오른쪽 방향)과 세로축(위에서 여러 방향 )이 존재
+    flex-direction 속성을 저장하지 않으면, 기본적으로 row라는 값을 가진다 => 메인축 == 가로축
+
+    [flex-direction == row]
+    - 메인축 : 가로축
+    - 교차축 : 세로축
+
+    [flex-direction == colume]
+    - 메인축 : 세로축
+    - 교차축 : 가로축
+
+    [justify-content] : 메인축에 대한 정렬 속성
+    - 메인축 == 가로축 == 수평 정렬 속성
+    - 메인축 == 세로축 == 수직 성렬 속성
+
+    [align-item] : 교차축에 대한 정렬 속성
+    - 메인축 == 가로축 == 수직 정렬 속성
+    - 메인축 == 세로축 == 수평 정렬 속성
+*/
+
+/* 메뉴바 만들기 */
+.group-menu{
+    display: flex;
+    justify-content: space-between;
+}
+.group-menu>li{
+    border: 1px solid black;
+}
+.group-menu>li:hover{
+    cursor: pointer;
+}
+.group-menu>li:hover>ul{
+    display: block;
+}
+
+.sub-menu{
+    padding: 0;
+}
+.group-menu li{
+    list-style-type: none;
+}
+.sub-menu>li{
+    line-height: 30px;
+    display: none;
+}

@@ -1,0 +1,50 @@
+body{
+    background: linear-gradient(to bottom, #60463b, #d3a588);
+}
+.login-wrap{
+    width: 450px;
+    height: 450px;
+    margin: 500px auto;
+    background-color: #d1bcb0;
+    border-radius: 20px;
+}
+.login-wrap>h1{
+    height: 180px;
+    line-height: 180px;
+    text-align: center;
+    font-size: 30px;
+    color: #60463b;
+    text-shadow: #856a85 3px 3px 5px;
+}
+form>*{
+    display: block;
+    margin: 0 auto;
+    width: 270px;
+    height: 25px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
+}
+form>input[type=submit]{
+    height: 50px;
+    font-size: 16px;
+    background-color: #60463b;
+    color: #d3a588;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.etc{
+    text-align: center;
+}
+.etc>a{
+    text-decoration: none;
+    color: #60463b;
+}
+.etc>a:hover{
+    text-decoration: underline;
+}
+form>input[name=email], form>input[name=password]{
+    text-indent: 10px;
+}

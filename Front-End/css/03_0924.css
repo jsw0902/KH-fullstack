@@ -1,0 +1,59 @@
+.ul1{
+    /*꽉찬 동그라미*/
+    list-style-type: disc;
+}
+.ul2{
+    /*비어있는 동그라미*/
+    list-style-type: circle;
+}
+.ul3{
+    /*꽉찬 사각형*/
+    list-style-type: square;
+}
+.ul4{
+    /*기본 기호 제거*/
+    list-style-type: none;
+}
+
+.ul4>li::before, .ul4>li::after{
+    content: "😒";
+}
+
+.ol1{
+    list-style-type: decimal;
+}
+.ol2{
+    /* 숫자 앞에 0을 붙여 표기 */
+    list-style-type: decimal-leading-zero;
+}
+.ol3{
+    /* i, ii, iii, iv (로마) 숫자로 표기 */
+    list-style-type: lower-roman;
+}
+.ol4{
+    /* 소문자 알파벳 */
+    list-style-type: lower-alpha;
+}
+.ol5{
+    /* 대문자 알파벳 */
+    list-style-type: upper-alpha;
+}
+
+.ul5{
+    list-style-image: url(../css/img/1.png) ;
+}
+
+.ul6{
+    /*
+        목록 표기를 위한 기호가,
+        텍스트 영역에 표기.
+    */
+    list-style-position: inside;
+}
+.ul7{
+    /*
+        목록 표기를 위한 기호가,
+        텍스트 영역 바깥에 표기.
+    */
+    list-style-position: outside;
+}

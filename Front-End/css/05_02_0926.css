@@ -1,0 +1,64 @@
+.linear{
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.gra1{
+    background: linear-gradient(#0000ff, #fff);
+}
+
+.gra2{
+    background: linear-gradient(to left, #0000ff, #ffffff);
+}
+
+.gra3{
+    background: linear-gradient(180deg, #0000ff, #ffffff);;
+}
+
+.gra4{
+    background: linear-gradient(90deg, #0000ff, #ffffff 30%, #f00);;
+}
+
+.gra5{
+    background: linear-gradient(135deg, #f00, #fff 10%, #0ff 30%, #00f 60%, #f0f 80%, #fdf);;
+}
+
+.gra6{
+    background: repeating-linear-gradient(90deg, #00f, #fff 20%);
+}
+
+.circle{
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.gra7{
+    background: radial-gradient(#fff, #ff0, #f00);
+}
+.gra8{
+    background: radial-gradient(circle,#fff, #ff0, #f00);
+}
+.gra9{
+    background: -webkit-radial-gradient(30% 40%, circle,#fff, #ff0, #f00);
+
+    /*
+        크롬 :  -webkit
+        익스플로러 : -ms
+        오페라 : -o
+        파이어폭스 : -moz
+    */
+}
+.gra10{
+    background: -webkit-radial-gradient(30% 40%, circle closest-side,#fff, #ff0, #f00);
+}
+.gra11{
+    background: -webkit-radial-gradient(30% 40%, circle farthest-side,#fff, #ff0, #f00);
+}
+.gra12{
+    background: -webkit-radial-gradient(30% 40%, circle closest-corner,#fff, #ff0, #f00);
+}
+.gra10{
+    background: -webkit-radial-gradient(30% 40%, circle farthest-corner,#fff, #ff0, #f00);
+}

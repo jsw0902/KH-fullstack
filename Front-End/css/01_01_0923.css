@@ -1,0 +1,36 @@
+/*
+*{
+    color: red;
+}*/
+
+/* 태그 선택자 */
+p{
+    color: red;
+}
+
+#li2{
+    color: red;
+}
+
+.class1{
+    color: purple;
+    background-color: gray;
+}
+
+.class2{
+    color: red;
+}
+
+.class3{
+    background-color: black;
+    color: white;
+}
+
+.class4{
+    color: red;
+}
+
+/* 여러개의 선택지를 ,(콤마)로 구분하여 동일한 스타일 적용 */
+.class1, #li2{
+    padding: 10px 10px;
+}

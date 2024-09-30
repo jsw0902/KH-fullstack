@@ -1,0 +1,88 @@
+
+body{
+    height: 100vh;
+    background-image: url(../css/overwatch_images/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.container{
+    padding: 50px 0;
+}
+.heroes{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.hero{
+    width: 80px;
+    height: 85px;
+    margin: 5px;
+    border: 3px solid black;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 16px;
+    transform: skewX(-15deg);
+    background-color: white;
+    transition: transform 0.1s, background-color 0.5s;
+}
+.hero:hover{
+    background-color: #ff9c00;
+    transform: scale(1.2) skewX(-15deg);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.hero>.image{
+    width: 140%;
+    height: 100%;
+    background-position: center;
+    background-size: 90px;
+    background-repeat: no-repeat;
+    transform: skewX(15deg);
+}
+
+.container>.logo{
+    margin: 30px auto;
+    width: 300px;
+
+}
+.container img{
+    width: 100%;
+}
+
+.hero:nth-child(1)>.image{ background-image: url(../css/overwatch_images/hero1.png);}
+.hero:nth-child(2)>.image{ background-image: url(../css/overwatch_images/hero2.png);}
+.hero:nth-child(3)>.image{ background-image: url(../css/overwatch_images/hero3.png);}
+.hero:nth-child(4)>.image{ background-image: url(../css/overwatch_images/hero4.png);}
+.hero:nth-child(5)>.image{ background-image: url(../css/overwatch_images/hero5.png);}
+.hero:nth-child(6)>.image{ background-image: url(../css/overwatch_images/hero6.png);}
+.hero:nth-child(7)>.image{ background-image: url(../css/overwatch_images/hero7.png);}
+.hero:nth-child(8)>.image{ background-image: url(../css/overwatch_images/hero8.png);}
+.hero:nth-child(9)>.image{ background-image: url(../css/overwatch_images/hero9.png);}
+.hero:nth-child(10)>.image{ background-image: url(../css/overwatch_images/hero10.png);}
+.hero:nth-child(11)>.image{ background-image: url(../css/overwatch_images/hero11.png);}
+.hero:nth-child(12)>.image{ background-image: url(../css/overwatch_images/hero12.png);}
+.hero:nth-child(13)>.image{ background-image: url(../css/overwatch_images/hero13.png);}
+.hero:nth-child(14)>.image{ background-image: url(../css/overwatch_images/hero14.png);}
+.hero:nth-child(15)>.image{ background-image: url(../css/overwatch_images/hero15.png);}
+.hero:nth-child(16)>.image{ background-image: url(../css/overwatch_images/hero16.png);}
+.hero:nth-child(17)>.image{ background-image: url(../css/overwatch_images/hero17.png);}
+.hero:nth-child(18)>.image{ background-image: url(../css/overwatch_images/hero18.png);}
+.hero:nth-child(19)>.image{ background-image: url(../css/overwatch_images/hero19.png);}
+.hero:nth-child(20)>.image{ background-image: url(../css/overwatch_images/hero20.png);}
+.hero:nth-child(21)>.image{ background-image: url(../css/overwatch_images/hero21.png);}
+.hero:nth-child(22)>.image{ background-image: url(../css/overwatch_images/hero22.png);}
+.hero:nth-child(23)>.image{ background-image: url(../css/overwatch_images/hero23.png);}
+.hero:nth-child(24)>.image{ background-image: url(../css/overwatch_images/hero24.png);}
+.hero:nth-child(25)>.image{ background-image: url(../css/overwatch_images/hero25.png);}
+.hero:nth-child(26)>.image{ background-image: url(../css/overwatch_images/hero26.png);}
+.hero:nth-child(27)>.image{ background-image: url(../css/overwatch_images/hero27.png);}
+.hero:nth-child(28)>.image{ background-image: url(../css/overwatch_images/hero28.png);}
+.hero:nth-child(29)>.image{ background-image: url(../css/overwatch_images/hero29.png);}
+.hero:nth-child(30)>.image{ background-image: url(../css/overwatch_images/hero30.png);}
+.hero:nth-child(31)>.image{ background-image: url(../css/overwatch_images/hero31.png);}
+.hero:nth-child(32)>.image{ background-image: url(../css/overwatch_images/hero32.png);}

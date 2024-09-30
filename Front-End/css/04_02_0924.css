@@ -1,0 +1,240 @@
+.div{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    /*background-color: tomato;*/
+}
+
+.div1{
+    border-top-style: solid; /* 실선 */
+    border-left-style: dashed; /* 점선(선이 끊어진 형태) */
+    border-bottom-style: double; /* 이중선 */
+    border-right-style: dotted; /* 점선 */
+
+    border-top-width: 1px;
+    border-left-width: 5px;
+    border-right-width: 10px;
+    border-bottom-width: 15px;
+
+    border-top-color: red;
+    border-left-color: #00FF00;
+    border-right-color: rgb(0, 0, 255);
+    border-bottom-color: rgba(255, 0, 0, 0.3);
+}
+
+.div2{
+    border-style: dashed;
+    border-width: 10px;
+    border-color: #02f0d2;
+}
+.div3{
+    border-style: outset;
+}
+.div3:active{
+    border-style: inset;
+}
+.div4{
+    border-style: inset;
+}
+.div5{
+    border-style: ridge;
+}
+.div6{
+    border: 5px solid red;
+}
+.div7{
+    border: 5px dotted brown;
+}
+.div8{
+    border: 1px solid black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 20px;
+}
+.div9{
+    border: 3px solid purple;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 20px;
+}
+.div10{
+    border: 3px solid blue;
+    border-radius: 50px;
+}
+
+.div11{
+    border: 1px solid black;
+    box-shadow: 5px 5px 3px 2px gray;
+}
+.div12{
+    border: ridge;
+    box-shadow: 5px 5px 3px 2px gray;
+}
+.div13{
+    border: hidden;
+    box-shadow: 5px 5px 3px 2px gray;
+}
+
+.ex{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border: 3px dotted black;
+}
+
+.l1,.l3,.l7,.l9{
+    border: 3px dashed black;
+}
+
+.l5{
+    border: 3px dotted purple;
+}
+
+.l1{
+    border: 3px solid blue;
+    border-top-left-radius: 20px;
+    border-bottom-style: dashed;
+    border-right-style: dashed;
+}
+.l3{
+    border: 3px solid green;
+    border-top-right-radius: 20px;
+    border-bottom-style: dashed;
+    border-left-style: dashed;
+}
+.l7{
+    border: 3px solid yellow;
+    border-bottom-left-radius: 20px;
+    border-top-style: dashed;
+    border-right-style: dashed;
+}
+.l9{
+    border: 3px solid red;
+    border-bottom-right-radius: 20px;
+    border-top-style: dashed;
+    border-left-style: dashed;
+}
+
+.div-m{
+    width: 150px;
+    height: 150px;
+    background-color: bisque;
+}
+.m-test2{
+    margin: 20px 0;
+}
+
+.div-p{
+    width: 200px;
+    height: 200px;
+    background-color: burlywood;
+    border: 1px solid black;
+}
+
+.p-test1{
+    padding-left: 20px;
+}
+
+.p-test2{
+    padding-right: 20px;
+}
+
+.p-test3{
+    padding: 20px 20px;
+}
+
+.test1{
+    background-color: teal;
+    width: 500px;
+}
+
+.test2{
+    height: 100px;
+    width: 20%;
+    background-color: darkorchid;
+
+    /*
+        상하 : 0
+        좌우 : auto(부모 요소 넓이 - 자식 요소 넓이 공간을 좌우에 균등하게 지정)
+    */
+    margin: 0 auto;
+}
+
+.test3{
+    background-color: teal;
+    width: 500px;
+    padding: 100px 0;
+}
+.test4{
+    height: 100px;
+    width: 20%;
+    background-color: darkorchid;
+}
+
+.test5{
+    background-color: teal;
+    width: 500px;
+    padding: 200px 0;
+}
+
+.test6{
+    height: 100px;
+    width: 20%;
+    background-color: darkorchid;
+    margin: 0 auto;
+}
+
+.test7{
+    background-color: teal;
+    width: 500px;
+}
+
+.test8{
+    height: 100px;
+    width: 20%;
+    background-color: darkorchid;
+    /* 내부 인라인 요소 좌우 가운데 정렬 */
+    text-align: center;
+}
+
+.test9{
+    background-color: teal;
+    width: 500px;
+}
+
+.test10{
+    height: 100px;
+    width: 20%;
+    background-color: darkorchid;
+}
+.test10>span{
+    /* 행간격 속성값을 부모 요소의 height만큼 지정 */
+    line-height: 100px;
+}
+
+.test11{
+    background-color: teal;
+    width: 500px;
+}
+.test12{
+    height: 100px;
+    width: 20%;
+    background-color: darkorchid;
+    text-align: center;
+}
+.test12>span{
+    line-height: 100px;
+}
+.test13{
+    background-color: teal;
+    width: 500px;
+    padding: 200px 0;
+}
+.test14{
+    height: 100px;
+    width: 20%;
+    background-color: darkorchid;
+    margin: 0 auto;
+    text-align: center;
+}
+.test14>span{
+    line-height: 100px;
+}

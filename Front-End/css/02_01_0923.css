@@ -1,0 +1,64 @@
+.p1{
+    font-family: "궁서체";
+}
+.p2{
+    font-family: "고딕체";
+}
+.p3{
+    font-family: "맑은고딕";
+}
+.p4{
+    font-family: "Jua", sans-serif;
+}
+@font-face {
+    font-family: "호날두"; /*새로 등록할 폰트의 이름 지정*/
+    src: url(../css/font/Dongle-Regular.ttf); /* 다운로드 받은 글꼴 파일의 위치*/
+}
+.p5{
+    /*위 font-face로 지정한 글꼴 이름을 속성값으로 지정*/
+    font-family: "호날두", sans-serif;
+}
+
+.zero{
+    font-size: 30px;
+}
+.one{
+    font-size: 130%;
+}
+.two{
+    font-size: 2em;
+}
+
+.three{
+    font-weight: bold; /*600*/
+}
+
+.four{
+    font-weight: lighter; /*100*/
+}
+
+.five{
+    font-weight: bolder; /*900*/
+}
+
+.six, .seven{
+    font-variant: small-caps;
+}
+
+.text{
+    font-size: 2em;
+}
+.eight{
+    font-style: italic;
+}
+.nine{
+    font-style: oblique;
+}
+
+.ten1{
+   font : 16px "궁서체"; 
+}
+
+.ten2{
+    font : italic bold 20px "고딕체";
+}
