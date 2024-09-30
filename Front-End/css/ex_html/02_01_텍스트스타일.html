@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../02_01_0923.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>글꼴 관련 스타일</h1>
+
+    <hr>
+
+    <h2>font-family 속성 : 텍스트의 글꼴을 지정할 때 사용</h2>
+    <p>
+        선택자 (font-family : 글꼴이름;) 과 같이 사용
+    </p>
+
+    <br><br>
+
+    <p class="p0">글꼴 변경 테스트(기본 글꼴)</p>
+    <p class="p1">글꼴 변경 테스트(궁서체)</p>
+    <p class="p2">글꼴 변경 테스트(고딕체)</p>
+    <p class="p3">글꼴 변경 테스트(맑은고딕)</p>
+    <p class="p4">글꼴 변경 테스트(외부 글꼴 링크)</p>
+    <p class="p5">글꼴 변경 테스트(외부 글꼴 다운로드)</p>
+
+    <hr>
+
+    <h2>font-size 속성 : 텍스트의 크기를 지정할 때 사용</h2>
+    <p>
+        선택자 {font-size : 크기 단위;} 과 같이 사용
+    </p>
+
+    <!-- ul>li*3 -->
+    <ul>
+        <li class="zero">고정크기</li>
+        <li class="one">가변크기</li>
+        <li class="two">배수크기</li>
+    </ul>
+
+    <hr>
+
+    <h2>font-weight 속성 : 텍스트의 굵게 작성할 때 사용</h2>
+    <p>
+        선택자{font-weight : normal | bold | bolder | lighter | 100 | 400 | 900}과 같이 사용
+    </p>
+
+    <ul>
+        <li class="three">텍스트 굵기 테스트</li>
+        <li class="four">텍스트 굵기 테스트</li>
+        <li class="five">텍스트 굵기 테스트</li>
+    </ul>
+
+    <hr>
+
+    <h2>font-variant 속성 : 작은 대문자로 변경할 때 사용</h2>
+    <p>
+        선택자{font-variant : 속성값;} 과 같이 사용
+    </p>
+
+    <p class="six">I LOVE CSS</p>
+    <p class="seven">i love css</p>
+
+    <hr>
+
+    <h2>font-style 속성 : 텍스트의 기울임을 지정할 때 사용</h2>
+    <p>
+        선택자{font-style : normal | italic | oblique;}과 같이 사용
+    </p>
+    <ul>
+        <li class="text eight">italic 기울임 글꼴</li> <!-- 기울어진 글꼴들이 존재(자연스러움) -->
+        <li class="text nine">oblique 기울임 글꼴</li> <!-- 일반 글자를 들어서 기울인다.(부자연스러움) -->
+    </ul>
+
+    <hr>
+
+    <h2>font 속성 : 글꼴 관련 스타일을 한번에 지정할 떄 사용</h2>
+    <p>
+        선택자 {font : font-style font-variant font-weight font-size/line-height font-family}과 같이 사용
+    </p>
+
+    <ul>
+        <li class="ten1">글꼴 관련 스타일 테스트1(16px 궁서체)</li>
+        <li class="ten2">글꼴 관련 스타일 테스트2(italic bold 20px 고딕체)</li>
+    </ul>
+
+    
+</body>
+</html>

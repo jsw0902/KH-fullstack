@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../04_03_0925.css">
+</head>
+<body>
+    <h1>레이아웃 스타일</h1>
+
+    <hr>
+
+    <h3>box-sizing</h3>
+
+    <h3>box-sizing : 컨텐츠 영역의 width와 height의 범위를 지정하는 속성</h3>
+    <p>
+        선택자 { box-sizing : content-box | border-box }와 같이 지정 <br>
+    </p>
+    <!-- 
+        아래 2개의 div의 width와 height의 스타일 값은 200px로 동일하다. 
+
+        content-box : 컨텐츠의 넚이와 높이는 지정한만큼 차지하고, padding와 border를 바깥쪽으로 붙이는 형식
+
+        border-box : 컨텐츠의 넓이와 높이에서 컨텐츠 영역에 padding과 border를 안쪽으로 채우는 형식.
+     -->
+    <div class="div d1">
+        box-sizing : content-box인 경우.
+    </div>
+    <div class="div d2">
+        box-sizing : border-box인 경우.
+
+        왼쪽 border(10)+왼쪽 padding(50)+ 가로 길이(80)+오른쪽 padding(50)+ 오른쪽 border(10) = 200px
+    </div>
+
+    <div class="div1">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <hr>
+
+    <h3>position : 페이지 요소들의 위치를 설정하는 속성</h3>
+    <p>
+        선택자 : (position : relative | absolute | fixed | static[기본값])과 같이 사용. 
+    </p>
+    <!--
+        relative : 기준이 될 요소에 지정.
+            -height를 지정하지 않으면, 내부 absolute 요소들이 어디에 배치될지 모르기에, height가 0이 된다.
+        absolute : 상위 요소 중, relative속성을 가진 요소 기준으로 위치를 지정할 요소들에 대하여 지정.
+            - 위치는 top, bottom, right, left로 지정할 수 있다.
+            - 부모 요소의 position이 static이면, 브라우저 기준으로 위치가 설정되고,
+              부모 요소의 position이 relative면, 부모 요소 시작점 기준으로 위치가 설정된다.
+        fixed : 요소를 브라우저 기준으로 위치를 고정시킬 때 고정하고자 하는 요소에 설정
+    -->
+    <div class="outer">
+        <div class="in1"></div>
+        <div class="in2"></div>
+        <div class="in3"></div>
+    </div>
+
+
+    <div aria-valuemax="fixed"></div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+</html>

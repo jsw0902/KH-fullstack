@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../04_02_0924.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>레이아웃 스타일</h1>
+
+    <hr>
+
+    <h2>테두리 스타일 지정</h2>
+
+    <br><br>
+
+    <h3>테두리의 스타일(종류) 지정</h3>
+    <p>
+        선택자 {border-[방향(생략가능)]-style : none | hidden | dashed | dotted |
+               double | groove | inset | outset | ridge | solid } 와 같이 사용 
+    </p>
+    <h3>테두리 두께 지정</h3>
+    <p>
+        선택자 {border-[방향(생략가능)]-width : thin | medium | thick | px } 와 같이 사용
+    </p>
+
+    <h3>테두리의 두께 지정</h3>
+    <p>
+        선택자 {border-[방향(생략가능)]-color : 생상값 } 과 같이 사용
+    </p>
+
+    <h3>테두리 스타일을 한번에 지정</h3>
+    <p>
+        선택자 {border-[방향(생략가능)] : width값 style값 color값 }과 같이 사용
+    </p>
+
+    <h3>박스의 모서리 영역을 둥글게 하는 속성</h3>
+    <p>
+        선택자 {border-[방향(생략가능)]-radius : 숫자}
+    </p>
+
+    <h3>박스의 그림자를 지정하는 속성</h3>
+    <p>
+        선택자 {box-shadow : 수평거리 수직거리 흐림 번짐 색상} 과 같이 사용.
+    </p>
+
+    <div class="div div1"></div>
+    <div class="div div2"></div>
+    <div class="div div3"></div>
+    <div class="div div4"></div>
+    <div class="div div5"></div>
+    <div class="div div6"></div>
+    <div class="div div7"></div>
+    <div class="div div8"></div>
+    <div class="div div9"></div>
+    <div class="div div10"></div>
+    <div class="div div11"></div>
+    <div class="div div12"></div>
+    <div class="div div13"></div>
+
+    <br>
+    <hr>
+
+    <div>
+        <div class="ex l1"></div>
+        <div class="ex l2"></div>
+        <div class="ex l3"></div>
+    </div>
+    <div>
+        <div class="ex l4"></div>
+        <div class="ex l5"></div>
+        <div class="ex l6"></div>
+    </div>
+    <div>
+        <div class="ex l7"></div>
+        <div class="ex l8"></div>
+        <div class="ex l9"></div>
+    </div>
+
+    <hr>
+
+    <h2>여택 스타일</h2>
+
+    <h3>margin : 요소(Element)와 요소(Element)간의 여백</h3>
+    <p>
+        선택자 {magin-[위치(생략가능)] : 거리 } -> 위치는 top, bottom, left, right <br>
+        선택자 {margin : 거리} 4가지 방향에 대해서 한번에 설정 <br>
+        선택자 {margin : 거리1 거리2 } -> 거리1 : top과 bottom에 대한 거리, 거리2 : left와 right에 대한 거리 <br>
+        선택자 {margin : 거리1 거리2 거리3 거리4} -> 거리1 : top, 거리2 : right, 거리3 : bottom, 거리4 : left (top을 시작으로 시계방향)
+    </p>
+
+    <h3>padding : 요소 (Element)의 테두리(border)와 내부 컨텐츠(content)사이의 여백</h3>
+    <p>
+        설정 방법은 margin과 동일
+    </p>
+
+    <div class="div-m m-test1">margin test1</div>
+    <div class="div-m m-test2">margin test2</div>
+    <div class="div-m m-test3">margin test3</div>
+
+    <br><br>
+
+    <div class="div-p p-test1">padding test1</div>
+    <div class="div-p p-test2">padding test2</div>
+    <div class="div-p p-test3">padding test3</div>
+
+    <br><br>
+    <!--
+        컨텐츠 가운데 정렬
+
+        1) 정렬 대상 요소가 display ㅣ block인 경우.
+        <div class="test2">
+            <div class="test2"></div>
+        </div>
+
+        좌우 정렬 : 자식 요소의 margin 속성 부여(margin : 0 auto)
+        상하 정렬 : 부모 요소의 padding 속성 부여(padding : 거리 0)
+
+        2) 정렬 대상 요소가 display : inline or inline-block인 경우
+
+        <div class="test1">
+            <div class = "test2">
+                <span>Hello</span> => 인라인 요소
+            </div>
+        </div>
+
+        좌우 정렬 : {인라인 요소 기준} 부모 요소의 text-align : center; 지정
+        상하 정렬 : 인라인 요소에 행 간격 속성(line-height)의 값을 부모 요소의 높이 값과 동일하게 지정
+    -->
+
+    <h4>자식 블록 요소를 좌우 가운데 정렬</h4>
+    <div class="test1">
+        <div class="test2">
+            <span>Hello</span>
+        </div>
+    </div>
+
+    <h4>자식 블록 요소를 상하 가운데 정렬</h4>
+    <div class="test3">
+        <div class="test4">
+            <span>Hello</span>
+        </div>
+    </div>
+
+    <h4>자식 블록 요소를 상하, 좌우 가운데 정렬</h4>
+    <div class="test5">
+        <div class="test6">
+            <span>Hello</span>
+        </div>
+    </div>
+
+    <h4>자식 인라인(or inline-block) 요소를 좌우 가운데 정렬</h4>
+    <div class="test7">
+        <div class="test8">
+            <span>Hello</span>
+        </div>
+    </div>
+
+    <h4>자식 인라인(or inline-block) 요소를 상하 가운데 정렬</h4>
+    <div class="test9">
+        <div class="test10">
+            <span>Hello</span>
+        </div>
+    </div>
+
+    <h4>자식 인라인(or inline-block) 요소를 상하 좌우 가운데 정렬</h4>
+    <div class="test11">
+        <div class="test12">
+            <span>Hello</span>
+        </div>
+    </div>
+
+    <h4>자식요소를 상하, 좌우 가운데 정렬</h4>
+    <div class="test13">
+        <div class="test14">
+            <span>Hello</span>
+        </div>
+    </div>
+    
+
+    
+
+</body>
+</html>

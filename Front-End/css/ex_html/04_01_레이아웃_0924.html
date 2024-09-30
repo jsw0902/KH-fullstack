@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../04_01_0924.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>레이아웃 스타일</h1>
+
+    <hr>
+
+    <h3>width / height 속성 : 컨텐츠가 차지하고 있는 영역의 크기를 지정할 때 사용</h3>
+    <p>
+        선택자 {width : 크기(단위); } <br>
+        선택자 {height : 크기(단위); } 와 같이 사용
+    </p>
+
+    <span class="span1">인라인 요소. 내용의 합 만큼 높이와 너비가 지정되고, 스타일 직접 지정하는건 불가능</span>
+    <span class="span1">여러개를 줄을 바꾸어 작성해도 한 줄에 표기.</span>
+
+    <br>
+
+    <div class="div1">
+       블록 요소. 가로는 기본적으로 한 줄 전체를 차지한다. 
+       높이는 높이를 지정한 만큼 차지하거나, 지정하지 않았다면 내용의 합 만큼 높이를 차지한다. 
+    </div>
+
+    <br><br><br><br><br><br><br><br><br>
+
+    <div class="div2">
+        <div class="div3">
+            자식 Div
+            - 넓이 미지정 시, 부모 요소의 넓이만큼
+            - 높이 미지정 시, 내부 컨텐츠 높이만큼
+            - 부모 요소보다 넓이 or 높이를 크게 지정하면, 지정한만큼 영역을 차지
+            - 부모 요소의 크기를 기준으로 넓이 or 높이를 지정할 수 있다. (%)
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    
+    <!--
+        블록 요소의 넓이 or 높이의 이상적인 지정 방법
+        높이 : 가장 하위 요소부터 채워지는 형태로
+        넓이 : 가장 상위 요소부터 좁혀가는 형태로
+        -->
+        <div class="div4">
+            <div class="div5">div5</div>
+            <div class="div6">div6</div>
+            div4
+        </div>
+        
+        <div class="div7">div7</div>
+
+        <br><hr>
+        <!--
+            div8 == 블록 요소 == 가로 한 줄 전체 차지 == 부모 요소의 넓이만큼 == 부모요소(body) == 브라우저 넓이
+            즉, div8에 width값에 %를 지정하면 (ex. 50%) 브라우저 넓이의 50%만큼 차지. 브라우저 사이즈 조절 시, div8의 넓이도 변화한다.
+        -->
+        <div class="div8">
+            <div class="div9"></div>
+        </div>
+
+        <hr>
+
+        <h3>display : 요소의 화면 배치 방법</h3>
+        <p>
+            선택자 : {display : none | block | inline | inline-blck | flex}
+
+            none : 화면 숨김 처리 <br>
+            block : 인라인 요소 -> 블록 요소<br>
+            inline : 블록 요소 -> 인라인 요소<br>
+            inline-block : 인라인 요소의 특징과 블록 요소의 특징 모두 (한 줄에 여러 요소가 올 수 있고, 그기 지정 가능) <br>
+            flex : 요소를 유연하게 배치
+        </p>
+        <div class="div10">
+            <div class="div11"div11>div11</div>
+            <div class="div12"div12>div12 {block -> inline}</div>
+            <span class="span2">span2</span>
+            <span class="span3">span3 {inline -> block}</span>
+            <span class="span4">span4 {none}</span>
+        </div>
+
+        <div class="div13">
+            <div>마우스 올려보셈</div>
+            <ul>
+                <li>목록1</li>
+                <li>목록2</li>
+                <li>목록3</li>
+                <li>목록4</li>
+            </ul>
+        </div>
+        <br>
+
+        <div class="div14">
+            <div>block</div>
+            <span>inline</span>
+            <div>block</div>
+            <span>inline</span>
+        </div>
+
+        <br><br>
+
+        <h4>container1</h4>
+        <div class="container container1">
+            <div>아이템1</div>
+            <div>아이템2</div>
+            <div>아이템3</div>
+            <div>아이템4</div>
+            <div>아이템5</div>
+        </div>
+
+        <hr>
+
+        <h4>container2</h4>
+        <div class="container container2">
+            <div>아이템1</div>
+            <div>아이템2</div>
+            <div>아이템3</div>
+            <div>아이템4</div>
+            <div>아이템5</div>
+        </div>
+
+        <hr>
+
+        <h4>container3</h4>
+        <div class="container container3">
+            <div>아이템1</div>
+            <div>아이템2</div>
+            <div>아이템3</div>
+            <div>아이템4</div>
+            <div>아이템5</div>
+        </div>
+
+        <br>
+
+        <h4>container4</h4>
+        <div class="container container4">
+            <div>아이템1</div>
+            <div>아이템2</div>
+            <div>아이템3</div>
+            <div>아이템4</div>
+            <div>아이템5</div>
+        </div>
+        <br>
+
+        
+        <ul class="group-menu">
+            <li>메인메뉴1</li>
+            <li>메인메뉴2
+                <ul class="sub-menu">
+                    <li>서브메뉴1</li>
+                    <li>서브메뉴2</li>
+                    <li>서브메뉴3</li>
+                </ul>
+            </li>
+            <li>메인메뉴3</li>
+            <li>메인메뉴4</li>
+            <li>메인메뉴5
+                <ul class="sub-menu">
+                    <li>서브메뉴1</li>
+                    <li>서브메뉴2</li>
+                    <li>서브메뉴3</li>
+                    <li>서브메뉴4</li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>

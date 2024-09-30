@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../04_04_0925.css">
+</head>
+<body>
+    <h1>레이아웃 스타일</h1>
+
+    <hr>
+
+    <h3>z-index 속성 : 요소들이 쌓이는 순서를 지정할 때 사용</h3>
+    <p>
+        선택자 { z-index : 숫자}와 같이 사용
+    </p>
+
+    <div class="z-wrap">
+        <div class="z-1"></div>
+        <div class="z-2"></div>
+        <div class="z-3"></div>
+    </div>
+
+    <h3>visibility 속성 : 화면에 요소가 보이거나 보이지 않게 하는 속성</h3>
+    <p>
+        선택자 { visibility : visible | hidden }과 같이 사용.
+    </p>
+
+    <h3>opacity 속성 : 요소의 투명도를 지정할 때 사용</h3>
+    <p>
+        선택자 {opacity : 0 ~ 1}과 같이 사용.
+    </p>
+
+    <div class="vi">
+        <div class="vi1">
+            <div></div>
+        </div>
+        <div class="vi2"></div> <!-- 화면에 보이지 않지만, 영역은 차지하고 있음. (display:none은 영역도 사라짐) -->
+        <div class="vi3">
+            <div></div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3>float 속성 : 요소의 배치를 왼쪽 또는 오른쪽으로 배치하기 위해 사용하는 속성</h3>
+    <p>
+        선택자 {float : left | right | none}
+    </p>
+
+    <div class="f-par">
+        <div class="f-chi-1">f-chi-1</div>
+        <div class="f-chi-2">f-chi-2</div>
+        <div class="f-chi-3">f-chi-3</div>
+        <div class="f-chi-4">f-chi-4</div>
+        <div class="f-chi-5">f-chi-5</div>
+    </div>
+    <div class="clearDiv">clearDiv</div>
+
+    <br>
+
+    <h3>overflow 속성 : 표현하려는 컨텐츠가 요소의 크기를 넘어간경우 어떻게 처리할지를 지정</h3>
+    <p>
+        선택자 {overflow : scroll | auto | hidden | visible[기본값]}과 같이 사용
+    </p>
+
+    <div class="over over1">abcd</div>
+    <div class="over over2">abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd</div>
+    <div class="over over3">abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd</div>
+    <div class="over over4">abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd</div>
+
+    
+</body>
+</html>

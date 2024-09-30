@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../00.css">
+    <!--
+        CSS : Cascading Style Sheet의 줄임말
+        - Cascading : 폭포식(계단식)이라는 의미를 가짐. 요소에 스타일링을 적용할 때 여러 방식이 존재함. 우선순위를 정하여 최종적으로 어떤 스타일을 적용할지의 방식
+        - Style : 웹 페이지의 디자인
+        - Sheet 스타일을 정의한 문서
+
+        2. style 태그를 이용한 디자인 적용
+
+        [표현법]
+
+        태그 선택 {
+            적용할 스타일 명칭1 : 값;
+            적용할 스타일 명칭2 : 값;
+        }
+
+    -->
+    <style>
+        /* 스타일 태그 내부에서 주석 작성 */
+        h2{
+            color: blue;
+            background-color: red;
+        }
+    </style>
+    <!-- 
+        3. 외부 스타일 적용 
+    -->
+    <link rel="stylesheet" href="../00.css">
+
+</head>
+<body>
+    <!--
+        1. 인라인 스타일 시트
+        - 태그 내부에 style 속성을 이용하여 디자인 적용하는 방법
+    -->
+    <h1 style="color: red; background-color: black;">Hello, CSS !</h1>
+    <h2>Hello, CSS !</h2>
+    <h3>Hello, CSS !</h3>
+</body>
+</html>

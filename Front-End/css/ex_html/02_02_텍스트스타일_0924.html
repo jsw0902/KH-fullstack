@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../02_02_0924.css">
+</head>
+<body>
+    <h1>텍스트 스타일</h1>
+
+    <hr>
+
+
+    <h3>color 속성 : 텍스트의 색상을 지정할 때 사용</h3>
+    <p>
+        선택자 : {color : 색상명명문이름 | 16진수 | rgb | rgba} 형식으로 사용
+    </p>
+    <ul>
+        <li id="li1">색상명으로 지정</li>
+        <li id="li2">16진수로 지정</li>
+        <li id="li3">rgb로 지정</li>
+        <li id="li4">rgba로 지정</li>
+    </ul>
+
+    <hr>
+
+    <h3>text-decoration 속성 : 텍스트에 줄을 긋거나, 줄을 없앨 때 사용</h3>
+    <p>
+        선택자 : {text-decoration : none | underline | overline | line-throught}과 같이 사용한다
+    </p>
+
+    <ul>
+        <li id="li5">텍스트 줄긋기 테스트</li>
+        <li id="li6">텍스트 줄긋기 테스트</li>
+        <li id="li7">텍스트 줄긋기 테스트</li>
+        <li><a href="#">텍스트 줄긋기 테스트</a></li>
+    </ul>
+
+    <hr>
+
+    <h3>text-transform 속성 : 영문 텍스트의 대소문자 변환 시 사용</h3>
+    <p>
+        선택자 : {text-transform : none | capitalize | uppercase | lowercase }과 같이 사용
+    </p>
+
+    <ul>
+        <li id="li9">none</li>
+        <li id="li10">capitalize</li>
+        <li id="li11">uppercase</li>
+        <li id="li12">lowercase</li>
+    </ul>
+
+    <hr>
+
+    <h3>text-shadow 속성 : 텍스트의 그림자 효과를 줄 때 사용</h3>
+    <p>
+        선택자 : {text-shadow : none | 가로거리 세로거리 번짐점도 색상}과 같이 사용.
+    </p>
+
+    <span class="size span1">HTML5</span><br>
+    <span class="size span2">CSS3</span>
+
+    <hr>
+
+    <h3>white-space 속성 : 공백을 처리해주는 기능을 담당</h3>
+    <p>
+        선택자 : {white-space : normal | nowrap | pre | pre-line}과 같이 사용한다
+    </p>
+
+    <h4>normal</h4>
+    <p id="space1">
+        1. 동해물과               백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        2. 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        3. 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        4. 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+    </p>
+
+    <h4>nowrap</h4>
+    <p id="space2">
+        1. 동해물과               백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        2. 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        3. 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        4. 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+    </p>
+
+    <h4>pre</h4>
+    <p id="space3">
+        1. 동해물과               백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        2. 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        3. 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        4. 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+    </p>
+
+    <h4>pre-line</h4>
+    <p id="space4">
+        1. 동해물과               백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        2. 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        3. 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        4. 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+    </p>
+    <h4>pre-wrap</h4>
+    <p id="space5">
+        1. 동해물과               백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        2. 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        3. 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+        4. 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세
+    </p>
+
+    <hr>
+
+    <h3>글의 간격을 처리해주는 기능<br>
+        letter-spacing : 글자 사이 간격(차간) <br>
+        word-spacing : 단어 사이 간격 
+    </h3>
+    <p>
+        선택자 {letter-spacing : 간격} <br>
+        선택자 {word-spacing : 간격}과 같이 사용
+    </p>
+
+    <p class="letter1">KH정보교육원 자바 웹 개발자 양성과정</p>
+    <p class="letter2">KH정보교육원 자바 웹 개발자 양성과정</p>
+    <p class="word1">KH정보교육원 자바 웹 개발자 양성과정</p>
+    <p class="word2">KH정보교육원 자바 웹 개발자 양성과정</p>
+
+    <hr>
+
+    <h3>text-align : 문자열을 정렬할 때 사용</h3>
+    <p>
+        선택자 : {text-align : left | right | center | justify }와 같이 사용
+    </p>
+
+    <p class="align align1">가나다라 마바사 아자차카파타하 가나다라마바사</p>
+    <p class="align align2">가나다라 마바사 아자차카파타하 가나다라마바사</p>
+    <p class="align align3">가나다라 마바사 아자차카파타하 가나다라마바사</p>
+    <p class="align align4">가나다라 마바사 아자차카파타하 가나다라마바사</p>
+
+    <hr>
+
+    <h3>text-indent : 들여쓰기를 지정할 때 사용</h3>
+    <p>
+        선택자 { text-indent : 들여쓰기간격}과 같이 사용
+    </p>
+    <p class="indent indent1">가나다라마바사아자차카타파하</p>
+    <p class="indent indent2">가나다라마바사아자차카타파하</p>
+
+    <hr>
+
+    <h3>line-height : 행(줄) 간격을 지정할 때 사용.</h3>
+
+    <p>
+        선택자 { line-height : 간격} 과 같이 사용
+    </p>
+
+    <p>가나다라마바사아<br>자차카파타하</p>
+    <p class="lineheight1">가나다라마바사아<br>자차카파타하</p>
+    <p class="lineheight2">가나다라마바사아<br>자차카파타하</p>
+
+    <hr>
+
+    <h3>text-overflow : 영역을 벗어나는 텍스트 처리 시 사용</h3>
+    <p>
+        선택자 : {text-overflow : clip | ellipsis} 와 같이 사용
+    </p>
+
+    <p class="overflow overflow1">가나다라마바사 아자차카파타하 가나다라마바사 아자차카파타하</p>
+    <p class="overflow overflow2">가나다라마바사 아자차카파타하 가나다라마바사 아자차카파타하</p>
+    </body>
+</html>

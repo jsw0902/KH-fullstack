@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01_03 선택자</title>
+    <link rel="stylesheet" href="../01_03_0923.css">
+</head>
+<body>
+    <h1>일반 구조 선택자</h1>
+    <p>
+        특정한 위치에 있는 태그를 선택할 때 사용. <br>
+        위치로 태그를 선택하고, 해당 위치의 태그가 지정한 태그인지도 검증 <br>
+        순서로 접근 하고, 접근한 태그가 지정한 태그인지 검사
+    </p>
+    <div id="test1">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p>테스트3</p>
+        <p>테스트4</p>
+        <p>테스트5</p>
+        <pre>테스트6</pre>
+    </div>
+
+    <hr>
+
+    <h1>형태 구조 선택자</h1>
+    <p>
+        특정한 위치에 있는 태그를 선택할 때 사용. (태그별로 구분) <br>
+        지정한 태그를 추출하고, 그 중에 지정한 위치에 있는 태그
+    </p>
+    <div id="test2">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p>테스트3</p>
+        <p>테스트4</p>
+        <p>테스트5</p>
+        <pre>테스트6</pre>
+    </div>
+
+    <hr>
+
+    <h1>문자 선택자</h1>
+    <div id="test3">
+        <p>
+            1. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세<br>
+            2. 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세<br>
+            3. 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세<br>
+            4. 이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세<br>
+        </p>
+    </div>
+
+    <hr>
+
+    <h1>부정 선택자</h1>
+    <p>
+        선택한 선택자에 반대.
+    </p>
+    <div id="test4">
+        <p>test1</p>
+        <p>test2</p>
+        <p>test3</p>
+        <p>test4</p>
+        <p>test5</p>
+    </div>
+    <br>
+    <input type="checkbox" name="id" class="login" checked> ID
+    <input type="checkbox" name="pw" class="login"> PW
+
+    <hr>
+
+    <h1>선택자 우선순위</h1>
+    <p>
+        선택 범위가 좁은 선택자가 우선순위가 높음 <br>
+        [낮음] 태그 -> 클래스 -> 아이디 -> 인라인 -> !important[높음]
+    </p>
+
+    <h3 class="bbb aaa">선택자 우선순위 테스트</h3>
+    <h3 id="aaa" class="bbb">선택자 우선순위 테스트</h3>
+    <h3 class="ccc">선택자 우선순위 테스트</h3>
+
+    <!-- 서로 다른 태그에 동일한 클래스명 지정 -->
+    <div class="ddd">선택자 우선순위 테스트</div>
+    <p class="ddd">선택자 우선순위 테스트</p>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
