@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 500px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>함수</h1>
+
+    <hr>
+
+    <h3>1. 함수 - 선언적 함수</h3>
+    <p>
+        [표현법] <br><br>
+
+        function 함수명(매개변수, 매개변수, .....){<br>
+            실행코드; <br> <br>
+
+            [return] <br>
+        }
+    </p>
+
+    <button onclick="btnClick1()">확인</button>
+    <div id="area1" class="area"></div>
+    
+    <script>
+        /*
+            선언적 함수 
+            - 자바스크립트 코드에서 먼저 메모리에 로드되므로, 함수 선언부 이전에 호출이 가능하다.
+            - 자바와 다른 부분 : 접근제어 지시자 x, 반환형 x, 매개변수에 변수명만 작성한다.
+        */
+
+        console.log(testFunc);   //함수 구조를 출력
+        console.log(testFunc()); //함수 호출
+
+        function btnClick1(){
+            let divE1 = document.getElementById("area1");
+            /*
+            testFunc() 호출 후, 반환된 문자열을 str에 저장하여 출력
+            */
+            let str = testFunc();
+
+            divE1.innerHTML = str;
+        }
+
+        function testFunc(){
+            return "return Test";
+        }
+    </script>
+
+    <br><br>
+
+    <h3>2. 익명 함수 - 이름이 없는 함수</h3>
+    <p>
+        [표현법]
+
+        변수|속성 = function ([매개변수1, 매개변수2....]){<br>
+            실행코드; <br><br>
+
+            [return] <br><br>
+
+        } <br>
+
+        - 특정 변수나 속성에 대입되는 함수 적용 시, 사용한다. <br>
+        - 주로 이벤트 발생했을 때 동작할 함수(이벤트 핸들러)를 작성할 때 사용된다. <br>
+
+    </p>
+
+    <button id="btnTest">확인</button>
+
+    <script>
+        //window 객체의 onload 속성의 값으로, 익명 함수를 적용
+        window.onload = function(){
+            console.onload('window onload Function !');
+        }
+
+        let btnTest = document.getElementById("btnTest");
+
+        btnTest.onclick = function(){
+            //btnTest 요소 클릭 시, 동작할 익명 함수 적용
+            console.log("btnTest Click !");
+        }
+        
+        //console.log(myFunc()); //익명 함수는 선언부 이전에 호출이 불가! 오류 발생
+        let myFunc = function(){
+            //함수도 하나의 자료형이므로, 변수에 저장하는것이 가능하다.
+            return 'myfunc Test!';
+        }
+
+        //현재 코드가 해석되는 시점에 자동으로 호출되는 함수
+        (function(){
+            //보통 초기화 작업이나, 한번만 실행되어야 하는 코드를 작성할 때 사용
+        });
+    </script>
+
+    <br><br>
+
+    <h3>3. 매개변수</h3>
+
+    <p>
+        - 매개변수 선언부에는 변수형만 작성한다. (let, const, var 키워드 x, 자료형 x) <br>
+        - 매개변수 선언부의 변수명은 중요하지 않다. <br>
+        - 함수 선언부에 작성된 매개변수 갯수와, 호출부분의 매개변수 갯수의 일치성은 중요하지 않다.(오류 발생xxx) <br>
+        - 자바스크립트에서 메소드 오버로딩(동일한 이름을 가진 함수 여러개)의 개념이 없으므로, 나중에 작성된 ㅎㅁ수로 덮어씌워진다.
+    </p>
+
+    <button onclick="argTest('문자열 전달')">문자열전달버튼</button>
+    <button onclick="argTest(10)">숫자전달버튼</button>
+    <button onclick="argTest([1,2,3])">배열전달버튼</button>
+    <button onclick="argTest(true)">논리값전달버튼</button>
+
+    <button onclick="argTest('매개변수1', '매개변수2')">매개변수 초과 전달</button>
+    <button onclick="argTest('매개변수1', '매개변수2', '매개변수3')">매개변수 초과 전달2</button>
+    <button onclick="argTest()">매개변수X</button>
+
+    <button onclick="sum(1,2)">합계1번</button>
+    <button onclick="sum(1,2,3)">합계2번</button>
+
+    <script>
+        function argTest(arg){
+            console.log('전달받은 값 : ' + arg);
+        }
+ 
+        function argTest(arg1, arg2){
+            console.log("arg1 : " + arg1);
+            console.log("arg2 : " + arg2);
+            console.log("arg3 : " + arg3);
+            //console.log(arguments);                                         
+        }
+
+        /*
+            JS에는 메소드 오버로딩 개념이 존재하지 않음.
+
+            즉, 동일한 기능을 담당하는 함수를 여러개 작성해야 할 때(전달되는 매개변수 갯수가 다를 때)
+            동일한 이름을 가진 함수를 여러개 작성하면, 나중에 작성된 함수만이 동작하므로 처리 불가.
+            이 때, argments 라는 객체를 활용하면 매개변수 선언부의 매개변수 갯수와 상관없이,
+            전달된 매개변수들에 대한 처리가 가능하다.
+        */
+
+        function sum(num1, num2){
+            let sum = 0;
+
+            for(let i=0; i<arguments.length; i++){
+                sum += arguments[i];
+            }
+            console.log('합계 : ' + sum);
+        }
+        /*
+        function sum(num1, num2){
+            let sum = num1 + num2;
+
+            alert("합계 : " + sum);
+        }
+
+        function sum1(num1, num2, num3){
+            let sum = num1 + num2 + num3;
+            alert('합계 : ' + sum);
+        }*/
+    </script>
+
+    <br><br>
+    <h3>매개변수에 this 관련 전달</h3>
+
+    <button onclick="thisTest(this)">버튼1</button>
+    <button onclick="thisTest(this)">버튼2</button>
+    <button onclick="thisTest(this.innerHTML)">버튼3</button>
+
+    <button class="btn4" onclick="thisTest(this.className)">버튼4</button>
+    <button class="btn5" onclick="thisTest(this.className)">버튼5</button>
+    <button class="btn6" onclick="thisTest(this.className)">버튼6</button>
+
+    <script>
+        function thisTest(val){
+            console.log('전달값 : ' + val);
+            /*
+            let btn4 = document.getElementsByClassName("btn4")[0];
+            console.log('클래스명 : ' + btn4.className);
+
+            let btn5 = document.getElementsByClassName("btn5")[0];
+            console.log('클래스명 : ' + btn5.className);
+            */
+
+            console.log(this); // 전달받은 요소 객체가 아니라, window 객체를 가리키는 키워드!
+        }
+    </script>
+
+    <br><br>
+
+    <h3>함수의 리턴</h3>
+
+    <button onclick="returnTest1()">리턴 확인1</button>
+    <div class="area" id="area2"></div>
+
+    <script>
+        function returnTest1(){
+            let val = returnMtd1(1,2,3,4,5);
+
+            let divE1 = document.getElementById("area2");
+            divE1.innerHTML = val;
+        }
+
+        function returnMtd1(){
+            for(let i=0; i<arguments.length; i++){
+                sum += arguments[i];
+            }
+
+            return sum;
+        }
+    </script>
+
+    이름 : <input type="text" id="userName">
+    <button onclick="returnTest2()()">확인</button>
+    <button onclick="returnTest3()">함수를 리턴하는 함수 호출</button>
+
+    <script>
+        function returnTest2(){
+            let userName = document.getElementById("userName").value; //사용자 입력값
+
+            //함수도 하나의 자료형(값)이기 때문에, return이 가능! 아래는 익명함수를 리턴
+            return function(){
+                alert('유저 이름 : ' + userName);
+            }
+        }
+
+        function returnTest3(){
+            let returnFunc = returnTest2(); //returnTest2()를 호출하고, 반환받은 함수를 변수에 저장.
+            returnFunc(); //변수에 저장된 함수를 호출
+        }
+    </script>
+
+    <br><br>
+
+    <h3>내장 함수</h3>
+
+    <button onclick="funcTest()">enc, dec</button>
+
+    <script>
+        function funcTest(){
+            let str = "http://www.kg.org?hello=반갑습니다";
+
+            /*
+                유니코드
+
+                인코딩 : 문자열을 유니코드 형태로 변환하고, 변환된 유니코드를 한번 더 변환하는 작업.
+                    - 방식 : MS949, UTF-8, UTF-16... 등등 존재
+                    - 이유 : 문서들을 서버에 전송할 때, 다른 의미로 해석될 수 있다.
+                디코딩 : 인코딩 된 문자열을 다시 원래대로 변환하는 작업
+            */
+
+            console.log("원본 문자열 : " + str); 
+
+            console.log("escape 인코딩 : " + escape(str));      //권장되지 않는 방식. 알파벳, 숫자, @,*,-,/,.를 제외한 모든 문자를 인코딩한다.
+            console.log("encodeURI 인코딩 : " + encodeURI(str));    // URI 형식의 문자열을 인코딩 하는데 사용되는 함수. :,;,/,=,?,& 를 제외한 문자 인코딩
+            console.log('encodeURIComponent 인코딩 : ' + encodeURIComponent(str));  //알파벳, 숫자, .을 제외한 문자 인코딩
+
+        }
+
+        function funcTest2(){
+            let str = "http://www.kg.org?hello=반갑습니다";
+
+            let encStr1 = escape(str);
+            let encStr2 = encodeURI(str);
+            let encStr3 = encodeURIComponent(str);
+
+            console.log(encStr1);
+            console.log(encStr2);
+            console.log(encStr3);
+
+            let decStr1 = unescape(str);
+            let decStr2 = decodeURI(str);
+            let decStr3 = decodeURIComponent(str);
+
+            console.log("escape 디코딩 : " + decStr1);
+            console.log("decodeURI 디코딩 : " + decStr2);
+            console.log("decodeURIComponent 디코딩 : " + decStr3);
+        }
+    </script>
+</body>
+</html>
