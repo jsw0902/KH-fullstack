@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습 문제3</title>
+</head>
+<body>
+    <!--
+        이미지를 보고ㅡ 총 몇개의 행과 열이 존재하는지를 파악 -> 양식에 맞춰서 table 태그를 작성
+
+        만약 가로로 병합된 셀이 존재한다면 -> colspan 속성을 이용
+                                        -> 동일한 행의 영향을 받는 열(td)을 하나씩 제거
+        만약 세로로 병합된 셀이 존재한다면 -> rowspan 속성을 이용
+                                        -> 영향을 받는 행의 열(td)를 하나씩 제거
+     -->
+    <table border="1">
+        <caption><h3 style="color:red">KH 정보교육원 강의</h3></caption>
+        <tr>
+           <th>관</th> 
+           <th>강의장</th> 
+           <th>인원수</th> 
+           <th>강의명</th> 
+        </tr>
+        <tr>
+            <td rowspan="6">2관</td>
+            <td rowspan="2">M강의장</td>
+            <td rowspan="2">30명</td>
+            <td>오전: 배재현 <button type="button">신청하기</button></td>
+        </tr>
+        <tr>
+            <td>오후: 배재현 <button type="button">신청하기</button></td>
+        </tr>
+        <tr>
+            <td rowspan="2">G강의장</td>
+            <td rowspan="2">23명</td>
+            <td>오전: OOO <button type="button">신청하기</button></td>
+        </tr>
+        <tr>
+            <td>오후: OOO <button type="button">신청하기</button></td>
+        </tr>
+        <tr>
+            <td rowspan="2">H강의장</td>
+            <td rowspan="2">27명</td>
+            <td>오전: OOO <button type="button">신청하기</button></td>
+        </tr>
+        <tr>
+            <td>오후: OOO <button type="button">신청하기</button></td>
+        </tr>
+        <tr>
+            <td colspan="4" align="center"><b>많이 신청해주세요!</b></td>
+        </tr>
+    </table>
+</body>
+</html>
