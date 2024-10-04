@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h2>1. 변경할 색상을 입력받고, 입력받은 색상으로 배경색을 변경하시오</h2>
+
+    <div class="area" id="area1"></div>
+    <input type="color" id="colorChg" class=""> <!--색상 선택 시, value 속성값에 할당되어짐.-->
+    <button onclick="onclick1();">변경</button>
+    <hr>
+
+    <script>
+        function onclick1() {
+            let input = document.getElementsByTagName("input")[0]; // 태그 이름으로 접근
+            
+            //변경할 요소 객체 접근
+            let area1 = document.getElementById("area1");
+            area1.style.backgroundColor = input.value;
+        }
+    </script>
+
+    <hr>
+
+    <h2>2. 각 버튼을 클릭하였을 때, 크기를 조절하시오.</h2>
+    <div class="area"></div>
+    <button onclick="size50();">50*50</button>
+    <button onclick="size100();">원본(100 * 100)</button>
+    <button onclick="size200();">200*200</button>
+
+    <script>
+        function size50() {
+            let area = document.getElementsByClassName('area')[1]; //배열로 반환(문제 1번에서 동일한 클래스명으로 작성된 div가 존재)
+            area.style.width = '50px';
+            area.style.height = '50px';
+        }
+        function size100() {
+            let area = document.getElementsByClassName('area')[1];
+            area.style.width = '100px';
+            area.style.height = '100px';
+        }
+        function size200() {
+            let area = document.getElementsByClassName('area')[1];
+            area.style.width = '200px';
+            area.style.height = '200px';
+        }
+    </script>
+
+    <hr>
+
+    <h2>
+        3. 입력받은 구매자, 구품명, 가격 정보를 div 태그에 순서대로 출력하시오. (각 정보는 개행으로 구분!)<br>
+        단, 구매자는 태그 이름으로, 상품명은 아이디로, 구매가격은 name 속성으로 접근하여 추출할 것.
+    </h2>
+
+    구매자 : <input type="text" id="userName" placeholder="구매자 이름 입력"> <br>
+    상품명 : <input type="text" id="productName" placeholder="상품명 입력"> <br>
+    가격 : <input type="number" id="productPrice" name="price" placeholder="가격 입력"><br>
+    <br>
+    <button onclick="onclick3();">클릭</button>
+    <div class="area" id="area2" style="background-color: white; width: 300px; height: 300px;"></div>
+
+    <script>
+        function onclick3(){
+            let user = document.getElementsByTagName('input')[1].value; //배열로 변환
+            let product = document.getElementById('productName').value;
+            let price = document.getElementsByName('price')[0].value; //배열로 변환
+
+            let div = document.getElementById("area2");
+
+            div.innerHTML = user + "<br>";
+            div.innerHTML += product + "<br>";
+            div.innerHTML += price + "<br>";
+            //div.innerHTML = user + "<br>" + product + "<br>" + price;
+        }
+    </script>
+
+    <hr>
+
+    <h2>4. 다음 보기에 있는 내용들을 하기 문제에 맞게 변경하시오</h2>
+    <fieldset>
+        <legend>보기</legend>
+        <label for="1a1">이름 :</label><input type="text" id="id" placeholder="아이디 입력"><br>
+        <label for="1a2">pass1 :</label><input type="text" id="pwd" placeholder="비밀번호 입력"><br>
+        <label for="1a3">name :</label><input type="text" id="name" placeholder="비밀번호 입력"><br>
+        <label for="1a4">addr :</label><input type="text" id="adrr" placeholder="주소 입력"><br>
+    </fieldset>
+
+    <br><br>
+
+    <h4>4.1 보기에 있는 "이름 : "을, "ID : "로 변경</h4>
+    <button onclick="btnclick1();">변경</button>
+    <script>
+        function btnclick1(){
+            let idl = document.getElementsByTagName('label')[0];
+
+            idl.innerHTML = "ID :";
+        }
+    </script>
+    <br><br>
+    <h4>4.2 현재 pass1 입력 시, 비밀번호가 노출되는 상황이다. 비밀번호 입력 시 노출되지 않도록 변경하시오</h4>
+    <button onclick="btnclick2();">변경</button>
+    <script>
+        function btnclick2(){
+            let input = document.getElementById('pwd');
+
+            input.type = 'password'; // type이 password면 input은 입력값을 마스킹 처리하여 화면에 출력한다.
+        }
+    </script>
+    <h4>4.3 현재 name의 미리보기 값이 정상적이지 않아. 미리보기 값을 "비밀번호 입력"이 아닌, "이름 입력"으로 변경하시오</h4>
+    <button onclick="btnclick3();">변경</button>
+    <script>
+        function btnclick3(){
+            let name = document.getElementById('name');
+
+            name.placeholder = "이름 입력";
+        }
+    </script>
+
+    <h4>4.4 현재 addr의 주소 입력창이 너무 짧다. 최대 50글자를 입력할 수 있도록 변경하시오(size)</h4>
+    <button onclick="btnclick4();">변경</button>
+    <script>
+        function btnclick4(){
+            let addrInput = document.getElementById('adrr');
+            addrInput.size = 50;
+            addrInput.maxLength = 50;
+        }
+    </script>
+    <h4>
+        4.5 보기 존재하는 각 입력창에 모두 내용을 작성하고, 작성된 내용들을 사용자 알림창에 출력하시오. <br>
+        단, 작성된 애용들을 조회 시 ID 속성을 사용하지 말고 가져올 것. 출력 형식은 아래와 같다 <br>
+        ex) <br>
+        ID : XXX <br>
+        PW : XXXXXX <br>
+        이름: XXX <br>
+        주소: XXXX
+    </h4>
+    <button onclick="btnclick5();">변경</button>
+    <script>
+        function btnclick5(){
+            let inArr = document.querySelectorAll("fieldset>input");
+            
+            let str = "";
+
+            str += inArr[0].value + "\n";
+            str += inArr[1].value + "\n";
+            str += inArr[2].value + "\n";
+            str += inArr[3].value + "\n";
+
+            alert(str);
+
+        }
+    </script>
+
+    <hr>
+
+    <h2>5. 아래 취미를 체크할 수 있는 체크박스들을, button에 작성된 내용에 따라 각각 처리하시오</button></h2>
+
+    <fieldset>
+        <legend>취미</legend>
+        <input type="checkbox" name="hobby" value="축구"> 축구 <br>
+        <input type="checkbox" name="hobby" value="야구"> 야구 <br>
+        <input type="checkbox" name="hobby" value="농구"> 농구 <br>
+        <input type="checkbox" name="hobby" value="배구"> 배구 <br>
+        <input type="checkbox" name="hobby" value="축구"> 축구 <br>
+    </fieldset>
+
+    <br>
+
+    <div class="area" id="area3" style="background-color: white;"></div>
+
+    <br>
+
+    <button onclick="btnclick6();">5.1 체크값 읽기</button> <!-- 체크된 체크박스의 value 속성값을 area3에 추가(각 취미정보는 개행으로 구분) -->
+    <script>
+        function btnclick6(){
+            let hobbys = document.getElementsByName("hobby"); //name 속성 값이 hobby인 태그
+            let divEl = document.getElementById("area3");
+            let str = "";
+            for(let i=0; i<hobbys.length; i++){
+                if(hobbys[i].checked){ //하나의 input 요소 객체
+                    console.log(hobbys[i]);
+                    str += hobbys[i].value;
+                    //divEl.innerHTML += hobbys[i].value
+                    //divEl.innerHTML = divEl.innerHTML + hobbys[i].value;
+                }
+            }
+            divEl.innerHTML = str;
+        }
+    </script>
+
+    <button onclick="btnclick7();">5.2 전체 체크</button>
+    <script>
+        function btnclick7(){
+            let hobbys = document.getElementsByName("hobby");
+
+            /*
+                1) 객체.속성명;      -> 객체의 해당 속성 "값" get
+                2) 객체.속성명 = 값; -> 객체의 해당 속성 "값" set
+            */
+
+            for(let i=0; i<hobbys.length; i++){
+                hobbys[i].checked = true;
+            }
+        }
+    </script>
+
+    <button onclick="btnclick8();">5.3 전체 체크 해제</button>
+    <script>
+        function btnclick8(){
+            let hobbys = document.getElementsByName("hobby");
+                
+            for(let i=0; i<hobbys.length; i++){
+                hobbys[i].checked = false;
+            }
+        }
+    </script>
+</body>
+</html>

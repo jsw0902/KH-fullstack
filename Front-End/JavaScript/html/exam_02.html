@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid red;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>데이터 입출력 실습</h1>
+
+    <hr>
+
+    <h3>문제 1. 아래 div 내부에 있는 내용을 "성공"으로 변경하시오. <br>
+        단, javascript 코드로 접근 및 변경할 것.
+    </h3>
+
+    <div class="area" id="div1">
+        자바와 자바스크립트는 객체 지향 언어라는 특징은 동일하지만,
+        자바는 하이브리드 방식의 언어(컴파일+인터프리터)이고, 자바스크립트는 인터프리터 언어이다.
+        또한, 자바와 자바스크립트는 사용 방식이 유사하지만 전혀 다른 프로그래밍 언어이다.
+    </div>
+    <button onclick="onclick1()">확인</button>
+
+    <script>
+        function onclick1(){
+            //1. div 요소(Element)에 접근
+            let div = document.getElementById("div1");
+
+            //2. 해당 요소 객체의 속성에 접근하여 값을 변경
+            div.innerHTML = "성공";
+
+            //객체.속성명 = 값; --> 해당 속성에 값을 할당.    -> set
+            //객체.속성명;      --> 해당 속성의 값을 조회.    -> get
+        }
+    </script>
+
+    <hr>
+
+    <h3>문제 2. 아래 input 태그의 "컴파일언어" 값을 "인터프리터언어"로 변경하시오.</h3>
+
+    <div class="area" id="div2">
+        <input type="text" id="input1" value="컴파일언어">
+    </div>
+    <button onclick="onclick2()">확인</button>
+
+    <script>
+        function onclick2(){
+            //1. 요소에 접근
+            let input = document.getElementById("input1");
+
+            //2. 해당 요소 객체의 속성에 접근하여 값을 변경(input태그는 value라는 속성에 값을 변경)
+            input.value = "인터프리터언어";
+             
+        }
+    </script>
+
+    <hr>
+
+    <h3>문제 3. 아래 span 태그 내부에 있는 내용을, 자바스크립트에서 읽어 콘솔에 출력하시오. <br>
+        출력 방식은 다음과 같다. -> 나는 자바 스크립트다.!!!
+    </h3>
+
+    <div class="area" id="div3">
+        <p id="p1">
+            <span id="span1">자바스크립트</span>
+        </p>
+    </div>
+    <button onclick="onclick3()">확인</button>
+
+    <script>
+        function onclick3(){
+
+            let span = document.getElementById("span1");
+            let html = span.innerHTML; //"자바스크립트" 문자열을 HTML 변수에 저장
+            console.log("나는" + html + "다.!!!"); //문자열 결합하여 출력
+
+            /* // 직접 작성함
+            let span = document.getElementById("span1").innerText;
+
+            console.log("나는 "+ span + "다.!!!");
+            */
+        }
+    </script>
+
+    <hr>
+
+    <h3>문제 4. 아래 div, input, span 태그 내용을 순차적으로 읽어들인 후, div5 내용으로 출력하시오. <br>
+        출력 형식은 다음과 같다. -> Java, Oracle, HTML, CSS, javaScript
+    </h3>
+
+    <div id="div4">Java</div>
+    <input type="text" id="input3" value="Oracle">
+    <span id="span">HTML</span>
+
+    <div class="area" id="div5"></div>
+    <button onclick="onclick4()">확인</button>
+
+    <script>
+        function onclick4(){
+            //각각의 요소 객체
+            let div1 = document.getElementById("div4");
+            let text1 = document.getElementById("input3");
+            let span1 = document.getElementById("span");
+
+            let divVal = div1.innerHTML;
+            let textVal = text1.value;
+            let spanVal = span1.innerHTML;
+
+            console.log(divVal);
+            console.log(textVal);
+            console.log(spanVal);
+
+            let str = divVal + ", " + textVal + ", " + spanVal+ ", css, JavaScript";
+
+            console.log("str : " + str);
+
+            let divEl5 = document.getElementById("div5");
+            divEl5.innerHTML = str;
+
+            /* // 직접 작성함
+            let div1 = document.getElementById("div4").innerText;
+            let text1 = document.getElementById("input3").value;
+            let span1 = document.getElementById("span").innerText;
+
+            let div5 = document.getElementById('div5');
+            div5.innerText = div1 + ", "  +  text1 + ", " + span1  + ", CSS, javaScript";
+            */
+        }
+    </script>
+
+    <hr>
+
+    <h3>문제 5. 사용자에게 행과 열의 갯수를 입력받아, 테이블 생성하기<br>
+        반복문 사용할 것(for)
+
+        <!--
+            for(let i=0; i<5; i++){
+                반복 실행할 소스코드
+            }
+        -->
+    </h3>
+
+    <table border="1" id="tbl1">
+    </table>
+
+    <button onclick="onclick5()">클릭</button>
+
+    <script>
+        function onclick5(){
+            let width = window.prompt("몇 행을 추가하시겠습니까?");
+            let height = window.prompt("몇 열을 추가하시겠습니까?");
+
+            console.log("행 : " + width);
+            console.log("열 : " + height);
+
+            //열 : td를 생성하는 방복문
+            let td = "";
+            for(let i = 0; i < height; i++){
+                td += "<td>JS</td>"; //입력받은 열의 갯수만큼 td 태그 생성
+
+            }
+
+            console.log(td);
+
+            let tr = "";
+            for(let j = 0; j<width; j++){
+                tr += "<tr>" + td + "</tr>"; //입력받은 행의 갯수만큼 td 태그 생성하며, 2
+            }
+            console.log(tr);
+
+            //테이블 태그 내부에, 스크립트에서 작성한 tr, td 요소들을 할당
+            let tbl = document.getElementById("tbl1");
+            tbl.innerHTML = tr; //문자열 내부에 tr, td가 태그로서 동작하도록 innerHTML 속성으로 값을 할당 
+        }
+    </script>
+
+    <hr>
+
+    <h3>
+        문제 6. 사용자에게 행과 열의 갯수를 입력받아, 테이블 생성하기 <br>
+        반복문 사용할 것(for), 출력 시, document.write()를 이용하여 출력
+    </h3>
+    <button onclick="onclick6()">클릭</button>
+    <script>
+        function onclick6(){
+            let width = window.prompt("몇 행을 추가하시겠습니까?");
+            let height = window.prompt("몇 열을 추가하시겠습니까?");
+
+            //중첩 반복문 : for문 안에 또 다른 for문이 존재하는 형태
+
+            /*
+                <table>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            */
+
+            let tbl = "<table border = '1'>"; //테이블 시작 태그
+            let tr = ""; //각 tr 태그 문자열을 저장할 변수
+            let td = ""; //각 td 태그 문자열을 저장할 변수
+
+            for (let i = 0; i < width; i++) { //입력한 행의 갯수만큼 반복 ( 행 == tr, tr 태그 내부에 여러개의 td들이 존재하기 때문에, 외분 반복문에서 tr 작성)
+                tr += "<tr>";
+
+                for (let j = 0; j < height; j++) { // 입력한 열의 갯수만큼 반복(열 == td, 하나의 tr 태그 생성 시 반복문을 통해 여러개의 td를 생성)
+                    td += "<td>JS</td>";
+                }
+                //td : <td></td><td></td><td></td>
+                //tr : <tr>
+                tr +=  td + "</tr>"; //태그는 시작태그와 종료태그가 존재. 시작 tr 태그와 종료 tr 태그 사이에, td 태그들이 존재하므로 감싸주는 작업.
+                td = ""; // 이전 행의 td들이 누적되어 생성되지 않도록, 초기화
+            }
+            console.log(tr); //tr, td
+
+            tbl += tr + "</table>"; // 테이블 시작 태그 + tr + 테이블 종료 태그
+
+            document.write(tbl);
+        }
+    </script>
+</body>
+</html>

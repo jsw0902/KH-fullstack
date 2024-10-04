@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제9</title>
+    <style>
+        #result{
+            border:1px solid red;
+            width:900px;
+            height:20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>배열 실습 문제4</h1>
+
+    <fieldset>
+        <legend>보기</legend>
+        <label id="food">피자 치킨 당근 햄버거 떡볶이</label>
+    </fieldset>
+    <br>
+    <input type="text" id="delete" placeholder="삭제할 음식을 입력하세요.">
+    <input type="text" id="addition" placeholder="추가할 음식을 입력하세요." ><br><br>
+    <div id="result">이 부분에 정답이 출력 될 수 있도록 하세요</div><br>
+    <button onclick="arrayTest();">처리 및 출력</button>
+
+    <script>
+        function arrayTest(){
+            const remove = document.getElementById("delete").value;
+            const addition = document.getElementById("addition").value;
+            const result = document.getElementById("result");
+
+            remove.remove();
+
+        }
+    </script>
+
+    
+</body>
+
+</html>

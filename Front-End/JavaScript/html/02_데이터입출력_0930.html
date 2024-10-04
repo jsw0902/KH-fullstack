@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 입출력</title>
+
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 300px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>자바스크립트에서의 데이터 입,출력</h1>
+
+    <hr>
+
+    <!--
+        window :  자바스크립트 내장 객체로, 브라우저에 대한 정보를 가지고 있다.
+            - 브라우저 창 전체를 나타낸다고 생각하면 되는데, 브라우저를 열때마다 해당 브라우저의 window 객체가 하나씩 생성된다.
+            - 브라우저 창 안에 존재하는 모든 요소들의 최상위 객체.
+            - window 객체 내부의 속성에 접근할때에는 window라는 명칭을 생략할 수 있다. 
+
+        document : window 객체의 프로퍼티(속성) 중, 하나로 페이지에 대한 정보를 담고 있는 객체.
+            - HTML 문서에 대한 정보들을 가지고 있음.
+    -->
+
+    <h2>1. 데이터를 출력하는 구문</h2>
+    <p>
+        1.1) [window.]alert("알림창 출력 구문"); <br>
+        1.2) [window.]console.log("콘솔창 출력 구문"); <br>
+        1.3) document.write("화면상에 출력할 문구"); <br>
+        1.4) 선택한요소(태그).innerHTML | 선택한요소(태그).innerText = "요소에 출력할 문구"; <br>
+        4.5) input 태그를 이용하여 출력하는 방법.
+    </p>
+
+    <br>
+
+    <h3>1.1) [window.]alert("알림창 출력 구문");</h3>
+    
+    <script>
+        //alert("사용자에게 보여줄 알림창 출력 1번");
+        //window.alert("사용자에게 보여줄 알림창 출력2번");
+        //alert("문자열 1번 " + "문자열 2번"); //첫번 째 문자열과 두번 쨰 문자열을 결합하여, 하나의 문자열로 출력
+        //alert("문자열 1번", "문자열 2번", "문자열 3번"); //첫번 째 전달된 매개변수만 알림창에 출력
+    </script>
+
+    <br>
+
+    <h3>1.2) [window.]console.log("콘솔창 출력 구문");</h3>
+
+    <script>
+        window.console.log("콘솔창 출력 문구 1번");
+        console.log("콘솔창 출력 문구 2번");
+        console.log("콘솔창" + " 출력" + " 문구" + " 3번"); //문자열 결합하여, 하나의 문자열로 출력
+        console.log("콘솔창", " 출력", " 문구", " 4번"); //매개변수 사이에 공백 추가하여, 하나의 문자열로 출력
+    </script>
+
+    <br>
+    <h3>1.3) document.write("화면에 출력할 문구");</h3>
+
+    <script>
+        document.write("document.write를 이용한 화면 출력 1번 </br>"); 
+        document.write("<b>document.write를 이용한 화면 출력 2번 </b>"); //출력 문구에 HTML 태그가 존재할 경우, 문자열이 아닌 HTML 태그로써 해석되어진다.
+        
+        let test = "<table border='1'>";
+            test += "<tr>";
+            test += "<td>이름</td>";
+            test += "<td>나이</td>";
+            test += "<td>주소</td>";
+            test += "</tr>";
+            test += "<tr>";
+            test += "<td>장승원</td>";
+            test += "<td>23</td>";
+            test += "<td>경기도 남양주시</td>";
+            test += "</tr>";
+            test += "</table>";
+        document.write(test);
+    </script>
+
+    <br>
+
+    <h3>1.4) 선택한요소(태그).innerHTML | 선택한요소(태그).innerText</h3>
+    <p>
+        자바스크립트에서, 어떠한 요소(Element) 내부의 값을 가지고 오거나, <br>
+        변경하고자 할 때, innerHTML 또는 innerText 라는 속성에 접근한다.
+    </p>
+    <!--
+        객체명.속성; -> 속성의 값을 조회 -> get
+        객체명.속성 = 값; -> 해당 속성에 값을 할당 -> set
+    -->
+
+    <div class="area" id="area1">
+        area1 태그 사이에 작성된 <b>문자열!!</b>
+    </div>
+    <button onclick="tagValue()">확인</button>
+
+    <script>
+        function tagValue(){
+            //script 태그 내부에서, id가 area1인 태그 사이의 문자열을 읽기/쓰기
+            
+            let divE1 = document.getElementById("area1"); //div 요소 객체
+
+            console.log(divE1);
+            console.dir(divE1);
+
+            console.log(divE1.id); //요소 객체의 id 속성 접근
+            console.log(divE1.className); //요소 객체의 className 속성 접근
+
+            console.log(divE1.innerHTML); //요소의 컨텐츠 영역 안의 HTML 태그까지 포함.
+            console.log(divE1.innerText); //요소의 컨텐츠 영역 안의 텍스트만 포함. (HTML 태그 제외)
+
+            //------------------------------------------------------------------------------------------
+
+
+            //요소 사이의 문자열 변경
+            divE1.innerHTML = "<b>변경할 문자열(innerHTML)</b>";        //작성된 문자열 중, 태그가 존재하면 출력 시, 태그로써 동작
+            //divE1.innerText = "<b>변경할 문자열(innerText)</b>";      //작성된 문자열 중, 태그가 존재하여도 문자열로 출력함.
+
+            //요소의 스타일 변경
+            divE1.style.color = "red";
+            divE1.style.backgroundColor = "yellow"; //기존 스타일 지정 시, -로 연결되어진 속성을 카멜 표기법으로 작성
+
+            console.log(divE1.style.color); //위에서 지정한 "red"를 출력.
+        }
+    </script>
+
+    <br>
+
+    <h3>1.5) input 태그</h3>
+
+    아이디 : <input type="text" id="userId" value="jsw0902"> <br>
+    비밀번호 : <input type="password" id="userPw"><br>
+    <button onclick="testInput()">확인</button>
+
+    <div class="area" id="area2"></div>
+    <input type="text" id="area3">
+
+    <script>
+        function testInput(){
+            let input1 = document.getElementById("userId");
+            let input2 = document.getElementById("userPw");
+
+            console.dir(input1); //input1 요소의 객체 구조
+
+            let id = input1.value;
+            let pw = input2.value;
+
+            console.log("id : " + id);
+            console.log("pw : " + pw);
+
+            //---------------- area2 태그 사이에, 아이디와 비밀번호를 출력----------------
+            //1. area2번 div 요소에 접근
+            //2. 접근 후, 속성을 이용해 아이디와 비밀번호 출력
+
+            document.getElementById("area2").innerHTML = "입력 아이디 : " + id + ", 입력 비번 : " + pw;
+            document.getElementById("area3").value = id + ", " + pw;
+
+            //버튼 클릭 후, 각 input 태그의 value를 초기화
+            input1.value = "";
+            input2.value = "";
+        }
+    </script>
+
+    <br><br>
+    취미 : 
+
+    <select id="hobby">
+        <option value="1">축구</option>
+        <option value="2">야구</option>
+        <option value="3">농구</option>
+        <option value="4">배구</option>
+    </select>
+    <button onclick="hobby()">자네 취미가 뭔가?</button>
+
+    <script>
+        function hobby(){
+            let sel = document.getElementById("hobby");
+            let hobby = sel.value; // 선택한 취미 값.
+            console.log("hobby : " + hobby); //여러개의 option 중, 선택한 option의 value 속성 값.
+        }
+    </script>
+
+    <hr><br>
+
+    <h2>2. 데이터를 입력받는 구문</h2>
+    <p>
+        2.1) [window.]confirm("질문 작성"); <br>
+        2.2) [window.]prompt("질문 작성"); <br>
+        2.3) 선택한요소.속성(id, className, innerHTML, innerText...); <br>
+        2.4) input요소.value;
+    </p>
+
+    <h3>2.1) [window.]confirm("질문 작성");</h3>
+    <p>
+        confirm 함수 호출 시, "질문 내용"과 "확인/취소" 버튼이 존재하는 알림창 발생 <br>
+        "확인" 버튼 클릭 시, true를 반환하고 "취소" 버튼 클릭 시, false를 반환.
+    </p>
+
+    <button onclick="testConfirm()">확인</button>
+    <div id="area4" class="area"></div>
+    <script>
+        function testConfirm(){
+            let bool = window.confirm("JS 재미있으면 확인, 재미없으면 취소를 누르시오");
+            console.log("bool : " + bool); //확인, 취소에 따라 true / false
+
+            let area4 = document.getElementById("area4");
+
+            //confirm의 결과가 true?false로 변환되어 if문 조건식에 사용이 가능.
+            if(bool){
+                area4.innerText = "JS 짱 ";
+            } else{
+                area4.innerText = "JS 노잼 ";
+            }
+        }
+    </script>
+
+    <br>
+
+    <h3>2.2) [window.]prompt("질문 작성");</h3>
+    <p>
+        prompt 함수 호출 시, "질문 내용"을 작성하면, 알림창에 질문 내용이 보여지고, <br>
+        입력할 수 있는 텍스트 상자와 "확인/취소" 버튼이 생성된다. <br>
+        확인 버튼을 누르면 텍스트 상자에 입력된 값이 문자열로 반환된다.(내부에 숫자를 입력해도 문자열로 반환) <br>
+        취소 버튼을 누르면 null을 반환. (취소 버튼을 누르면 텍스트 상자에 값이 입력되어 있어도 null를 반환)
+    </p>
+
+    <button onclick="testPrompt()">확인</button>
+    <div id="area5" class="area"></div>
+
+    <script>
+        function testPrompt(){
+            //알림창에 매개변수로 전달한 문자열이 질문으로 표기되고, "확인" 버튼을 눌러야 텍스트 상자에 입력한 값이 반환됨.
+            let str = window.prompt("당신의 이름은 무엇입니까 ??? ");
+            console.log("이름 : " + str);
+            let age = window.prompt("당신의 나이는 몇살입니까 ? ");
+            console.log(age); //숫자를 입력해도 prompt는 문자열로 반환한다. 아래 15 숫자랑 console에 출력되는 색상이 다름.
+            console.log(15);
+
+            //area5에 이름은 OOO이고, 나이는 00살입니다. 출력.
+            
+            //area5.innerText = "이름은 " + str + "이고, 나이는" + age + "살입니다.";  // 직접 작성함.
+            
+            //div 태그 사이에, 문자열 할당
+            let div = document.getElementById("area5");
+            div.innerHTML = "이름은 " + str + "이고, 나이는" + age + "살입니다.";
+        }
+    </script>
+</body>
+</html>

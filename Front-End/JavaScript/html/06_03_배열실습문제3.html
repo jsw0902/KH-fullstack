@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습문제8</title>
+    <style>
+        #result{
+            width:800px;
+            height:20px;
+            border:1px solid red;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>배열 실습 문제3</h1>
+    <p>
+        입력받은 값을 아래 div에 출력하시오.
+    </p>
+    <fieldset>
+        <legend>입력</legend>
+        <input type="text" id="textInput"> 
+        <button onclick="plusArray();">입력</button>
+    </fieldset>
+    <br>
+    <div id="result">이 부분에 정답이 출력 될 수 있도록 하세요</div>
+    <button onclick="plusText();">출력</button>
+
+    <script>
+        let textArray = [];
+        function plusArray(){
+            const plus = document.getElementById("textInput").value;
+            textArray.push(plus);
+        }
+
+        function plusText(){
+            const result = document.getElementById("result");
+            result.innerHTML = textArray;
+        }
+    </script>
+
+</body>
+
+</html>

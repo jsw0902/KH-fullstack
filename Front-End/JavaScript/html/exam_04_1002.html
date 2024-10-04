@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>배열 실습 문제</h1>
+
+    <hr>
+
+    <h3>문제 1.</h3>
+    <p>
+        문자열을 사용자에게 입력받고, 아래 작성되어 있는 문자열들중에 존재하는지 검사하시오 <br>
+        존재하면 전체 문자열 중 몇번째에 존재하는지 위치값을 사용자 알림창에 출력하고, <br>
+        단, 보기에 작성된 문자열의 순서는 위에서부터 아래로 순차 증가.
+    </p>
+
+    <fieldset>
+        <legend>보기</legend>
+        <label id="la1">사과,바나나,당근</label><br> <!-- 사과가 0번째-->
+        <label id="la2">김밥,치즈,떡볶이,햄버거</label><br>
+        <label id="la3">환타,사이다,콜라</label><br>
+        <label id="la4">고양이,강아지</label><br> <!-- 강아지가 11번째 -->
+    </fieldset>
+
+    <input type="text" id="userInput" placeholder="찾을 문자열 입력">
+    <button onclick="srchStr()">문자열 찾기</button>
+
+    <script>
+        function srchStr(){
+            //1. 문자열이 존재하는 요소에 접근
+            let la1 = document.getElementById("la1");
+            let la2 = document.getElementById("la2");
+            let la3 = document.getElementById("la3");
+            let la4 = document.getElementById("la4");
+
+            //2. 각 요소의 문자열을 배열 여소로
+            let la1Arr = la1.innerHTML.split(","); //la1 내부 문자열을 , 기준으로 잘라 각 배열에 요소로 생성
+            let la2Arr = la2.innerHTML.split(",");
+            let la3Arr = la3.innerHTML.split(",");
+            let la4Arr = la4.innerHTML.split(",");
+
+            //3. 4개의 배열을 하나의 배열로 합치기
+            let strArr = la1Arr.concat(la2Arr,la3Arr,la4Arr);
+
+            //4. 사용자 입력값 획득
+            let userInput = document.getElementById("userInput").value;
+
+            //5. 문자열 배열에 사용자가 입력한 문자열이 존재하는지
+
+            //방법1) for문 활용하여 전체 배열 순회
+            /*
+            let idx = -1;
+            for(let i=0; i<strArr.length; i++){
+                if(strArr[i] == userInput){
+                    idx= i;
+                }
+            }
+
+            if(idx == -1){
+                alert("존재하지 않습니다.");
+            }else{
+                alert(i + "번째");
+            }
+            */
+
+            //방법2) 배열 메소드 활용
+            let idx = strArr.indexOf(userInput); //존재하는 경우 인덱스번호, 존재하지 않는 경우 -1을 반환
+            if(idx == -1){
+                alert("존재하지 않습니다.");
+            } else{
+                alert(idx + "번째");
+            }
+
+            //3. 4개의 배열을 하나의 배열로 합치기
+            /*
+            //직접 작성함
+            //1. 문자열이 존재하는 요소에 접근
+            const fruits = document.getElementById("la1").textContent.split(",");
+            const foods = document.getElementById("la2").textContent.split(",");
+            const drinks = document.getElementById("la3").textContent.split(",");
+            const animals = document.getElementById("la4").textContent.split(",");
+            const searchWord = document.getElementById("userInput").value;
+
+            //2. 각 요소의 문자열을 배열 요소로
+            const allWords = [...fruits, ...foods, ...drinks, ...animals];
+
+            const index = allWords.indexOf(searchWord);
+
+            if (index == -1) {
+                alert("존재하지 않는 문자입니다");
+            } else {
+                alert("배열의 " + index + " 번째에 존재합니다. " + searchWord + "가 있습니다.");
+            }
+            */
+            /*
+            //직접 작성함
+            const arr = ["사과", "바나나", "당근", "김밥","치즈","떡볶이", "햄버거", "환타", "사이다", "콜라", "고양이", "강아지"];
+            const srch = document.getElementById("userInput").value;
+
+            const idx = arr.indexOf(srch);
+
+            if(idx == -1){ 
+                alert("존재하지 않는 문자입니다");
+            } else{
+                alert("배열의 " + idx +" 번째에 존재합니다. " + srch + "가 있습니다.");
+            }
+            */
+        }
+    </script>
+
+    <br> <hr>
+
+    <h3>문제 2.</h3>
+    <p>
+        아래 2개의 문자열이 존재한다. 역순으로 출력하는 기능과, 오름차순으로 정렬하는 기능을 작성하시오. <br>
+        단, 역순 출력 기능 내부의 변수는 const로 선언하시오
+    </p>
+
+    <fieldset>
+        <legend>보기</legend>
+        <label id="strla1">r b</label><br>
+        <label id="strla2">e v o l</label><br>
+    </fieldset>
+
+    <input type="text" id="result" placeholder="이 부분에 정답이 출력될 수 있도록 하세요" style="width: 300px;">
+
+    <button onclick="exam1()">역순 출력</button>
+    <button onclick="exam2()">오름차순</button>
+
+    <script>
+        function exam1(){
+            const la1 = document.getElementById("strla1");
+            const la2 = document.getElementById("strla2");
+            const result = document.getElementById("result");
+
+            //1. 공백 기준으로 잘라 배열 생성
+            const la1ValArr = la1.innerHTML.split(" ");
+            const la2ValArr = la2.innerHTML.split(" ");
+
+            const strArr = la1ValArr.concat(la2ValArr);
+
+            //2. 빈 문자열을 배열 요소 사이에 넣어 하나의 문자열로 변환
+            const str = strArr.join("");
+
+            //3. 결과 출력 태그에 문자열 출력
+            result.value = str;
+
+
+        }
+        function exam2(){
+
+        }
+        /*
+        //직접한 코드
+        function exam1(){
+            const arr1 = document.getElementById("strla1").textContent.split(" ");
+            const arr2 = document.getElementById("strla2").textContent.split(" ");
+            const text = document.getElementById("result");
+            const arr = [...arr1, ...arr2];
+
+            text.value = arr.reverse().join(" ");
+        }
+
+        function exam2(){
+            const arr1 = document.getElementById("strla1").textContent.split(" ");
+            const arr2 = document.getElementById("strla2").textContent.split(" ");
+            const text = document.getElementById("result");
+            const arr = [...arr1, ...arr2];
+
+            text.value = arr.sort().join(" ");
+        }
+        */
+    </script>
+
+    <h1>배열 실습 문제3</h1>
+    <p>
+        입력받은 값을 아래 div에 출력하시오.
+    </p>
+    <fieldset>
+        <legend>입력</legend>
+        <input type="text" id="textInput"> 
+        <button onclick="plusArray();">입력</button>
+    </fieldset>
+    <br>
+    <div id="result2">이 부분에 정답이 출력 될 수 있도록 하세요</div>
+    <button onclick="plusText();">출력</button>
+
+    <script>
+        /*
+            전역변수
+            - 입력과 출력의 함수가 다름. 입력 메소드에서 처리한 값을 출력 메소드에서도 사용해야하기 때문에 전역변수를 활용
+        */
+        let textArray = []; //전역변수
+        function plusArray(){
+            let plus = document.getElementById("textInput");
+            textArray.push(plus.value); //배열의 마지막 요소로 추가
+            plus.value = ''; //추가 후, 기존 입력값 초기화
+        }
+
+        function plusText(){
+            let result = document.getElementById("result2");
+            let str = textArray.join(","); //배열의 요소들 사이에 ,를 추가하여 하나의 문자열로
+            result.innerHTML = textArray;
+        }
+    </script>
+
+    <h1>배열 실습 문제4</h1>
+
+    <fieldset>
+        <legend>보기</legend>
+        <label id="food">피자 치킨 당근 햄버거 떡볶이</label>
+    </fieldset>
+    <br>
+    <input type="text" id="delete" placeholder="삭제할 음식을 입력하세요.">
+    <input type="text" id="addition" placeholder="추가할 음식을 입력하세요." ><br><br>
+    <div id="result3">이 부분에 정답이 출력 될 수 있도록 하세요</div><br>
+    <button onclick="arrayTest();">처리 및 출력</button>
+
+    <script>
+        function arrayTest(){
+            let food = document.getElementById("food");
+            let delStr = document.getElementById("delete");
+            let addStr = document.getElementById("addition");
+            let result = document.getElementById("result3");
+
+            //기준 문자열을 공백 기준으로 잘라서 배열로 생성
+            let foodArr = food.innerHTML.split(" ");
+
+            //추가할 데이터 배열 요소로
+            let fooder = foodArr.push(addStr.value);
+
+            //삭제할 데이터의 인덱스 번호
+            let delidx = foodArr.indexOf(delStr.value);
+
+            //splice 활용하여 삭제
+            foodArr.splice(delidx, 1); //원본에 영향을 미치는 함수
+
+            result.innerHTML = foodArr;
+
+        }
+    </script>
+</body>
+</html>

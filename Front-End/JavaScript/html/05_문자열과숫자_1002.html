@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 300px;
+        }
+
+        .small{
+            height: 200px;
+        }
+        .large{
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>문자열과 숫자</h1>
+
+    <hr>
+
+    <h3>문자열 관련 기본 메소드</h3>
+
+    <button onclick="btnclick1()">문자열 메소드 확인</button>
+    <div id="area1" class="area large"></div>
+
+    <script>
+        function btnclick1(){
+            const area1 = document.getElementById("area1");
+            const str = "Hello World";
+
+            area1.innerHTML = str + "<br>";
+            area1.innerHTML += "toUpperCase() : " + str.toUpperCase() + "<br>"; //대문자
+            area1.innerHTML += "toLowerCase() : " + str.toLowerCase() + "<br>"; //소문자
+            area1.innerHTML += "length : " + str.length + "<br>"; //문자열 길이
+
+            for(let i=0; i<str.length; i++){
+                area1.innerHTML += i + "번째 인덱스 : " + str.charAt(i) + "<br>";
+            }
+
+            area1.innerHTML += "indexOf() : " + str.indexOf("l") +"<br>";
+            area1.innerHTML += "lastIndexOf() : " + str.lastIndexOf("l") +"<br>";
+            area1.innerHTML += "indexOf 없는 문자열 : " + str.indexOf("b") +"<br>"; //-1 반환
+            if(str.indexOf("d") > -1){
+                console.log("존재합니다");
+            } else{
+                console.log("존재하지 않습니다.");
+            }
+
+            area1.innerHTML += "substring(시작인덱스) : " + str.substring(6) + "<br>";
+            area1.innerHTML += "substring(시작인덱스, 끝인덱스) : " + str.substring(0, 4) + "<br>";
+            area1.innerHTML += "substr(시작인덱스) : " + str.substr(6) + "<br>";
+            area1.innerHTML += "substr(시작인덱스, 갯수) : " + str.substr(0,4) + "<br>";
+
+            const str2 = "사과, 바나나, 배, 딸기";
+            const fruits = str2.split(",");
+            area1.innerHTML += "fruits : " +fruits + "<br>";
+            area1.innerHTML += "fruits type : " + typeof(fruits) + "<br>";
+            console.log(fruits);
+            
+            const fruits2 = str2.split("");
+            area1.innerHTML += "fruits2 : " + fruits2 + "<br>";
+            console.log(fruits2);
+        }
+    </script>
+
+
+    <br><br>
+
+    <h3>숫자 관련 메소드</h3>
+
+    <button onclick="btnclick2()">숫자 메소드 확인</button>
+    <div id="area2" class="area small"></div>
+
+    <script>
+        function btnclick2(){
+            const area2 = document.getElementById("area2");
+
+            area2.innerHTML = "절대값 : " + Math.abs(-123) + "<br>";
+            area2.innerHTML += "절대값 : " + Math.abs(123) + "<br>";
+            area2.innerHTML += "랜덤값 : " + Math.random() + "<br>"; //0~1 사이의 난수
+            area2.innerHTML += "반올림 : " + Math.round(123.5) + "<br>"; 
+            //area2.innerHTML += "반올림 : " + Math.round(123.5, -5) + "<br>"; //자릿수를 지정하는건 불가
+            area2.innerHTML += "버림 : " + Math.floor(123.9999999) + "<br>";
+            area2.innerHTML += "올림 : " + Math.ceil(122.000000000001) + "<br>";
+            area2.innerHTML += "최대값 : " + Math.max(4,5,2,10,6,1) + "<br>";
+            area2.innerHTML += "최소값 : " + Math.min(4,5,2,10,6,1) + "<br>";
+            area2.innerHTML += "제곱근 : " + Math.sqrt(9) + "<br>";
+            area2.innerHTML += "거듭제곱 : " + Math.pow(2,4) + "<br>";
+
+        }
+    </script>
+
+    <br><br>
+
+    <h3>숫자와 문자열간의 연산</h3>
+
+    <div id="area3" class="area large"></div>
+    <button onclick="btnclick3()">숫자 문자 연산</button>
+
+    <script>
+        function btnclick3(){
+            const test1 = 5 + "5";
+            const test2 = 5 + 5;
+            const test3 = "5" + 5;
+            const test4 = "5" + 5 + 5;
+            const test5 = "5" + (5+5);
+
+            const area3 = document.getElementById("area3");
+            area3.innerHTML = "";
+
+            //+ 연산 결과
+            area3.innerHTML += "test1 : " + test1 + "<br>";
+            area3.innerHTML += "test2 : " + test2 + "<br>";
+            area3.innerHTML += "test3 : " + test3 + "<br>";
+            area3.innerHTML += "test4 : " + test4 + "<br>";
+            area3.innerHTML += "test5 : " + test5 + "<br>";
+            
+            //-,*,/
+            const test6 = "7" - 7;
+            const test7 = "7" * 7;
+            const test8 = "7" / 7;
+            const test9 = "das7" * 3;
+
+            area3.innerHTML += "test6 : " + test6 + "<br>";
+            area3.innerHTML += "test7 : " + test7 + "<br>";
+            area3.innerHTML += "test8 : " + test8 + "<br>";
+            area3.innerHTML += "test9 : " + test9 + "<br>"; //NaN : Not a Number
+            
+            //형변환
+            
+            /* 
+            1) 문자열 -> 숫자
+            - Number(문자열)
+            - parseInt(문자열) : 문자열에 "2.3" 입력 시, 소수점 버리고 정수로 변환하다.
+            - parseFloat(문자열) : "2.3"과 같이 실수 문자열을 실수로 변환할 때 사용한다.
+            */
+           
+           const test10 = 2 + "2"; //22
+           const test11 = 2 + Number("2");
+           const test12 = 2 + parseInt("2");
+           const test13 = 2 + parseFloat("2");
+           
+           area3.innerHTML += "test11 : " + test11 + "<br>";
+           area3.innerHTML += "test12 : " + test12 + "<br>";
+           area3.innerHTML += "test13 : " + test13 + "<br>";
+           
+           const test14 = 2 + Number("1.23");
+           const test15 = 2 + parseInt("1.23");
+           const test16 = 2 + parseFloat("1.23");
+
+           area3.innerHTML += "test14 : " + test14 + "<br>";
+           area3.innerHTML += "test15 : " + test15 + "<br>";
+           area3.innerHTML += "test16 : " + test16 + "<br>";
+           
+           //2) 그 외 자료형 -> 문자열
+           const test17 = String(true); //true -> "true"
+           const test18 = String(2.15);
+           const test19 = String(50);
+           
+           area3.innerHTML += "test17 : " + test17 + "<br>";
+           area3.innerHTML += "test18 : " + test18 + "<br>";
+           area3.innerHTML += "test19 : " + test19 + "<br>";
+
+           const name = "카리나";
+           const age = 24;
+           const addr = "장승원 집";
+
+           console.log("이름 : " + name + ", 나이 : " + age + ", 주소 : " + addr);
+           console.log(`이름 : ${name}, 나이 : ${age}, 주소 : ${addr}`);// 백틱 : ``임 (''이거 아님)
+           
+        }
+    </script>
+
+    <br><br>
+    <h3>연산자</h3>
+
+    <button onclick="btnclick4();">연산자 확인</button>
+    <div id="area4" class="area large"></div>
+
+    <script>
+        function btnclick4(){
+            /*
+                연산자 종류
+
+                - 단황 : ++, +, --, -
+                - 산술 : +, -, *, / 
+                - 관계 : >, <, >=, <= , == , !=
+                - 논리 : &&, ||
+                - 대입 : =
+                - 복합 대입 : +=, -=, *=, /-
+                - 상황 : 조건식 ? 참 : 거짓
+            */
+
+            let num1 = 10; //대입 연산
+            let num2 = 20;
+
+            const area4 = document.getElementById("area4");
+
+            area4.innerHTML = "";
+            area4.innerHTML += (num1++) + "<br>";
+            area4.innerHTML += (--num1)  + "<br>";
+            area4.innerHTML += (num1<num2)  + "<br>"; 
+            area4.innerHTML += (num1>num2)  + "<br>"; 
+            area4.innerHTML += (num1>num2 && 10<5)  + "<br>"; 
+            area4.innerHTML += (num1>num2 || 10<5)  + "<br>"; 
+            area4.innerHTML += (num1<num2 ? "num2가 참" : "num1이 참")  + "<br>";
+
+            /*
+                === :
+                !== :
+            */
+
+            num = 10;
+            const str = "10";
+
+            area4.innerHTML += (num1 == str) + "<br>"; //true : 값이 동일하기 때문에
+            area4.innerHTML += (num1 === str) + "<br>"; //false : 값은 숫자로 변환 시, 같지만 자료형이 다르므로 false가 나온다.
+            console.log("num type : " + typeof(num1) + ", str type : " + typeof(str));
+
+            area4.innerHTML += (num1 != str) + "<br>"; //false : 현재 값이 다른지 검사. 내부적으로 숫자로 변환되어 비교하기 때문에 값은 동일!
+            area4.innerHTML += (num1 !== str) + "<br>"; //true : 값은 같지만, 자료형이 다르므로
+            //num != str || typeof(num1) != typeof(str)
+        }
+    </script>
+
+    <br><br>
+
+    <h3>제어문</h3>
+
+    <button onclick="btnclick5();">제어문 확인</button>
+    <div id="area5" class="area large"></div>
+
+    <script>
+        function btnclick5(){
+            let num = 10;
+            const area5 = document.getElementById("area5");
+            area5.innerHTML = ""; //초기화 작업
+            if(num < 15){
+                area5.innerHTML += "num은 15보다 작습니다. <br>";
+            }
+            
+            if(num > 20){
+                area5.innerHTML += "num은 20보다 큽니다. <br>"
+            } else{
+                area5.innerHTML += "num은 20과 같거나, 20보다 작습니다. <br>"
+            }
+            
+            if(num >20){
+                area5.innerHTML += "num은 20보다 큽니다. <br>"
+                
+            } else if(num>15){
+                area5.innerHTML += "num은 15보다 작습니다. <br>";
+                
+            }else{
+                area5.innerHTML += "num은 15와 같거나 15보다 작습니다. <br>"
+
+            }
+
+            switch(num){
+                case 10 : area5.innerHTML += "num은 10입니다. <br>";
+                    break;
+                case 11 : area5.innerHTML += "num은 11입니다. <br>";
+                    break;
+                default : area5.innerHTML += "둘다 아닙니다. <br>";
+                    break;
+            }
+
+            for(let i = 0; i<5; i++){
+                area5.innerHTML += "현재 i 값은" + i + "입니다";
+            }
+
+            let arr = [5,2,3,4,1];
+
+            //자바에서 froEach와 유사. 단, 요소의 값을 가져오는것이 아니고, 해당 인덱스 번호를 가져온다.
+            for(let i in arr){
+                console.log("현재 i는 배열 요소값은 ?? : " + i + arr[i]);
+                console.log("현재 i는 ?? : " + i);
+            }
+
+            let cnt = 0;
+            while(cnt < 10){
+                console.log("cnt : " + cnt);
+                cnt++;
+            }
+        }
+    </script>
+</body>
+</html>
