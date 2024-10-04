@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_03_실습 문제</title>
+</head>
+<body>
+    <span>고객명 : 
+        <input type="text">
+    </span><br><br>
+    <span>전화번호 : 
+        <input type="text">
+    </span><br><br>
+    <span>E-mail : 
+        <input type="text">
+    </span><br><br>
+
+    <form action="test.html">
+        <fieldset>
+            <legend>피자 사이즈</legend><br>
+            <div>
+                <input type="radio" name="key1">Small<br><br>
+            <input type="radio" name="key1">Medium<br><br>
+            <input type="radio" name="key1">Large<br><br>
+            </div>
+        </fieldset>
+    </form>
+
+
+    <form action="test.html">
+        <fieldset>
+            <legend>토핑 선택</legend><br>
+            <div>
+                <input type="checkbox" name="key2">베이컨<br><br>
+                <input type="checkbox" name="key2">치즈<br><br>
+                <input type="checkbox" name="key2">양파<br><br>
+                <input type="checkbox" name="key2">버섯<br><br>
+            </div>
+        </fieldset>
+    </form>
+    <br>
+    <span>희망배송시간 :
+        <input type="time">
+    </span><br>
+    <br>
+    <span>
+        배송시요청사항 : 
+        <textarea name="key3"></textarea>
+    </span><br><br>
+    <input type="button" value="주문하기"><br><br>
+    <hr><br>
+    <form action="test.html">
+        <fieldset>
+            <legend>납품자 정보</legend>
+            <div>
+                <ol type="1">
+                    <li>납품자명 : <input type="text" name="key4" placeholder="name"></li><br>
+                    <li>email : <input type="text" name="key5" placeholder="hi@naver.com"></li><br>
+                    <li>홈페이지 : <input type="text" name="key6" placeholder="http://"></li><br>
+                </ol>
+            </div>
+        </fieldset>
+    </form>
+    <form action="test.html">
+        <fieldset>
+            <legend>납품정보</legend>
+            <div>
+                <ul>
+                    <li> 상품명 : <input type="text" name="key7" ></li><br>
+                    <li> 납품수량 : <input type="text" name="key8" placeholder="최소100" ></li><br>
+                    <li> 기타사항 : <textarea name="textarea"></textarea></li>
+                </ul>
+            </div>
+        </fieldset>
+    </form>
+    <br>
+    <input type="button" value="send message">
+</body>
+</html>
