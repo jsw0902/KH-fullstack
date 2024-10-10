@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+
+    <style>
+        .wrap, .wrap{
+            border: 1px solid lightgray;
+            color: gray;
+            display: block;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h3> * 자손, 후손, 관련 메소드</h3>
+
+    <div class="wrap">
+        <div> div(증조할머니)
+            <ul> ul(외할머니)
+                <li> li (엄마)
+                    <span>Span</span>
+                </li>
+            </ul>
+        </div> 
+        <div> div(할아버지)
+            <p> p(아빠)
+                <span>Span</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+            //기준요소 : 클래스가 wrap인 요소
+            //children() : 기준 요소 기준으로 바로 하위에 (자손) 위치한 요소
+            $('.wrap').children().css('color', 'red').css('border', '2px solid red');
+
+            //기준요소 : 클래스가 wrap인 요소
+            //children().children() : 기준 요소 기준으로, 자손 요소의 자손 요소
+            $('.wrap').children().children().css('color', 'blue').css('border', '2px solid blue');
+
+            //기준요소 : 클래스가 wrap인 요소
+            //children().children('ul') : 기준 요소 기준으로, 자손 요소의 자손 요소 중 ul 태그
+            $('.wrap').children().children('ul').css('color', 'green').css('border', '2px solid green');
+
+            //기준요소 : 클래스가 wrap인 요소
+            //find('li') : 기준 요소 하위 요소 전체(자손&후손) 요소 중에, li 태그
+            $('.wrap').find('li').css('color', 'pink').css('border', '2px solid pink');
+
+            //기준요소 : 클래스가 wrap인 요소
+            //find('span') : 기준 요소 하위 요소 전체(자손&후손) 요소 중에, li 태그
+            $('.wrap').find('span').css('color', 'purple').css('border', '2px solid purple');
+
+
+        });
+    </script>
+</body>
+</html>

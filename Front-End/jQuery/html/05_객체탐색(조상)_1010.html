@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+    <style>
+        /*
+            클래스가 wrap 태그랑, 클래스가 wrap인 태그의 모든 후손
+        */
+        .wrap, .wrap * {
+            border: 1px solid lightgray;
+            color: gray;
+            display: block;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>조상(부모, 조부모....) 관련 메소드</h1>
+    <p>
+        기준 요소 기준으로 상위에 존재하는 요소들을 선택할 수 있는 메소드
+    </p>
+
+    <div class="wrap">
+        wrap Div
+        <div> div(증조외할머니)
+            <ul> ul(외할머니)
+                <li> li(엄마)
+                    <span>Span</span>
+                </li>
+            </ul>
+        </div>
+
+        <div> div(친할아버지)
+            <p> p(아빠)
+                <span>Span</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            //기준 요소 : span
+            //parent() : span 태그 바로 상위의 부모 요소
+            $('span').parent().css('color', 'red').css('border', '2px solid red');
+
+            //기준 요소 : li
+            //parents() : 상위 요소 모두(body 태그도 포함)
+            $('li').parents().css('color', 'blue');
+
+            //기준 요소 : li
+            //parents('div') : 상위 요소들 중, div 태그
+            $('li').parents('div').css('border', '2px dashed magenta');
+
+            //기준 요소 : span
+            //parentsUntil('div') : span 태그와 상위 div 태그 사이에 있는 태그's`
+            $('span').parentsUntil('div').css('color', 'pink');
+
+            
+        });
+    </script>
+</body>
+</html>

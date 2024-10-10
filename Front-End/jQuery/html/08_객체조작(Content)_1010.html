@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h1>Content 영역 관련 메소드(innerHTML, innerText)</h1>
+
+    <h3>html([*문구]) : innerHTML 속성과 관련된 메소드</h3>
+    <p>
+        $(선택자).html() : 선택자로 선택한 요소 내부의 컨텐츠를 get(단, HTML 태그 포함) <br>
+        $(선택자).html('문구') : 선택자로 선택한 요소 내부를, 지정한 문구로 변경(문구에 HTML 태그가 포함된다면, 태그로써 동작)
+    </p>
+
+    <h1 id="test1">
+        <a>네이버로</a>
+    </h1>
+
+    <h1 id="test2"></h1>
+
+    <script>
+        $(function(){
+            //기존 JS 방식으로 a 태그 컨텐츠 값 조회
+            let jsEl1 = document.getElementById('test1').innerHTML;
+            console.log(jsEl1);
+
+            let jqEl1 = $("#test1").html(); // <a>네이버로</a>
+            console.log(jqEl1);
+
+            $('#test2').html(jqEl1);
+
+            //$('#test2>a').attr('href', 'https://www.naver.com');
+            //$('#test2').children().attr('href', 'https://www.naver.com');
+            $('#test2').find('a').attr('href', 'https://www.naver.com');
+
+        });
+    </script>
+
+    <h3>text(['문구']) : innerText 속성과 관련된 메소드 </h3>
+    <p>
+        $(선택자).text() : 선택자로 선택한 요소 내부의 컨텐츠를 get (단, 요소 내부에 html 태그 존재 시, 텍스만 get) <br>
+        $(선택자).text('문구') : 선택자로 선택한 요소 내부를, 지정한 문구로 변경(단, 문구에 HTML 태그가 포함된다면 태그로써 해석되지 않는다) <br>
+    </p>
+
+    <h1 id="test3">
+        <a>다음으로</a>
+    </h1>
+
+    <h1 id="test4"></h1>
+
+    <script>
+        $(document).ready(function(){
+            let jsEl2 = document.getElementById('test3');
+            console.log(jsEl2.innerText);
+
+            let jqEl2 = $('#test3').text(); //다음으로
+            console.log(jqEl2);
+
+            $('#test4').text('<a>' + jqEl2 + '</a>'); //태그로 감싸주었지만, text() 메소드를 사용하였으므로 문자열로 컨텐츠 영역이 채워진다.
+        });
+    </script>
+
+    <br><hr>
+
+    <div class="test">테스트</div>
+    <div class="test">테스트</div>
+    <div class="test">테스트</div>
+
+    <script>
+        $(function(){
+            //JS로 클래스가 test인 태그들의 내부 컨텐츠 영역을 '변경 문구'로 변경하기
+            /*
+            let testArr = document.getElementsByClassName('test');
+            for(let i = 0; i<testArr.length; i++){
+                testArr[i].innerHTML = '변경 문구';
+            }
+            */
+
+            //$(".test").html('변경 문구~');
+
+
+            /*
+                html() 메소드의 매개변수로, 문자열도 전달 가능하고 function도 전달 가능!
+                function 전달 시, 선택자로 선택한 요소들에 순차적으로 접근하며
+                함수 내부의 return 값으로 해당 요소의 컨텐츠 영역을 변경해준다.
+            */
+            $(".test").html(function(index, oldhtml){
+                //console.log(index);   //0, 1, 2
+                //console.log(oldhtml); //테스트, 테스트, 테스트
+                return "<h2>함수 리턴으로 만든 문구" + oldhtml + "</h2>";
+            });
+        });
+    </script>
+
+    
+</body>
+</html>

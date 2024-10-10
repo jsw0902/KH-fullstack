@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+    <style>
+        .wrap, .wrap * {
+            display: block;
+            border: 1px solid lightgray;
+            padding: 5px;
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h3> 동위 요소 선택 관련 메소드</h3>
+
+    <div class="wrap">
+        <p>p 태그</p>
+        <span>span 태그</span>
+        <h2>h2 태그</h2>
+        <h3>h3 태그</h3>
+        <p>p 태그</p>
+    </div>
+    <script>
+        $(document).ready(function(){
+
+            //기준 요소 : h2
+            // siblings() : 동위 요소 전체 선택
+            //$('h2').siblings().css('color', 'red').css('border', '2px solid red');
+
+            //기준 요소 : h2
+            //siblings('p') : 동위 요소 전체중에 p 태그 선택
+            //$('h2').siblings('p').css('color', 'blue').css('border', '2px solid blue');
+
+            //기준 요소 : h2
+            //next() : 기준 요소 바로 다음 요소
+            //$('h2').next().css('color', 'green').css('border', '2px solid green');
+
+            //기준 요소 : h2
+            //nextAll() : 기준 요소 다음에 있는 모든 동위 요소
+            //$('h2').nextAll().css('color', 'red').css('border', '2px solid red');
+
+            //기준 요소 : h2
+            //nextUntil('p') : 기준 요소와 nextUntil로 지정한 요소 사이의 동위 요소
+            //$('h2').nextUntil('p').css('color', 'blue').css('border', '2px solid blue');
+
+            //기준 요소 : h2
+            //prev() : 기준 요소 바로 이전 요소
+            //$('h2').prev().css('color', 'green').css('border', '2px solid green');
+
+            //기준 요소 : h2
+            //prevAll() : 기준 요소 이전의 모든 동위 요소
+            //$('h2').prevAll().css('color', 'red').css('border', '2px solid red');
+            
+            //기준 요소 : h2
+            //prevUntil('p') : 기준 요소와 prevUntil()로 지정한 요소 사이의 동위 요소
+            $('h2').prevUntil('p').css('color', 'blue').css('border', '2px solid blue');
+
+            
+
+        });
+    </script>
+</body>
+</html>
