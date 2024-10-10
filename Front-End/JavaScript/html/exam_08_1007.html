@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체 실습 문제</h1>
+
+    <hr>
+
+    <h3>
+        문제1. 다음 입력 버튼을 클릭하면 이름, 나이, 주소를 prompt로 입력 받은 후, 입력 받은 정보를 <br>
+        member라는 객체에 저장하여라. 이후, 출력 버튼을 클릭하면 member 객체 내부에 존재하는 정보를 <br>
+        출력 창에 출력되도록 구현하라. <br>
+        ex) <br>
+        이름 : OOO <br>
+        나이 : OO세 <br>
+        주소 : XXX XXX XXX ... <br>
+    </h3>
+
+    <fieldset>
+        <legend>출력창</legend>
+        <div id="printDiv"></div>
+    </fieldset>
+    <br>
+    <button onclick="insertMember()">입력</button>
+    <button onclick="printMember()">출력</button>
+
+    <script>
+        let member = {};
+
+        function insertMember(){
+            const name = prompt("이름을 입력하세요 : ");
+            const age = prompt("나이를 입력하세요 : ");
+            const addr = prompt("주소를 입력하세요 : ");
+
+            member = {
+                name : name,
+                age : age,
+                addr : addr
+            };
+        }
+        function printMember(){
+            let members = document.getElementById("printDiv");
+            member.innerHTML = "";
+            members.innerHTML += "이름 : " + member.name + "<br>";
+            members.innerHTML += "나이 : " + member.age + "<br>";
+            members.innerHTML += "주소 : " + member.addr + "<br>";
+        }
+    </script>
+
+    <hr>
+    <h3>
+        문제2. 다음 입력 버튼 클릭 시, 학생정보를 3명 입력받아(반복문 활용할 것) <br>
+        테이블을 생성하며 출력하는 코드를 출력하라. <br>
+        단, 학생 정보는 객체로 처리하여 저장 후, 테이블에 입력하고, <br>
+        모든 학생 정보는 객체 배열에 저장하여, console.log(객체배열) 출력 시 <br>
+        객체 배열 형태로 출력되어야 한다. <br>
+        또한, 입력 시 현재 몇번째 학생 정보를 입력하는지도 표기하시오. ex) 1번째 학생 이름 입력
+    </h3>
+
+    <button onclick="insertStudent()">입력 및 출력</button>
+    <div id="div2">
+        <table id="memberTbl" border="1" style="width: 300px; height: 250px;">
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+            <tr>
+                <td name="name"></td>
+                <td name="age"></td>
+                <td name="addr"></td>
+            </tr>
+            <tr>
+                <td name="name"></td>
+                <td name="age"></td>
+                <td name="addr"></td>
+            </tr>
+            <tr>
+                <td name="name"></td>
+                <td name="age"></td>
+                <td name="addr"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function insertStudent(){
+            let student = {};
+            let studentArr = [];
+            
+            let nameArr = document.getElementsByName("name");
+            let ageArr = document.getElementsByName("age");
+            let addrArr = document.getElementsByName("addr");
+
+            for (let i = 0; i < 3; i++) { 
+                let name = prompt((i + 1) + "번째 학생 이름:");
+                let age = prompt((i + 1) + "번째 학생 나이:");
+                let addr = prompt((i + 1) + "번째 학생 주소:");
+
+                student = {};
+                student.name = name;
+                student.age = age;
+                student.addr = addr;
+                studentArr.push(student);
+
+                nameArr[i].innerHTML = student[i].name;
+                ageArr[i].innerHTML = student[i].age;
+                addrArr[i].innerHTML = student[i].addr;
+            }
+            console.log(studentArr);
+            /*
+            let student = {};
+            let studentArr = [];
+            
+            let nameArr = document.getElementsByName("name");
+            let ageArr = document.getElementsByName("age");
+            let addrArr = document.getElementsByName("addr");
+
+            for (let i = 0; i < 3; i++) { 
+                let name = prompt((i + 1) + "번째 학생 이름:");
+                let age = prompt((i + 1) + "번째 학생 나이:");
+                let addr = prompt((i + 1) + "번째 학생 주소:");
+
+                student = {
+                    name: name,
+                    age: age,
+                    addr: addr
+                };
+                studentArr.push(student);
+
+               nameArr[i].innerHTML = student[i].name;
+               ageArr[i].innerHTML = student[i].age;
+               addrArr[i].innerHTML = student[i].addr;
+            }
+            console.log(studentArr);
+            */
+        }
+    </script>
+
+    <h1>요소(노드) 생성 실습 문제</h1>
+
+    <hr>
+
+    <h3>
+        문제 1. 아래 추가 버튼을 클릭하여 학생 정보를 입력받고, <br>
+        테이블에 학생 정보를 출력하여라. <br>
+        단, 09_window객체.html에서 학습한 [자바스크립트 코드에서 HTML 요소 생성 2번 방법] 내용을 <br>
+        활용하여 해결하시오. <br>
+    </h3>
+
+    <button onclick="nodeExam1()">추가</button>
+    <table border="1" id="student">
+        <tr>
+            <td>이름</td>
+            <td>나이</td>
+            <td>주소</td>
+        </tr>
+    </table>
+
+    <script>
+        let studentArr = [];
+        function nodeExam1(){
+            let name = prompt("이름 입력 : ");
+            let age = prompt("나이 입력 : ");
+            let addr = prompt("주소 입력 : ");
+            
+            let trNode = document.createElement("tr");
+
+            let tdNode1 = document.createElement("td");
+            let textNode1 = document.createTextNode(name);
+            tdNode1.appendChild(textNode1);
+
+            let tdNode2 = document.createElement("td");
+            let textNode2 = document.createTextNode(age);
+            tdNode2.appendChild(textNode2);
+
+            let tdNode3 = document.createElement("td");
+            let textNode3 = document.createTextNode(addr);
+            tdNode3.appendChild(textNode3);
+
+            trNode.appendChild(tdNode1);
+            trNode.appendChild(tdNode2);
+            trNode.appendChild(tdNode3);
+
+            let stuTbl = document.getElementById("student");
+            stuTbl.appendChild(trNode);
+        }
+    </script>
+
+    <br>
+
+    <h3>
+        문제 2. 문제 1번과 같이 아래 추가 버튼을 생성하여 학생 정보를 입력 받고, <br>
+        동일한 방법으로 테이블에 학생 정보를 출력하여라 <br>
+        단, 마지막 '열'에는 삭제 버튼을 생성하고, 삭제 버튼 클릭 시 <br>
+        해당 행 정보가 삭제될 수 있도록 구현하여라. (Hint : id값 활용)
+    </h3>
+
+    <button onclick="nodeExam2()">추가</button>
+    <table border="1" id="student2">
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+            <th>삭제버튼</th>
+        </tr>
+    </table>
+
+    <script>
+        let cnt = 0;
+        function nodeExam2(){
+            let name = prompt("이름 입력 : ");
+            let age = prompt("나이 입력 : ");
+            let addr = prompt("주소 입력 : ");
+
+            //td 태그 생성
+            let tdEl1 = document.createElement("td");
+            let txtNd1 = document.createTextNode(name);
+            tdEl1.appendChild(txtNd1);
+            
+            let tdEl2 = document.createElement("td");
+            let txtNd2 = document.createTextNode(age);
+            tdEl2.appendChild(txtNd2);
+            
+            let tdEl3 = document.createElement("td");
+            let txtNd3 = document.createTextNode(addr);
+            tdEl3.appendChild(txtNd3);
+
+            let trEl = document.createElement("tr");
+            trEl.setAttribute("id", "trId"+cnt);
+            cnt++;
+
+            let tdEl4 = document.createElement("td");
+            let btnEl1 = document.createElement("button");
+            let txtNd4 = document.createTextNode("삭제");
+            btnEl1.setAttribute("onclick", "delTr('" + trEl.getAttribute("id") + "')");
+            btnEl1.appendChild(txtNd4);
+            tdEl4.appendChild(btnEl1);
+            
+            trEl.appendChild(tdEl1);
+            trEl.appendChild(tdEl2);
+            trEl.appendChild(tdEl3);
+            trEl.appendChild(tdEl4);
+
+            let tblEl = document.getElementById("student2");
+            tblEl.appendChild(trEl);
+                     
+            /*
+            let studentArr2 = [];
+            let name = prompt("이름을 입력하세요 : ");
+            let age = prompt("나이를 입력하세요 : ");
+            let addr = prompt("주소를 입력하세요 : ");
+
+            student = {
+                name : name,
+                age : age,
+                addr : addr
+            };
+
+            studentArr2.push(student);
+
+            let trNode = document.createElement("tr"); // tr생성
+            let studentIdx = studentArr2.length - 1; //인덱스번호
+
+            //이름
+            let tdNode1 = document.createElement("td"); //td 생성
+            let textNode1 = document.createTextNode(student.name); //td에 값 할당
+            tdNode1.appendChild(textNode1); // </td>
+
+            //나이
+            let tdNode2 = document.createElement("td"); //td 생성
+            let textNode2 = document.createTextNode(student.age);//td에 값 할당
+            tdNode2.appendChild(textNode2);// </td>
+
+            //주소
+            let tdNode3 = document.createElement("td");//td 생성
+            let textNode3 = document.createTextNode(student.addr);//td에 값 할당
+            tdNode3.appendChild(textNode3);// </td>
+
+            //삭제버튼
+            let tdNode4 = document.createElement("td");
+            let deleteBtn = document.createElement("button"); 
+            let textNodeBtn = document.createTextNode("삭제");           
+            deleteBtn.appendChild(textNodeBtn);
+
+            tdNode4.appendChild(deleteBtn);
+            trNode.appendChild(tdNode1);
+            trNode.appendChild(tdNode2);
+            trNode.appendChild(tdNode3);
+            trNode.appendChild(tdNode4);
+
+            let studentTbl = document.getElementById("student2");
+            studentTbl.appendChild(trNode);
+
+            deleteBtn.onclick = function() {
+                studentArr2.splice(studentIdx, 1); //삭제
+                trNode.remove(); //테이블 행 삭제
+            };
+            */
+        }
+
+        function delTr(id){
+            let trEl = document.getElementById(id); //매개변수로 전달받은 id값을 가진 태그 == tr 태그
+            trEl.remove();
+        }
+    </script>
+</body>
+</html>

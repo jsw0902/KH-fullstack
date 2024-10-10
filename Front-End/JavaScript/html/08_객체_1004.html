@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 500px;
+            height: 400px;
+
+        }
+    </style>
 </head>
 <body>
     <h1>객체</h1>
@@ -116,7 +124,385 @@
 
                 //console.log(obj.key); //undefined : key라는 속성명을 찾으려고 함. 우리가 찾고 싶은 속성명은 name, age, addr
                 console.log(obj[key]);
+                //console.log(obj["key"]);
             }
+        }
+    </script>
+
+    <br><br>
+
+    <h3>객체의 메소드 속성</h3>
+    <p>
+        객체의 속성 중, 함수 자료형인 속성을 메소드라고 한다.
+    </p>
+
+    <button onclick="objTest3()">확인</button>
+    <script>
+        function objTest3(){
+            const name = "장승원";
+            const age = 99;
+
+
+            const obj = {
+                name : "테스트네임",
+                age : 88,
+                mtd : function(val){
+                    alert(val);
+                    //객체의 속성으로 존재하는 함수 자료형 == 메소드
+
+                    /* 외부에서 선언된 name과 age를 출력한다.
+                    console.log('name : ' + name);
+                    console.log('age : ' + age);
+                    */
+
+                    //메소드 속성에서 동일한 객체 내의 속성에 접근하고자 할 때 this 키워드를 사용
+                    console.log('name : ' + this.name);
+                    console.log('age : ' + this.age);
+
+                }
+            }
+
+            /*
+            console.log('external name : ' + obj.name);
+            console.log('external age : ' + obj.age);
+            */
+
+            obj.mtd('매개변수');
+
+            //윈도우 객체 내부에 선언된 메소드 속성
+            //window.alert();
+
+        }
+    </script>
+
+    <br><br>
+
+    <h3>in과 with 키워드</h3>
+    <p>
+        in : 객체에 속성명이 존재하는지 확인해주는 메소드 (존재하면 true, 존재하지 않으면 false)<br>
+        with : with 키워드 내부에서, 객체의 속성에 접근할 때 객체명을 생략할 수 있다.<br> 
+    </p>
+
+    이름 : <input type="text" id="name"> <br>
+    국어 : <input type="text" id="kor"> <br>
+    수학 : <input type="text" id="math"> <br>
+    영어 : <input type="text" id="eng"> <br>
+
+    <button onclick="objTest4()">확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function objTest4(){
+            const student = {
+                name : document.getElementById("name").value,
+                kor : Number(document.getElementById("kor").value),
+                math : Number(document.getElementById("math").value),
+                eng : Number(document.getElementById("eng").value),
+                getSum : function(){
+                    return this.kor + this.math + this.eng;
+                },
+                getAvg : function(){
+                    return this.getSum() / 3;
+                }
+            }
+
+            const area1 = document.getElementById("area1");
+            area1.innerHTML = "";
+            area1.innerHTML += "student : " + student + "<br>";
+            area1.innerHTML += "국어 : " + student.kor + "<br>";
+            area1.innerHTML += "수학 : " + student.math + "<br>";
+            area1.innerHTML += "영어 : " + student.eng + "<br>";
+            area1.innerHTML += "합계 : " + student.getSum() + "<br>";
+            area1.innerHTML += "평균 : " + student.getAvg() + "<br>";
+            area1.innerHTML += "-------------------------------<br>";
+
+            //in 키워드 : 객체에 제시한 속성명이 존재하는지 확인해주는 메소드
+            area1.innerHTML += "student에 name이라는 속성이 존재하는가? " + ("name" in student) + "<br>"; //true
+            area1.innerHTML += "student에 kor이라는 속성이 존재하는가? " + ("kor" in student) + "<br>";  //true
+            area1.innerHTML += "student에 age이라는 속성이 존재하는가? " + ("age" in student) + "<br>";  //false
+            const name  = "test";
+            area1.innerHTML += "student에 이라는 속성이 존재하는가? " + (name in student) + "<br>"; //false
+
+            //with 키워드 : 객체의 속성에 접근할 때, 객체명을 생략할 수 있도록 해주는 키워드
+            with(student){
+                //기존 속성 접근 방법 : 객체명.속성명
+
+                area1.innerHTML += "student with name : " + name + "<br>";
+                area1.innerHTML += "student with kor : " + kor + "<br>";
+                area1.innerHTML += "student with eng : " + eng + "<br>";
+                area1.innerHTML += "student with getSum() : " + getSum() + "<br>";
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <h3>객체의 속성 추가 및 삭제</h3>
+
+    <button onclick="objTest5()">확인</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function objTest5(){
+            const area2 = document.getElementById("area2");
+            let obj = {}; //빈 객체 생성
+            area2.innerHTML = "";
+
+            /*  
+                객체에 속성 추가 및 출력 (1)
+
+                - 객체명.속성명 = 값; -> set
+                - 객체명.속성명;      -> get
+            */
+
+            obj.name = "테스트이름";
+            obj.age = 20;
+            obj.addr  = "테스트주소";
+
+            area2.innerHTML += obj.name + "<br>";
+            area2.innerHTML += obj.age + "<br>";
+            area2.innerHTML += obj.addr + "<br>";
+
+            /*
+                객체에 속성 추가 및 출력 (2)
+
+                - 객체명["속성명"] = 값; -> set
+                - 객체명["속성명"]       -> get
+
+                * 속성명에 띄어쓰기나 공백 포함된 경우 사용
+                * for(let key in obj)와 같이 객체 순회시에도 사용
+            */
+
+            obj = {};
+
+            obj["name"] = "변경이름";
+            obj["age"] = 40;
+            obj["addr"] = "변경주소";
+            //obj[test] = ""; //test라는 변수 안에 있는 값을 속성명으로 사용하려고 한다.
+
+            area2.innerHTML += obj["name"] + "<br>";
+            area2.innerHTML += obj["age"] + "<br>";
+            area2.innerHTML += obj["addr"] + "<br>";
+
+            //객체의 속성 삭제
+            delete(obj.age); //obj라는 객체에서 age라는 속성명을 삭제
+            area2.innerHTML += "age 삭제 후 : " + obj.age + "<br>"; //속성 삭제하였으므로, undefined
+        }
+    </script>
+
+    <br><br>
+
+    <h3>객체의 Key와 value</h3>
+
+    <button onclick="objTest6()">확인</button>
+    <div id="area3" class="area"></div>
+
+    <script>
+        function objTest6(){
+            const area3 = document.getElementById("area3");
+            area3.innerHTML = "";
+
+            let student = {name : "카리나", java : 100, oracle : 90, html : 50, css : 60, javascript : 80};
+
+            //Object.keys(객체) : 매개변수로 전달한 객체에 존재하는 "키"들을 배열 형태로 반환
+            console.log(Object.keys(student));
+
+            //Object.values(객체) : 매개변수로 전달 객체에 존재하는 "키의 값"들을 배열 형태로 반환
+            console.log(Object.values(student));
+
+            const studentArr = []; //학생 객체's를 보관할 배열
+
+            const student1 = {name : "학생1", age : 20, addr : "주소1", html : 90, css : 80, javascript : 90};
+            const student2 = {name : "학생2", age : 25, addr : "주소2", html : 60, css : 70, server : 50 ,spring : 40};
+            const student3 = {name : "학생3", age : 30, addr : "주소3", html : 80, css : 50};
+
+            //배열의 마지막 요소로 추가
+            studentArr.push(student1);
+            studentArr.push(student2);
+            studentArr.push(student3);
+
+            //객체 배열의 모든 객체에 대한 값 출력
+            for(let i in studentArr){ // i : 현재 인덱스번호 (0, 1, 2)
+                //console.log(i); // 0, 1, 2
+
+                let stu =  studentArr[i]; //1명의 학생 정보
+
+                //let keyArr = Object.keys(stu); // 현재 학생 객체의 키들을 배열로 반환
+
+                //for(let keyIdx of keyArr){ // keyIdx : 현재 인덱스 번호
+                    //console.log(i + "번째 학생의 keyIdx : " + keyIdx);
+
+                    /*
+                        첫번째 학생의 keyArr
+                        0 : name, 1 : age, 2 : addr, 3 : html, 4 : css, 5 : javascript
+
+                        두번쨰 학생의 keyArr
+                        0 : name, 1 : age, 2 : addr, 3 : html, 4 : css, 5 : server, 6 : spring
+
+                        세번째 학생의 keyArr
+                        0 : name, 1 : age, 2 : addr, 3 : html, 4 : css
+
+                        keyArr[keyIdx] => 각 속성명
+                    */
+                   /*console.log(stu[keyArr[keyIdx]]);
+                }
+                console.log('---------------------------------------------');
+                */
+               
+               for(let key in stu){
+                   //key : stu 객체의 각 속성명
+                   console.log(stu[key]);
+                }
+                console.log('---------------------------------------------');
+                
+                /*
+                if(i == 0){
+                    console.log(stu.name);
+                    console.log(stu.age);
+                    console.log(stu.addr);
+                    console.log(stu.html);
+                    console.log(stu.css);
+                    console.log(stu.javascript);
+
+                } else if(i == 1){
+                    console.log(stu.name);
+                    console.log(stu.age);
+                    console.log(stu.addr);
+                    console.log(stu.html);
+                    console.log(stu.css);
+                    console.log(stu.server);
+                    console.log(stu.spring);
+                } else{
+                    console.log(stu.name);
+                    console.log(stu.age);
+                    console.log(stu.addr);
+                    console.log(stu.html);
+                    console.log(stu.css);
+                }
+                console.log("---------------------------------");
+                */
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <h3>객체 다량 관리</h3>
+
+    <button onclick="objTest7()">확인</button>
+    <script>
+        function objTest7(){
+            const objArr = [
+                {name : "이름1", age : 20, addr : "주소1"},
+                {name : "이름2", age : 50, addr : "주소2"},
+                {name : "이름3", age : 40, addr : "주소3"},
+                {name : "이름4", age : 10, addr : "주소4"},
+                {name : "이름5", age : 60, addr : "주소5"}
+            ];
+
+            //위 objArr의 모든 객체에 대해, html 속성 추가. 값은 현재 인덱스번호 * 10
+
+            //방법1) 직접 배열 요소에 접근하여 속성 추가
+            /*
+            objArr[0].html = 0 * 10;
+            objArr[1].html = 1 * 10;
+            */
+
+            //방법2) 반복문을 통해 요소에 접근하여 속성 추가
+            for(let i = 0; i<objArr.length; i++){
+                objArr[i].html = i * 10;
+                objArr[i].js = i * 10 + 5;
+                objArr[i].getSum = function(){
+                    return this.html + this.js;
+                }
+            }
+
+            for(let i=0; i<objArr.length; i++){
+                console.log("이름 : " + objArr[i].name + ", 총점 : " + objArr[i].getSum());
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <h3>생성자를 통한 객체 생성</h3>
+
+    <button onclick="objTest8()">확인</button>
+
+    <script>
+        function objTest8(){
+            /*
+                객체 생성 방법
+
+                const obj = {속성명 : 값, 속성명 : 값, 속성명 : 값};
+
+                const obj = {};
+                obj.속성명 = 값;
+                obj.속성명 = 값;
+
+            */
+
+            //생성자를 통한 객체 생성
+            const student = new Student("이름", 50, "주소");
+            console.log(student);
+
+        }
+
+        //생성자 : 첫 글자 대문자로! 
+        function Student(name, age, addr){
+            //초기화 작성
+            this.name = name;
+            this.age = age;
+            this.addr = addr;
+        }
+    </script>
+
+    <br><br>
+
+    <h3>Data 내장 객체</h3>
+
+    <button onclick="dateTest()">Date 객체 확인</button>
+    <div id="area4" class="area"></div>
+    <script>
+        function dateTest(){
+            const area4 = document.getElementById("area4");
+            area4.innerHTML = "";
+
+            const date1 = new Date(); //현재 날짜 정보 
+            area4.innerHTML += "Date() : " + date1 + "<br>";
+
+            const date2 = new Date(2024, 10-1, 7); //월 정보는 0부터 시작한다
+            area4.innerHTML += "Date(2024, 10-, 7) : "  + date2 + "<br>";
+
+            const date3 = new Date(2024, 10-1, 7, 15, 32, 20, 6000); //연, 월, 일, 시, 분, 초, 밀리s
+            area4.innerHTML += "Date(2024, 10-, 7, 15, 32, 20, 6000) : " + date3 + "<br>";
+
+            area4.innerHTML += "---------------------------------------------------" + "<br>"; 
+            
+            area4.innerHTML += "년도 정보 : " + date1.getFullYear() + "<br>";
+            area4.innerHTML += "월 정보 : " + (date1.getMonth()+1) + "<br>";
+            area4.innerHTML += "일 정보 : " + date1.getDate() + "<br>";
+            area4.innerHTML += "일 정보 : " + date1.getDay() + "<br>";
+            /*
+                getHours() : 시
+                getMinutes() : 분
+                getSeconds() : 초
+            */
+
+            const startDate = new Date();
+            const endDate = new Date(2025, 0, 15);
+
+            area4.innerHTML += (endDate - startDate) + "<br>"; //두 Date 차이를 밀리세컨트 단위로 보여준다.
+
+            /*
+                1s == 1000ms
+                1m == 60s == 60*1000ms
+                1h == 60ms == 60s*60 == 60*60*1000
+                1d == 24h == 24*60m == 24*60*60*1000ms;
+            */
+
+            area4.innerHTML += "종강까지" + Math.ceil(((endDate - startDate) / (24*60*60*1000))) + "일 <br>"; 
+            
         }
     </script>
 </body>

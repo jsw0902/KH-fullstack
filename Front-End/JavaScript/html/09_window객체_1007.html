@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Window 객체</h1>
+
+    <hr>
+
+    <h3>window 객체 관련 함수</h3>
+    <p>
+        - BOM : Browser Object Model. 웹 브라우저에 대한 정보를 담고 있는 객체. <br>
+        - DOM : Document Object Model. 웹 페이지에 대한 정보를 담고 있는 객체. <br>
+    </p>
+
+    <h4>[window.]open(["url", "창이름 또는 열리는 지점", "속성"])</h4>
+    <button onclick="btnClick1()">네이버 열기</button>
+
+    <script>
+        function btnClick1(){
+            //window.open();
+
+            //_blank : 새창에서 (기본값)
+            //_self : 현재창에서 
+            window.open("https://www.naver.com", "_blank", "width=500, height=800");
+        }
+    </script>
+
+    <br><br>
+
+    <h4>[window.]setTimeOut(함수, 시간ms)</h4>
+
+    <button onclick="btnClick2()">setTimeOut 확인</button>
+
+    <script>
+        function btnClick2(){
+            const myWindow = window.open(); //새 창이 열리면서 window객체가 생성된다.
+
+            myWindow.alert("3초뒤에 닫힌다"); //새로 생긴 객체도 window이므로, alert() 사용 가능
+
+            //첫번째로 전달한 함수가, 두번째로 전달한 시간이 지난 이후에 실행된다.
+            setTimeout(function(){
+                myWindow.close(); //새 창 닫기
+            }, 3000);
+        }
+    </script>
+
+    <br><br>
+
+    <h4>[window.]setInterval(함수, 시간ms)</h4>
+
+    <button onclick="btnClick3()">setInterval 확인</button>
+    <button onclick="btnClick4()">setInterval로 만든 시계</button>
+    <button onclick="btnClick5()">setInterval로 만든 시계 정지</button>
+
+    <div id="area5" style="border: 1px solid black; width: 300px; height: 300px; font-size:  30px;"></div>
+
+    <script>
+        function btnClick3(){
+            /*
+                첫번째로 전달한 함수가, 두번째로 전달한 시간마다 실행된다.
+                setInterval(function(){
+                    console.log("Bye Javascript !");
+                }, 3000);
+            */
+        }
+
+        let interval;
+
+        function btnClick4(){
+            const area5 = document.getElementById("area5");
+            
+             interval = setInterval(function(){
+                
+                const now = new Date(); //현재 날짜 정보
+                
+                let hour = now.getHours(); //현재 시간 정보
+                let min = now.getMinutes(); //현재 분 정보
+                let sec = now.getSeconds();
+                
+                area5.innerHTML = "";
+                area5.innerHTML += hour + " : " + min + " : " + sec;
+            }, 1000);
+        }
+
+        function btnClick5(){
+            clearInterval(interval);
+        }
+    </script>
+
+    <br><br>
+
+    <h4>[window.]onload</h4>
+
+    <script>
+        window.onload = function(){
+            //HTML, CSS가 웹 브라우저 페이지에 모두 로드되고 난 이후에 자동으로 실행되는 함수
+            //alert("window onload!!");
+        }
+    </script>
+
+    <br><br>
+
+    <h2>BOM : Browser Object Model</h2>
+
+    <h4>location 객체</h4>
+    <p>브라우저 주소창과 관련된 객체</p>
+    <button onclick="btnClick6()">location</button>
+    <button onclick="btnClick7()">location.href로 네이버 이동</button>
+    <button onclick="btnClick8()">location.assign으로 네이버 이동</button>
+    <button onclick="btnClick9()">location.replace로 네이버 이동</button>
+    <button onclick="btnClick10()">location.reload</button>
+
+
+    <script>
+        function btnClick6(){
+            console.log(location);
+        }
+
+        function btnClick7(){
+            location.href = "https://www.naver.com";
+        }
+
+        function btnClick8(){
+            //href와 기능은 매우 유사하나, URL 정보를 함수의 매개변수로 전달한다.
+            location.assign("https://www.naver.com");
+        }
+
+        function btnClick9(){
+            //페이지 이동 시, 현재 페이지에 대한 정보를 history에 남기지 않는다 == 즉, 뒤로가기가 불가능하다.
+            location.replace("https://www.naver.com");
+        }
+
+        function btnClick10(){
+            location.reload();
+        }
+    </script>
+
+    <br><br>
+
+    <h4>screen 객체</h4>
+    <p>Client 화면에 대한 정보를 가지고 있는 객체</p>
+    <button onclick="console.log(screen);">screen 객체 확인</button>
+
+    <br><br>
+
+    <h4>navigator 객체</h4>
+    <p>브라우저 정보 확인</p>
+    <button onclick="console.log(navigator);">navigator</button>
+
+    <br>
+
+    <h4>history 객체</h4>
+    <p>브라우저 기록 정보를 가지고 있는 객체</p>
+    <button onclick="console.log(history)">history 객체 확인</button>
+    <button onclick="history.back()">뒤로가기</button>
+    <button onclick="history.forward()">앞으로가기</button>
+
+    <h2>DOM : Document Object Model</h2>
+    <p>
+        window 객체의 프로퍼티로, 페이지에 대한 정보를 가지고 있는 객체
+    </p>
+
+    <br>
+
+    <p>
+        HTML에 있는 각각의 요소들을 노드(Node)라고 한다. <br>
+        요소 노드(Element Node) : 태그 그 자체를 의미하는 노드. <br>
+        텍스트 노드(Text Node) : 태그안에 기록되는 내용을 의미. <br>
+    </p>
+
+    <h4>시작태그와 종료태그가 존재하는 노드 생성</h4>
+    <button onclick="btnClick11()">요소 생성</button>
+    <div id="area6" style="border: 1px solid black; width: 300px; height: 300px;"></div>
+
+    <script>
+        function btnClick11(){
+            const area6 = document.getElementById("area6");
+
+            //자바스크립트 코드에서, HTML 태그(요소)를 생성하는 방법(1)
+            //innerHTML을 활용한 생성
+            /*
+            let str = "<h4>동적 노드 생성 테스트</h4>";
+            area6.innerHTML = str;
+            */
+
+            //자바스크립트 코드에서, HTML 태그(요소)를 생성하는 방법(2)
+            let elementNode = document.createElement("h4"); //<h4>안녕하세요</h4>
+            let textNode = document.createTextNode("Hello");//Hello
+
+            //elementNode의 가장 마지막 자식으로 추가
+            elementNode.appendChild(textNode);  //<h4>Hello</h4>
+
+            console.log(area6);
+            console.log(elementNode);
+
+            //area6 태그 내부에, 이전에 만든 노드를 추가.
+            area6.appendChild(elementNode); //<div><h4>Hello</h4></div>
+
+            //---------------------------------------------------------------------
+            //area6.style.background = "red";
+
+            let divEl = document.createElement("div");
+            divEl.style.backgroundColor = "blue";
+            divEl.style.width = "100px";
+            divEl.style.height = "100px";
+
+            let divTxtNd = document.createTextNode("테스트");
+
+            divEl.appendChild(divTxtNd);
+            area6.appendChild(divEl);
+
+            console.log(divEl);
+        }
+    </script>
+
+    <br><br>
+
+    <h4>시작태그만 존재하는 노드(텍스트 노드가 존재하지 않는 노드)</h4>
+
+    <button onclick="btnClick12()">요소 생성</button>
+    <div id="area7"></div>
+    <script>
+        function btnClick12(){
+            const imgTag = document.createElement("img");
+            //텍스트노드가 존재하지 않으므로, createTextNode()는 작성하지 않음.
+
+            imgTag.src = "https://kh-academy.co.kr/resources/images/main/logo.svg";
+            imgTag.setAttribute("width", "100px");
+
+            //area7의 마지막 자식으로 요소 추가
+            document.getElementById("area7").appendChild(imgTag);
+        }
+    </script>
+
+    <br><br>
+
+    <h4>동적 요소 생성 테스트</h4>
+    <button onclick="btnClick13()">요소 생성</button>
+    <div id="area8">
+        <!--
+        <div>
+            <input type="text">
+            <h4>요소테스트</h4>
+            <ul>
+                <li>목록1</li>
+                <li>목록2</li>
+                <li>목록3</li>
+                <li>목록4</li>
+            </ul>
+        </div>
+        -->
+    </div>
+
+    <script>
+        function btnClick13(){
+            const divE = document.createElement("div"); //div 요소 노드 생성
+
+            const inputEl = document.createElement("input"); //input 요소 노드 생성
+            inputE1.setAttribute("type", "text");   //type 속성에 text 지정
+
+            const h4El = document.createElement("h4"); //h4 요소 노드 생성
+            const h4TxtNd = document.createTextNode("요소테스트"); //"요소테스트"
+            h4El.appendChild(h4TxtNd);
+
+            const ulEl = document.createElement("ul"); //ul 요소 노드 생성
+
+            for(let i=0; i<4; i++){
+                const liEl = document.createElement("li"); //li 요소 노드 생성
+                const liTxtNd = document.createTextNode("목록"+(i+1)); //"목록N"
+                liEl.appendChild(liTxtNd);
+
+                //<li>목록N</li>
+                ulEl.appendChild(liE1);
+            }
+
+            divEl.appendChild(inputEl);
+            divEl.appendChild(h4El);
+            divEl.appendChild(ulEl);
+
+            document.getElementById("area8").appendChild(divEl);
+        }
+    </script>
+
+    <br><br>
+
+    <h4>노드 삭제 관련 메소드</h4>
+    <button onclick="btnClick14()">요소 삭제</button>
+    <button onclick="btnClick15()">요소 삭제2</button>
+
+    <div id="div">
+        <div id="div1" class="divs">1</div>
+        <div id="div2" class="divs">2</div>
+        <div id="div3" class="divs">3</div>
+        <div id="div4" class="divs">4</div>
+        <div id="div5" class="divs">5</div>
+    </div>
+
+    <script>
+        function btnClick14(){
+            //지우고자하는요소객체.remove();
+
+            //document.getElementById("div").remove();
+            //document.getElementsByClassName("divs").remove(); //배열로 변환하니 오류
+            
+            const arr = document.getElementsByClassName("divs");
+            arr[0].remove();
+            arr[1].remove();
+            arr[2].remove();
+            arr[3].remove();
+            arr[4].remove();
+        }
+
+        function btnClick15(){
+            const arr = document.querySelectorAll(".divs");
+
+            arr[0].remove();
+            arr[1].remove();
+            arr[2].remove();
+            arr[3].remove();
+            arr[4].remove();
+        }
+    </script>
+
+    <br><br>
+
+    <h4>요소 속성 관련 함수</h4>
+
+    <button onclick="btnClick16()">확인</button>
+    <div id="area9" style="width: 200px; height: 200px; border: 1px solid black;"></div>
+    <input type="text" id="input1" value="기본value">
+
+    <script>
+        function btnClick16(){
+            let area9 = document.getElementById("area9");
+            let inputEl = document.getElementById("input1");
+
+            console.log(area9.getAttribute("id"));
+            console.log(inputEl.getAttribute("type"));
+            console.log(typeof(inputEl.getAttribute("type"))); //string
+
+            area9.setAttribute("class", area9.getAttribute("class") + "test"); //기존 클래스에 test 클래스 추가
+
+            inputEl.setAttribute("type", "checkbox");
+            inputEl.setAttribute("checked", true);
+            inputEl.removeAttribute("checked");
+
+            inputEl.setAttribute("type", "text");
+            inputEl.setAttribute("readOnly", true);
+        }
+    </script>
+</body>
+</html>

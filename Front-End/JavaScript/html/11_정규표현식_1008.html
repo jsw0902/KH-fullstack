@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h1>유효성 검사</h1>
+    <p>
+        사용자가 입력한 데이터가 양식에 맞게 입력되었는지 검사하는 것. 
+    </p>
+
+    <hr>
+
+    <h1>정규표현식</h1>
+    <p>
+        정규표현식 (RegExp : Regular Expression) <br>
+        특정 패턴을 가진 문자열을 찾거나 또는 찾은 이후에 치환할 때 사용하는 언어 <br>
+    </p>
+
+    <h3>정규 표현식 객체 생성 및 정규 표현식과 관련된 메소드</h3>
+
+    <button onclick="btnClick1()">확인</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function btnClick1(){
+            const area1 = document.getElementById("area1");
+            area1.innerHTML = "";
+            //유효성 검사 대상 문자열
+            const str1 = "javascript jquery ajax";
+            const str2 = "java oracle html css";
+
+            //검사할 조건식(패턴) -> 정규표현식
+            const regExp1 = new RegExp("script"); //방법 1)
+            const regExp2 = /script/; //방법 2) (주로 사용할 예정)
+
+            //정규표현식으로 작성한 패턴과 문자열이 일치하는지 검사 -> test() -> 일치하면 true, 일치하지 않으면 false 반환
+            area1.innerHTML += "regExp2.test(str1) : " + regExp2.test(str1) + "<br>";
+            area1.innerHTML += "regExp2.test(str1) : " + regExp2.test(str2) + "<br>";
+
+
+        }
+    </script>
+
+    <h3>메타 문자</h3>
+    <p>
+        정규 표현식 작성 시, 메타 문자를 이용하여 특정 패턴을 작성할 수 있음. <br>
+        문자열이 해당 정규식으로 작성한 특정 패턴에 만족하는지 test() 메소드를 통해 검사 <br>
+    </p>
+
+    <button onclick="btnClick2()">확인</button> <br>
+    대상 문자열 : <span id="testStr"></span><br>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function btnClick2(){
+            const area2 = document.getElementById("area2");
+            area2.innerHTML = "";
+            const testStr = document.getElementById("testStr");
+
+            const str = "javascript jquery ajax"; //유효성검사 대상 문자열
+            testStr.innerHTML = str;
+
+            let regExp = /a/; //정규표현식(메타 문자 없어도 패턴 제시 가능)
+            area2.innerHTML += "/a/ : " + regExp.test(str) + "<br>"; //str에 a문자가 포함되어 있는가?
+
+            //1. ^ : 시작을 의미
+            regExp = /^j/; //j로 시작하는
+            area2.innerHTML += "/^j/ : " + regExp.test(str) + "<br>"; //true
+            area2.innerHTML += "/^j/ : " + regExp.test("ajax") + "<br>"; //false
+
+            regExp = /^a/; //a로 시작하는
+            area2.innerHTML += "/^a/ : " + regExp.test(str) + "<br>"; //false
+            area2.innerHTML += "/^a/ : " + regExp.test("ajax") + "<br>"; //true
+
+            //2. [] : [] 내에 여러개의 문자들을 목록처럼 나열할 수 있다.
+            regExp = /[abc]/;
+            area2.innerHTML += "/[abc]/ : " + regExp.test(str) + "<br>"; //str 문자열안에 a,b,c 중에 1개 문자라도 포함되는가?
+
+            //3. 메타문자 복합 사용
+            regExp = /^[abc]/;
+            area2.innerHTML += "/^[abc]/ : " + regExp.test(str) + "<br>"; //str문자열이 a 또는 b 또는 c로 시작?
+
+            regExp = /^[^abc]/; //[]안의 ^는 not의 의미
+            area2.innerHTML += "/^[^abc]/ : " + regExp.test(str) + "<br>"; //시작문자가 a 또는 b 또는 c이면 true
+
+            //4. $ : 끝을 의미
+
+            regExp = /x$/; //x로 끝나는지
+            area2.innerHTML += "/x$/ : " + regExp.test(str) + "<br>"; //str 문자열이 x로 끝나는가?
+            area2.innerHTML += "/x$/ : " + regExp.test("abc") + "<br>"; 
+
+            regExp = /^jx$/; //j로 시작하고, x로 끝나는 2글자 --> "jx"
+            area2.innerHTML += "/^js$/ : " + regExp.test(str) + "<br>";
+            area2.innerHTML += "/^js$/ : " + regExp.test("jx") + "<br>"; 
+
+            //5. . : 줄바꿈(개행) 문자를 제외한 모든 문자(영문자, 숫자, 한글, 특수문자)
+            //6. + : 한글자 이상 
+
+            // .+ : 줄바꿈(개행) 문자를 제외한 모든 문자 단, 1글자 이상
+
+            regExp = /^j.+s$/; //j로 시작하고, 개행문자를 제외한 문자가 1글자 이상이며 x로 끝나는지
+            area2.innerHTML += "/^j.+x$/ : " + regExp.test(str) + "<br>";
+            area2.innerHTML += "/^j.+x$/ : " + regExp.test("jx") + "<br>"; //j와 x사이에 문자가 1글자 이상이어야 한다.
+
+            regExp = /^[0-9]+$/; //시작부터 끝까지 숫자로만 이루어져야 하는 경우. 갯수는 상관없고 1글자 이상이어야 한다.
+            area2.innerHTML += "/^[0-9]+$/ : " + regExp.test("123456") + "<br>";
+            area2.innerHTML += "/^[0-9]+$/ : " + regExp.test("1234x56") + "<br>";
+
+            regExp = /^\d+$/; //위 [0-9]와 같이 숫자를 의미
+            area2.innerHTML += "/^\d+$/ : " + regExp.test("123456") + "<br>"; 
+            area2.innerHTML += "/^\d+$/ : " + regExp.test("1234xx56") + "<br>"; 
+
+            //시작부터 끝까지 영문자로만 이루어져야 하는 경우
+            regExp = /^[a-zA-Z]+$/;
+            area2.innerHTML += "/^[a-zA-Z]+$/ : " + regExp.test("Javascript") + "<br>";
+            area2.innerHTML += "/^[a-zA-Z]+$/ : " + regExp.test("Javas1212cript") + "<br>";
+
+            //시작부터 끝까지 한글로만 이루어져야 하는 경우
+            regExp = /^[ㄱ-ㅎㅏ-ㅣ가-힣]+$/;
+            area2.innerHTML += "/^[ㄱ-ㅎㅏ-ㅣ가-힣]+$/ : " + regExp.test("내일수요일") + "<br>"
+            area2.innerHTML += "/^[ㄱ-ㅎㅏ-ㅣ가-힣]+$/ : " + regExp.test("쉬는날ㅋㅋㅋ") + "<br>"
+            area2.innerHTML += "/^[ㄱ-ㅎㅏ-ㅣ가-힣]+$/ : " + regExp.test("쉬는날!!ㅋㅋㅋ") + "<br>"
+
+            //영문자와 숫자 조합
+            regExp = /^[a-zA-Z][a-zA-Z0-9]+$/;
+            area2.innerHTML += "/^[a-zA-Z][a-zA-Z0-9]+$/ : " + regExp.test("aasdas008ds") + "<br>";
+            area2.innerHTML += "/^[a-zA-Z][a-zA-Z0-9]+$/ : " + regExp.test("8aasdas008ds") + "<br>";
+            area2.innerHTML += "/^[a-zA-Z][a-zA-Z0-9]+$/ : " + regExp.test("a8") + "<br>";
+            area2.innerHTML += "/^[a-zA-Z][a-zA-Z0-9]+$/ : " + regExp.test("a") + "<br>";
+
+            regExp = /^[가-힣]{2,}$/;
+            area2.innerHTML += "/^[가-힣]{2,}$/ : " + regExp.test("장승원") + "<br>";
+            area2.innerHTML += "/^[가-힣]{2,}$/ : " + regExp.test("장승") + "<br>";
+            area2.innerHTML += "/^[가-힣]{2,}$/ : " + regExp.test("장") + "<br>";
+            area2.innerHTML += "/^[가-힣]{2,}$/ : " + regExp.test("ㄱㅎㄴ") + "<br>";
+
+        }
+    </script>
+
+    <br><br>
+
+    <h4>정규표현식을 활용한 회원가입 입력값 검증</h4>
+
+    <fieldset>
+        <legend>회원가입 입력 양식</legend>
+        <form action="/member/join.do" method="post" onsubmit="return joinChk();">
+            아이디 : <input type="text" name="memberId" id="memberId"> <br>
+            비밀번호 : <input type="password" name="memberPw" id="memberPww"> <br>
+            비밀번호 확인 : <input type="password" id="memberPwChk"> <br>
+            이름 : <input type="text" name="memberName" id="memberName"> <br>
+
+            <br>
+            <button type="button" onclick="test()">테스트</button>
+            <input type="submit" value="회원가입">
+        </form>
+    </fieldset>
+
+    <script>
+        function joinChk(){
+            console.log('제출 이전에 호출될 함수!');
+
+            //아이디   : 영소문자, 숫자로만 이루어진 4-12글자. 단, 시작 문자는 영소문자로
+            //비밀번호 : 영소문자, 숫자, 특수문자(!,@,#)로 이루어진 8~15 글자  
+            //비밀번호 확인 : 입력한 비밀번호랑 같은지 
+            //이름 : 한글로 이루어진 2글자 이상
+
+            const memberId = document.getElementById("memberId");
+            const memberPw = document.getElementById("memberPw");
+            const memberPwChk = document.getElementById("memberPwChk");
+            const memberName = document.getElementById("memberName");
+
+            // 1) 아이디 입력값 검시
+            let regExp = /^[a-z][a-z0-9]{3,11}$/;
+
+            //test()는 true 또는 false로 변환하기 때문에 조건식에 사용 가능
+            if(!regExp.test(memberId.value)){
+                //작성한 정규표현식 패턴에 일치하는 것. == 제출xx
+                alert("유효하지 않은 아이디 형식입니다.");
+                return false;   //submit 기능이 동작하지 않도록 처리
+            }
+
+            //2) 비밀번호 검사
+            regExp = /^[a-z0-9!@#]{8,15}$/;
+
+            if(!regExp.test(memberPw.value)){
+                alert('유효하지 않은 비밀번호 형식입니다.');
+                return false;
+            }
+
+            //3) 비밀번호 확인값 검사
+
+            if(memberPw.value != memberPwChk.value){
+                alert("비밀번호와 확인값이 일치하지 않습니다.");
+                return false;
+            }
+
+            //4) 이름 검사
+            regExp = /^[가-힣]{2,}/;
+            if(!regExp.test(memberName.value)){
+                alert("이름 형식 유효하지 않습니다.");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

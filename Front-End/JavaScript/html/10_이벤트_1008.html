@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>이벤트 (Event)</h1>
+
+    <hr>
+
+    <h2>이벤트란? 사용자의 액션(행위)가 발생한 것을 이벤트라고 한다.</h2>
+
+    <br><br>
+
+    <h4> * 고전 이벤트 모델 </h4>
+    <p>
+        자바스크립트 코드에서, 이벤트를 설정할 요소를 선택한 뒤, <br>
+        해당 요소의 이벤트 속성에 핸들러를 연결하는 방식
+    </p>
+
+    <button id="btn1">btn1번 확인</button>
+    <button id="btn2">btn2번 확인</button>
+
+    <script>
+        //이벤트를 설정할 요소에 접근
+        let btn1 = document.getElementById("btn1");
+
+        //객체명.속성명 = 값;
+
+        //btn1 요소 객체의 onclick 속성에, 이벤트를 처리할 핸들러를 연결
+        btn1.onclick = function(){
+            console.log("btn1번 클릭");
+        }
+
+        let btn2 = document.getElementById("btn2");
+        btn2.onclick = function(){
+            console.log("btn2번 출력");
+        }
+    </script>
+
+    <br><br>
+
+    <h4> * 인라인 이벤트 모델 </h4>
+    <p>
+        요소 내부에 직접적으로 이벤트 속성을 작성하여, 핸들러를 연결하는 방식 <br>
+        요소의 이벤트 속성값에 실행 코드를 작성하거나, <br>
+        스크립트 코드 안에 작성되어 있는 핸들러를 연결하는 방식 <br>
+    </p>
+
+    <button onclick="window.console.log('인라인방식1번')">인라인 확인1</button>
+    <button onclick="btnClick1()">인라인 확인2</button>
+
+    <script>
+        function btnClick1(){
+            console.log("인라인방식2번");
+        }
+    </script>
+
+    <br><br>
+
+    <h4> * 표준 이벤트 모델 </h4>
+    <p>
+        스크립트 코드에서 이벤트를 설정할 요소에 접근한 뒤, <br>
+        addEventListener 메소드를 통해 이벤트 핸들러를 연결하는 방식 <br>
+        W3C에서 지정한 표준 이벤트 모델
+    </p>
+
+    <button id="btn3">표준방식1번</button>
+    <button id="btn4">표준방식1번</button>
+
+    <script>
+        let btn3 = document.getElementById("btn3");
+
+        //첫번 째 매개변수 : 이벤트 종류 (on 제약)
+        //두번 째 매개변수 : 이벤트 핸들러
+        btn3.addEventListener("click", function(){
+            alert("표준방식1번");
+        });
+        let btn4 = document.getElementById("btn4");
+
+        //마우스가 영역 안으로 들어왔을 때
+        btn4.addEventListener("mouseenter", function(){
+
+            btn4.style.backgroundColor = "red";
+        });
+        //마우스가 영역 밖으로 나깟을 때
+        btn4.addEventListener("mouseout", function(){
+
+            btn4.style.backgroundColor = "white";
+        });
+    </script>
+
+    <br><br>
+        <h3>이벤트가 발생한 요소 객체에 접근하기</h3>
+
+        <br>
+
+        <button id="btn5">고전 이벤트 모델</button>
+        <button id="btn6">표준 이벤트 모델</button>
+        <button onclick="btnClick2()">인라인 이벤트 모델1</button>
+        <button onclick="btnClick3(event)">인라인 이벤트 모델2</button>
+        <button onclick="btnClick4(event, this)">인라인 이벤트 모델3</button>
+
+        <script>
+            let btn5 = document.getElementById("btn5");
+
+            btn5.onclick = function(e){
+                //이벤트 발생 시, 발생한 이벤트에 대한 객체를 "객체" 형태로 핸들러에 전달한다
+                console.log(e);
+                console.log(e.target); //이벤트가 발생한 요소 객체
+                console.log(e.target); //요소 객체
+                e.target.style.backgroundColor = "red";
+                console.log(e.type);  //이벤트 종류
+
+                //이벤트 발생 시, window 객체의 event 속성의 값으로 해당 이벤트 정보가 할당된다.
+                console.log(window.event.target); //이벤트 발생한 요소 객체
+                console.log(window.event.type); // 이벤트 종류
+
+                console.log(this); //이벤트가 발생한 요소 객체
+
+            };
+
+            let btn6 = document.getElementById("btn6");
+
+            btn6.addEventListener("click", function(e){
+                //전달받은 이벤트 정보 객체를 활용하여 접근
+                console.log(e);
+                console.log(e.target);
+                console.log(e.type);
+
+                console.log(window.event);
+                console.log(window.event.target);
+                console.log(window.event.type)
+                
+                console.log(this); //이벤트가 발생한 요소 객체
+                
+            });
+
+            function btnClick2(e){
+                //onclick의 핸들링 처리를 담당할 함수가 어떤것이 지정될지 모르기에
+                //console.log(e); //undefined
+
+                //이벤트가 발생하면 기본적으로 window.event에 등록하므로, 접근 가능
+                console.log(window.event);
+                console.log(window.event.target);
+                console.log(window.event.type);
+
+                console.log(this); //window 객체를 가리킨다.
+            }
+
+            //이벤트를 핸들링할 함수를 설정하면서, 이벤트 정보 객체를 명시적으로 전달하였으니, 매개변수로 전달 받아 접근이 가능하다.
+            function btnClick3(e){
+                console.log(e);
+                console.log(e.target);
+                console.log(e.type);
+            }
+
+            function btnClick4(event, element){
+                console.log(event);
+                console.log(element);
+            }
+        </script>
+
+        <br><br>
+
+        <h3>태그별 기본 이벤트 제어하기</h3>
+
+        <p>
+            태그에 기본 이벤트를 가지고 있는 요소 <br>
+
+            a 태그 : 클릭 시, href에 작성된 url로 요청하는 기본 이벤트 <br>
+            form 태그 내부에 type이 submit : 클릭 시, 사용자가 입력한 값들을 action 속성에 지정한 URL로 제출하는 이벤트
+        </p>
+
+        <a href="https://www.naver.com" onclick="alert('a태그 클릭')">네이버 이동</a> <!-- onclick 실행 후, 기본 이벤트 동작 -->
+        <a href="https://www.naver.com" onclick="alert('a태그 클릭 2번'); return false">네이버 이동 2번</a>
+        <a href="javascript:void(0)">네이버 이동 3번</a>
+
+        <br><br>
+
+        <fieldset>
+            <legend>서버 제출 입력양식</legend>
+            <form id="formEl" action="/member/insert.do" method="post" onsubmit="return subTest()">
+                기존 비밀번호 : <input type="password" name="prePwd" id="prePwd"> <br>
+                새 비밀번호 : <input type="password" name="newPwd" id="newPwd"> <br>
+                비밀번호 확인 : <input type="password" id="chkPwd"> <br>
+
+                <br>
+
+                <input type="submit" id="submit" value="제출">
+            </form>
+        </fieldset>
+
+        <script>
+            const submitEl = document.getElementById("submit");
+
+            /*
+            //submit 버튼 클릭 시, 이벤트 핸들러
+            submitEl.addEventListener('click', function(e){
+                const prePwd = document.getElementById("prePwd");
+                const newPwd = document.getElementById("newPwd");
+                const chkPwd = document.getElementById("chkPwd");
+
+                //기존 비밀번호 == 1234
+                if(prePwd.value == '1234'){
+                    prePwd.style.border = "1px solid green";
+                } else{
+                    prePwd.style.border = "1px solid red";
+                    console.log("기존 비밀번호 불일치");
+                    e.preventDefault();
+                }
+
+                //기존 비밀번호랑 새 비밀번호가 같은 경우
+                if(prePwd.value == newPwd.value){
+                    newPwd.style.border = "1px solid red";
+                    console.log('기존 비밀번호와 새 비밀번호 동일!');
+                    e.preventDefault();
+         } else {
+                newPwd.style.border = "1px solid green";
+        }
+
+            //새 비밀번호와 비밀번호 확인값이 다른 경우
+            if(newPwd.value == chkPwd.value){
+                chkPwd.style.border = "1px solid red";
+                console.log("새 비밀번호와 비밀번호 확인 값이 다름");
+                e.preventDefault();
+            }else{
+                chkPwd.style.border = "1px solid green";
+            }
+        });
+        */
+
+        function subTest(){
+
+            return false;
+
+        }
+    </script>
+    <br><br>
+
+    <h3>이벤트 버블링</h3>
+
+    <div class="divs" id="div1" style="width: 300px; height: 100px; background-color: red;">div1
+        <div class="divs" id="div2" style="width: 300px; height: 70px; background-color: blue;"> div2
+            <div class="divs" id="div3" style="width: 300px; height: 30px; background-color: green;">div3
+
+            </div>
+        </div>
+    </div>
+    <script>
+        //요소가 겹쳐 있을 경우 부모 요소로 이벤트가 전달되는 현상
+        document.querySelectorAll(".divs").forEach(function(item, idnex){
+            item.addEventListener('click', function(e){
+                e.stopPropagation();    //이벤트 전달을 막아주는 메소드
+                alert('click' + item.id);
+            });
+        });
+    </script>
+
+    <br><br>
+
+    <h3>기타 이벤트</h3>
+
+    <style>
+        .etc{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+
+    <div class="etc etc1">더블클릭</div> <br>
+    <div class="etc etc2">마우스가 영역안으로 들어올 때</div> <br>
+    <div class="etc etc3">마우스가 영역밖으로 나갈 때</div> <br>
+    입력 : <input type="text" id="inputE1">
+
+    <script>
+        //더블클릭 시, 동작할 이벤트 핸들러 작성
+        document.querySelector(".etc1").addEventListener('dblclick', function(e){
+            e.target.style.backgroundColor = "pink";
+        });
+
+        //마우스가 영역안으로 들어왔을 때, 동작할 이벤트 핸들러 작성
+        document.querySelector(".etc2").addEventListener('mouseenter', function(e){
+            e.target.style.backgroundColor = "red";
+        });
+
+        //마우스가 영역밖으로 나갈 때, 동작할 이벤트 핸들러 작성
+        document.querySelector(".etc3").addEventListener('mouseout', function(e){
+            e.target.style.backgroundColor = "blue";
+        });
+
+        //키보드를 눌렀다가 땠을 때
+        document.getElementById("inputEl").addEventListener('keyup', function(e){
+            console.log('keyup event !');
+        });
+
+        //키보드를 눌렀을 때
+        document.getElementById("inputEl").addEventListener('keydown', function(e){
+            console.log('keydown event !');
+        });
+
+        //입력 후, input 태그 밖으로 나왔을 때
+        document.getElementById("inputEl").addEventListener('change', function(e){
+            console.log('change event !');
+        });
+
+        //input 태그에 초점(포커스)이 맞춰졌을 때
+        document.getElementById("inputEl").addEventListener('focus', function(e){
+            console.log('focus event !');
+        });
+    </script>
+</body>
+</html>
