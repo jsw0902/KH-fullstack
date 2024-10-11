@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h3>문제 1)</h3>
+    <p>
+        아래 버튼 클릭 시, p태그(id가 pp)를 기준으로, "당근" 문자열이 들어간 <br>
+        태그를 선택하여 배경색을 빨간색으로 변경하시오.
+    </p>
+    <button onclick="exam1()">실행확인 1번</button>
+
+
+    <h3>문제 2)</h3>
+    <p>
+        아래 버튼 클릭 시, ul 태그를 기준으로, "수박" 문자열이 들어간 <br>
+        태그를 선택하여 배경색을 빨간색으로 변경하시오.
+    </p>
+    <button onclick="exam2()">실행확인 2번</button>
+
+
+    <h3>문제 3)</h3>
+    <p>
+        아래 버튼 클릭 시, span(id가 srch1) 기준으로, ul 태그와 p 태그의 부모인 div의 테두리를 <br>
+        파란색으로 변경하시오
+    </p>
+    <button onclick="exam3()">실행확인 3번</button>
+
+
+    <h3>문제 4)</h3>
+    <p>
+        아래 버튼 클릭 시, div 태그(class가 test)를 이용하여 당근, 김치, 오이, 양배추, 상추를 <br>
+        console.log에 출력하시오
+    </p>
+    <button onclick="exam4()">실행확인 4번</button>
+
+
+
+    <div class="test">
+        <div> 부모 Div
+            <ul>
+                <li>당근</li>
+                <li>김치</li>
+                <li>오이</li>
+                <li>알배추</li>
+                <li>상추</li>
+            </ul>
+            <p id="pp">
+                <span id="srch1">감자</span>
+                <span>수박</span>
+                <span>참외</span>
+            </p>
+            <p>???</p>
+        </div>
+    </div>
+
+    <script>
+        function exam1() {
+            $('#pp').prevAll('ul').find('li').eq(0).css('backgroundColor', 'red');
+        }
+
+        function exam2() {
+            $('ul').next('#pp').find('span').eq(1).css('backgroundColor', 'red');
+        }
+
+        function exam3() {
+            $('#srch1').parent().parent().css('border', '1px solid blue');
+        }
+
+        function exam4() {
+            $('li').each(function() {
+                console.log($(this).text());
+            });
+        }
+    </script>
+</body>
+</html>

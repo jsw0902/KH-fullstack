@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체조작</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+    <style>
+        .highlight-0{
+            background-color: red;
+        }
+        .highlight-1{
+            background-color: orange;
+        }
+        .highlight-2{
+            background-color: yellow;
+        }
+        .highlight-3{
+            background-color: green;
+        }
+        .highlight-4{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h3> * each 메소드 </h3>
+    <p>
+        배열의 모든 인덱스가 순차적으로 접근하고자 할 때 사용 <br>
+        객체의 모든 속성에 접근하고자 할 때 사용<br>
+    </p>
+
+    <p>
+        [표현식] <br><br>
+
+        1) $.each(객체 | 배열, function([매개변수1, 매개변수2]){ <br>
+            순차적으로 접근할때마다 실행할 코드 <br>
+        }); <br><br>
+
+        2) 객체 | 배열.each(function([매개변수1, 매개변수2]){ <br>
+            순차적으로 접근할때마다 실행할 코드 <br>
+        }); <br>
+    </p>
+
+    <script>
+        $(function(){
+            const arr = ["오", "늘", "은", "금", "요", "일"];
+            
+            //기존 JS의 for in 문을 사용하여 배열의 각 요소 순회
+            for(let i in arr){
+                //arr이라는 배열의 각 요소를 순회하면서, i라는 변수에 현재 인덱스 번호를 저장한다.
+                //i : 0 ~ 배열길이-1
+
+                //각 요소에 접근하고자 할 때
+                console.log(arr[i]);
+            }
+
+            console.log("-----------------------------------------------------------------");
+
+            //1) $.each(배열, function(){}) 방식
+            $.each(arr, function(index, item){
+                /*
+                    배열의 각 요소를 순회하며, 전달한 함수를 실행한다.
+                    함수 실행 시, 매개변수를 2개 전달받는데
+                    첫번째 매개변수에는 현재 인덱스 번호!
+                    두번째 매개변수에는 현재 인덱스의 요소 값!
+                */
+
+                console.log(index + " : " + item);
+            });
+
+            console.log("-----------------------------------------------------------------");
+
+            //2) 배열.each(function(){}) 방식
+            // arr은 자바스크립트에서 사용하는 객체이므로, jQuery 메소드를 사용하기 위해 $()로 감싸준다.
+            $(arr).each(function(index, item){
+                console.log(index + " : " + item);
+            });
+
+            console.log("-----------------------------------------------------------------");
+
+            //객체
+            const student = {
+                name : " 장승원",
+                age : 23,
+                addr : "남양주"
+            };
+
+            //기존 JS의 for in문으로 객체의 각 속성에 접근
+            for(let key in student){
+                //student.key는 key라는 속성명을 찾으려고 한다......
+                console.log(typeof key);
+                console.log(student[key]);
+            }
+
+            console.log("-----------------------------------------------------------------");
+
+            //1) $.each(객체, function(){});
+            $.each(student, function(key, value){
+                //key : 객체의 현재 속성명
+                //value : 객체의 현재 속성명에 대한 값
+                console.log(key + " : " + value);
+            });
+
+            console.log("-----------------------------------------------------------------");
+
+            //2) $(객체).each(function(){});
+            /* 이 방법은 컬렉션에 사용되는 방법, 컬렉션 : 순서가 있는 데이터!! 객체는 인덱스라는 개념이 없으므로..
+            $(student).each(function(key, value){
+                console.log(key);
+                console.log(value);
+            });
+            */
+
+            $('#srchStudents').click(function(){
+                //DB 데이터 조회 결과
+                const stuArr = [
+                    {name : "카리나" , age : 20, addr : "부천"},
+                    {name : "지젤"   , age : 25, addr : "서울"},
+                    {name : "윈터"   , age : 23, addr : "부산"},
+                    {name : "닝닝"   , age : 21, addr : "중궈"}
+                ];
+
+                let result = "";
+                $.each(stuArr, function(index, student){
+                    //배열의 각 요소를 순회! 두번째 매개변수에는 각 요소값이 담긴다.
+                    //현재 배열의 각 요소의 값은 객체!
+
+                    //각 요소는 1명의 학생 정보 == tbody 태그 내부에, 하나의 행으로 삽입된다.
+                    result += "<tr>";
+                    result += "<td>" + student.name + "</td>"; //이름
+                    result += "<td>" + student.age + "</td>"; //나이
+                    result += "<td>" + student.addr + "</td>"; //주소
+                    result += "</tr>";
+                });
+
+                console.log(result);
+                $('#area1>tbody').html(result); //result 문자열에는 태그가 존재하므로, html()사용!
+            });
+        });
+    </script>
+    <br>
+
+    <button id="srchStudents">학생조회</button>
+    <table id="area1" border="1" >
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <div id="area2">
+        <h1>item 1번</h1> <!-- highlight-0 -->
+        <h1>item 2번</h1> <!-- highlight-1 -->
+        <h1>item 3번</h1> <!-- highlight-2 --> 
+        <h1>item 4번</h1> <!-- highlight-3 -->
+        <h1>item 5번</h1> <!-- highlight-4 -->
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            //id가 area2인 태그 자식태그들(h1 5개)에 순차적으로 접근하여, 각각 다른 스타일 적용 
+
+            //$("#area2").children() : h1 5개 태그
+            $("#area2").children().each(function(index, el){
+                //addClass(클래스명) : 전달한 클래스를 요소 객체에 추가하는 메소드
+                //el : 하나의 h1 요소 객체 -> 자바스크립트 객체
+                //$(el) : addClass 메소드가 jQuery 객체에서 사용할 수 있는 메소드이기 때문에, $()로 감싸준다.
+                //$(el).addClass("highlight-"+index);
+
+                //자바스킯트 속성을 이용하여, 클래스 지정
+                el.className = "highlight-" +index;
+                
+                //this : 순회중인 현재 요소 객체 (자바스크립트 요소 객체이므로 $() )
+                $(this).addClass('highlight-'+index);
+            });
+        });
+    </script>
+
+    <div id="test1">
+        Hello
+    </div>
+    <script>
+        $(function(){
+            //JS 방식의 요소 객체 조회 및 스타일 지정
+            const div = document.getElementById("test1");
+            div.style.backgroundColor = "pink";
+
+            //css()는 jquery 메소드이므로, $()
+            $(div).css('backgroundColor', 'red');
+        });
+    </script>
+
+    <br><br>
+
+    <h3> * is 메소드 </h3>
+    <p>
+        $(선택자).is("선택자") <br>
+        선택된 요소가 내가 전달한 값과 일치하는지 판단하여, true / false로 반환.
+    </p>
+
+    <div id="testWrap">
+        <h3 class="test">test1</h3>
+        <h3>test2</h3>
+        <h3 class="test">test3</h3>
+        <h3 class="test">test4</h3>
+        <h3>test5</h3>
+        <h3 class="test">test6</h3>
+        체크 : <input type="checkbox" checked> <span></span> <br>
+        미체크 : <input type="checkbox"> <span></span> <br>
+        비활성화 : <input type="text" disabled> <span></span> <br>
+        읽기전용 : <input type="text" readonly> <span></span> <br>
+    </div>
+
+    <script>
+        $(function(){
+            //id가 testWrap인 태그의 자식 태그"들"에, 순차적으로 접근
+            $('#testWrap').children().each(function(idx, el){
+
+                //현재 요소 객체가 h3 태그인지?
+                if($(this).is('h3')){
+                    $(this).css('backgroundColor', 'red');
+                }
+
+                //현재 요소 객체에 클래스 속성값이 test인지?
+                if($(this).is('.test')){
+                    $(this).css('color', 'white');
+                }
+
+                //현재 요소 객체가 체크되어 있는지?
+                if($(this).is(':checked')){
+                    $(this).next().html("체크 확인!");
+                }
+
+                //현재 요소 객체가 비활성화 되어있는지?
+                if($(this).is(':disabled')){
+                    $(this).next().html("비활성화 확인!");
+                }
+
+                //현재 요소 객체가 읽기 전용인지?
+                if($(this).is('[readonly]')){
+                    $(this).next().html("읽기 전용 확인!");
+                }
+            });
+        });
+    </script>
+
+    <br>
+
+    <h3> * class 관련 메소드 </h3>
+    <p>
+        $(선택자).addClass(클래스명) : 선택한 요소에 클래스를 추가 <br>
+        $(선택자).removeClass(클래스명) : 선택한 요소에 클래스를 제거 <br>
+        $(선택자).hasClass(클래스명) : 선택한 요소에 클래스가 존재하는지 여부를 true / false로 반환
+    </p>
+
+    <div id="div1">
+        <input type="text" class="input rmClass"> <br>
+        <input type="text" class="input"> <br>
+        <input type="text" class="input rmClass"> <br>
+        <input type="text" class="input"> <br>
+        <input type="text" class="input rmClass"> <br>
+        <button type="button" id="inputChk">실행확인</button>
+    </div>
+
+    <script>
+        $(function(){
+            $('#inputChk').click(function(){
+                $('#div1').find('input').each(function(idx, el){
+                    //addClass() : 클래스 추가
+                    $(this).addClass('test4' + idx);
+
+                    //hasClass() : 전달한 클래스명이 존재하는지? -> true/ false로 반환
+                    console.log($(this).hasClass('input'));
+
+                    //removeClass() : 전달한 클래스를 삭제
+                    if($(this).hasClass('rmClass')){    //현재 요소 객체가 rmClass를 가지고 있는 경우
+                        $(this).removeClass('rmClass'); //클래스 삭제
+                    }
+                });
+            });
+        });
+
+    </script>
+
+    <br><br>
+
+    <h3> * index 메소드 </h3>
+    <p>
+        $(선택자범위).index(선택자) <br>
+        index 메소드 매개변수로 전달한 요소가, 선택자 범위중에 몇번째에 존재하는지 반환
+    </p>
+
+    <a href="">A0</a>
+    <div id="div2">
+        <a href="">A1</a>
+        <a href="">A2</a>
+        <a href="">A3</a>
+        <a href="">A4</a>
+        <a href="">A5</a>
+        <a href="">A6</a>
+    </div>
+    <a href="">A7</a>
+
+    <script>
+        $(document).ready(function(){
+            //a태그 기본 이벤트 제거
+            $('a').attr('href', 'javascript:void(0)');
+
+            //id가 div2인 태그의 자식태그(a)를 클릭하면, 클릭한 요소가 몇번째에 존재하는지 출력
+            $('#div2').children().click(function(){
+                let idx = $('#div2>a').index($(this)); //id가 div2인 태그의 자식태그(a) 중에, 현재 요소객체가 몇번째에 존재하는지
+                console.log('몇번째 ? : ' + idx);
+
+                let idx2 = $('a').index($(this)); // html 파일 내, a태그 중, 현재 요소객체가 몇번째에 존재하는지 
+                console.log('몇번째 ? : ' + idx2);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h3>문제</h3>
+    <p>
+        출력 버튼 클릭 시, 테이블에 존재하는 학생 정보들을 <br>
+        아래 span(id가 result) 내부에 출력되도록 처리하시오. <br>
+        단, jquery에서 배열을 순회하는 메소드를 사용!    
+    </p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>홍길동</td>
+                <td>12</td>
+                <td>부천</td>
+            </tr>
+            <tr>
+                <td>고길동</td>
+                <td>22</td>
+                <td>서울</td>
+            </tr>
+            <tr>
+                <td>박박이</td>
+                <td>20</td>
+                <td>부산</td>
+            </tr>
+        </tbody>
+    </table>
+    <fieldset style="height: 200px; width: 500px;">
+        <legend>출력 정보</legend>
+        <span id="result"></span>
+    </fieldset>
+    <button onclick="print()">출력</button>
+</body>
+</html>

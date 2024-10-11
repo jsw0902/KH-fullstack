@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h3>문제</h3>
+    <p>
+        아래 출력 버튼 클릭 시, div(id가 area1) 내부에 체크한 사원 정보를 출력하시오 <br>
+        ex) 이름 : 홀길동 / 나이 : 20 / 주소 : 부천
+    </p>
+    <table border="1">
+        <tr>
+            <th>체크</th>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>홍길동</td>
+            <td>20</td>
+            <td>부천</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>고길동</td>
+            <td>22</td>
+            <td>서울</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>김말숙</td>
+            <td>24</td>
+            <td>부산</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>김지민</td>
+            <td>25</td>
+            <td>인천</td>
+        </tr>
+    </table>
+    <div style="border: 3px solid black; height: 200px; width: 500px;" id="area1">
+
+    </div>
+    <button onclick="print()">출력</button>
+</body>
+</html>

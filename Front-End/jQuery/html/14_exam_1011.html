@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+    <style>
+        .name {
+            background-color: yellow;
+        }
+        .age{
+            background-color: blue;
+        }
+        .addr{
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h3>문제</h3>
+    <p>
+        아래 '적용'버튼을 클릭하면 "이름" 컬럼에는 .name 스타일 <br>
+        "나이" 컬럼에는 .age 스타일 <br>
+        "주소" 컬럼에는 .addr 스타일을 적용하시오 <br>
+        "취소" 버튼 클릭 시, 스타일 제거
+    </p>
+    <button onclick="btn()">적용</button>
+    <button onclick="resets()">취소</button>
+
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+        </tr>
+        <tr>
+            <td>이름1번</td>
+            <td>20</td>
+            <td>주소1번</td>
+        </tr>
+        <tr>
+            <td>이름2번</td>
+            <td>21</td>
+            <td>주소2번</td>
+        </tr>
+        <tr>
+            <td>이름3번</td>
+            <td>22</td>
+            <td>주소3번</td>
+        </tr>
+        <tr>
+            <td>이름4번</td>
+            <td>23</td>
+            <td>주소4번</td>
+        </tr>
+        <tr>
+            <td>이름5번</td>
+            <td>24</td>
+            <td>주소5번</td>
+        </tr>
+    </table>
+</body>
+</html>

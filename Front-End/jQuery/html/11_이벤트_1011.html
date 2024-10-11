@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h1>이벤트 핸들러</h1>
+    <p>
+        이벤트 : 사용자의 어떠한 액션 또는 행위 <br>
+        이벤트 핸들러 : 이벤트가 발생했을 때, 처리할 function <br>
+        이벤트 핸들링 : 이벤트가 발생했을 때, 처리하는 것
+    </p>
+
+    <hr>
+
+    <h3>1. 이벤트 메소드를 통한 핸들러 연경</h3>
+    <p>
+        $(선택자).이벤트메소드(function(){ <br>
+            선택자에 해당 이벤트 발생 시, 처리할 코드 <br>
+        }); <br>
+    </p>
+
+    <h4 id="test1">클릭!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h4>
+    <script>
+        $(function(){
+            $('#test1').click(function(){
+                $(this).html('이벤트로 변경@@@@@@@@@@@@@@@@');
+            });
+
+            $('#test1').dblclick(function(){
+                $(this).html("더블 클릭으로 변경@@@@@@@@@@@@@");
+                $(this).css("color", 'red');
+
+            });
+        });
+    </script>
+
+    <br><br>
+
+    <h3>2. on 메소드를 이용하는 방법</h3>
+    
+    <p>
+        $(선택자).on("이벤트명", function(){ <br>
+            선택자에 해당 이벤트 발생 시, 처리할 코드<br>
+        }); <br>
+    </p>
+
+    <h4 id="test2">마우스 클릭 또는 마우스 둘러보기</h4>
+
+    <script>
+        $(document).ready(function(){
+            $("#test2").on('mouseenter', function(){
+                $(this).css('backgroundColor', 'yellowgreen');
+                $(this).text('마우스 영역 안으로');
+            });
+
+            $('#test2').on('mouseout', function(){
+                $(this).css('backgrroundColor', 'white');
+                $(this).text('마우스 영역 안으로');
+            });
+
+            $("#test2").on("click", function(){
+                //클릭했을 때, 기존에 설정되어 있는 mouseentet, mouseout 이벤트 제거
+                $(this).off('mouseenter'); // off('제거할이벤트명');
+                $(this).off('mouseout');
+                $(this).css('backgrroundColor', 'white').text("이벤트 제거되었음");
+            });
+        });
+    </script>
+
+    <br><br>
+    
+    <h3>3. on 메소드를 이용하는 방법 (상위요소)</h3>
+    <p>
+        $(상위요소선택자).on(이벤트명, 하위요소선택자, function(){ <br>
+            이벤트 발생 시 제거할 코드 작성 <br>
+            상위요소 선택자 하위에 존재하는, 하위요소선택자에 이벤트가 발생했을 때 처리 <br>
+        }); 
+    </p>
+
+    <div id="wrap">
+        <h4>h4 태그 클릭</h4>
+        <h5>h5 태그 클릭</h5>
+    </div>
+    <h5>외부 h5 태그</h5>
+
+    <script>
+        $(function(){
+            //id가 wrap인 태그 하위의,h4와 h5태그에 클릭 이벤트 설정
+            $("#wrap").on('click', 'h4, h5', function(){
+               $(this).html($(this).html() + "이벤트 발생!!");
+            });
+        });
+    </script>
+
+    <div id="wrap2" style="border: 1px solid red;">
+        <h6>기준에 존재하는 요소 </h6>
+        <!--여기에 추가-->
+    </div>
+    <script>
+        $(function(){
+            //이벤트 핸들러 연결 방법 1번으로
+            /*
+            $('#wrap2>h6').click(function(){
+                $('#wrap2').append('<h6>동적으로 만들어진 요소 </h6>');
+            });
+            */
+            //이벤트 핸들러 연결 방법 2번으로
+            /*
+            $('#wrap2>h6').on('click', function(){
+                $('#wrap2').append('<h6>동적으로 만들어진 요소22</h6>');
+            });
+            */
+
+            //1, 2번 방법은 click 이벤트를 연결해줄 때, 존재하는 요소에만 이벤트가 적용되므로, 동적으로 만들어준 요소에는 이벤트가 적용되지 않음.
+
+            // 이벤트 핸들러 연결 방법 3번으로 
+            $('#wrap2').on('click', 'h6', function(){
+                $('#wrap2').append('<h6>동적으로 만들어진 요소 33 </h6>');
+            });
+
+            /*
+                3번 방법) 이벤트 버블링을 이용한 방식
+                - 이벤트 연결할 때, 상위 요소로 이벤트가 바인딩 된다.
+                - 상위 요소는 버블링된 이벤트를 감지하고, 해당 이벤트가 특정 하위 요소에서 발생했는지 확인
+                - 맞다면, 해당 이벤트 핸들러를 실행한다.
+            */
+
+
+        });
+    </script>
+
+     <br><br>
+
+     <h3> * 키보드 관련 이벤트 </h3>
+     <p>
+        - keydown : 키보드가 눌렸을 때 발생하는 이벤트 <br>
+        - keyup : 키보드를 눌렀다가 떼어질 때 발생하는 이벤트 <br>
+     </p>
+
+     <input type="text" id="test3">
+     <script>
+        $(function(){
+            //키보드 눌렀을 때
+            $('#test3').keydown(function(){
+                console.log('key down event !!');
+            });
+
+            //키보드를 눌렀다가 떼었을 때
+            $('#test3').keyup(function(){
+                console.log('key up event !!');
+            });
+        });
+     </script>
+
+
+     <h3>동적으로 글자 수 세기</h3>
+
+     <form id="form2" action="/notice/insert.do" method="get">
+         <textarea style="resize: none;" cols="30" rows="10" id="content"></textarea>
+         <br><br>
+         <span id="count"></span>
+         <br>
+    
+         <input type="submit" value="작성하기">
+     </form>
+
+     <script>
+        $(function(){
+            $('#content').keyup(function(e){
+                //글자 수 === content 내부의 길이 
+                let cnt = $(this).val().length;
+                $('#count').html(cnt);
+
+                //e : 이벤트 발생 객체 정보
+                //e.key : 어떠한 키보드가 눌렀는지
+                //e.keyCode : 키보드 자판별 매핑 숫자(엔터는 13)
+                if(e.key == 'Enter' || e.keyCode == 13){
+                    $('#form2').submit();
+                }
+            });
+        });
+     </script>
+
+     <br><br>
+
+     <form id="form3" action="/member/login.do" method="post">
+        아이디 : <input type="text" class="member" name="memberId" id="memberId"><br>
+        비밀번호 : <input type="password" class="member" name="memberPw" id="memberPw"><br><br>
+
+        <input type="submit" value="로그인">
+     </form>
+
+     <script>
+        $(function(){
+            $('#form3').on('submit', function(e){
+                e.preventDefault(); // 기본 요청(submit) 이벤트 제거
+                //$(this).unbind('submit').submit(); // 이후에 특정 조건에 만족하면 submit이 동작하도록 성정
+            });
+
+            $('.member').keyup(function(e){
+
+                if(e.key == 'Enter'){
+                    //엔터 입력 시 
+                    e.preventDefault();
+
+                    if($('#memberPw').val().length > 0 && $('#memberId').val().length > 0){
+                        $('#form3').unbind('submit').submit();
+                        //unbind('submit') : submit이 동작할 수 있도록 재설정
+                        //unbind('submit').submit() : submit이 동작할 수 있도록 재설정 후, 제출(submit)
+                    }
+
+                    //아이디에서 엔터를 입력한 경우
+                    if(e.target.id == 'memberId'){
+                        //아이디 입력값이 없을 때
+                        if($(this).val().length < 1){
+                            $(this).focus();
+                        }else if($("#memberPw").val().length < 1){
+                            //아이디 입력값이 있고, 비밀번호 입력값이 없을 떄
+                            $("#memberPw").focus();
+                        } else{
+                            $("#form3").submit();
+                        }
+
+                    //비밀번호에서 엔터를 입력한 경우
+                    }else{
+                        if($(this).val().length < 1){
+                            $(this).focus();
+
+                        }else if($("#memberId").val().length < 1){
+                            $("#memberId").focus();
+                            
+                        } else{
+                            $("#form3").submit();
+                        }
+                    }
+                }
+            });
+        })
+     </script>
+</body>
+</html>
