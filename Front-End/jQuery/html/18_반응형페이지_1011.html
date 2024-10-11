@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../file/jquery-3.7.1.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .menu-wrap{
+            position: fixed;
+            top : 0px;
+            width: 100%;
+            height: 80px;
+            background-color: bisque;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-wrap>h1{
+            font-size: 25px;
+            padding-left: 30px;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        .menu-wrap>ul{
+            display: flex;
+        }
+        .menu-wrap>ul>li{
+            list-style-type: none;
+            padding-right: 30px;
+        }
+        .top{
+            background-color: violet;
+        }
+        .section {
+            height: 1000px;
+            padding: 120px 30px 30px;
+        }
+        .section1{
+            background-color: brown;
+        }
+        .section2{
+            background-color: aquamarine;
+        }
+        .section3{
+            background-color: tomato;
+        }
+        .section4{
+            background-color: yellowgreen;
+        }
+        p.title{
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-wrap">
+        <h1>
+            <a href="#">Logo</a>
+        </h1>
+        <ul>
+            <li><a href="#">공지사항</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">질문게시판</a></li>
+            <li><a href="#">자유게시판</a></li>
+        </ul>
+    </div>
+    <div id="wrap">
+        <div class="section top">
+            <p class="title">Top-content</p>
+        </div>
+        <div class="section section1">
+            <p class="title">공지사항 컨텐츠</p>
+        </div>
+        <div class="section section2">
+            <p class="title">FAQ 컨텐츠</p>
+        </div>
+        <div class="section section3">
+            <p class="title">질문게시판 컨텐츠</p>
+        </div>
+        <div class="section section4">
+            <p class="title">자유게시판 컨텐츠</p>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+            //상단 메뉴 클릭
+            $('.menu-wrap>ul a').click(function(){
+                let idx = $('.menu-wrap>ul a').index($(this))+1;
+                $('html, body').stop().animate(
+                    {'scrollTop' : $('.section'+idx).offset().top}, 300
+                );
+            });
+
+            $('.menu-wrap>h1>a').click(function(){
+                $('html, body').stop().animate(
+                    {'scrollTop' : 0},300
+                );
+            });
+        });
+    </script>
+</body>
+</html>

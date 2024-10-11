@@ -60,5 +60,18 @@
             <td>주소5번</td>
         </tr>
     </table>
+    <script>
+        function applyStyles() {
+        $('tr td:nth-child(1)').addClass('name');
+
+        $('tr td:nth-child(2)').addClass('age');
+
+        $('tr td:nth-child(3)').addClass('addr');
+    }
+
+    function resetStyles() {
+        $('tr td').removeClass('name age addr');
+    }
+    </script>
 </body>
 </html>

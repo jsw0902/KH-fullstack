@@ -20,5 +20,27 @@
         <span>☆</span>
         <span>☆</span>
     </div>
+    <script>
+        $(function(){
+            $('div>span').on('mouseenter', function(){
+                //$(범위).index(위치값을 알고 싶은 요소)
+                let idx = $('div>span').index($(this)); //마우스가 올라가 있는 span의 위치값
+
+                //현재 마우스가 위치한 span의 idx값이, 마지막 span 요소면
+                if(idx == $('div>span').length-1){
+                    $('div>span').html('★');
+                }else{
+                    $(this).next().prevAll().html('★');
+                }
+            });
+            $('div>span').on('mouseout', function(){
+                $('div>span').html('☆');
+            });
+
+            $('div>span').on('click', function(){
+                $('div>span').off('mouseout');
+            });
+        });
+    </script>
 </body>
 </html>
