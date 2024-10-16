@@ -1,0 +1,47 @@
+1. 아래의 상황과 에러의 내용을 읽고 에러가 발생한 원인(20점)과 그 조치사항(올바른 SQL구문)(20점)을 작성하시오(총 40점)
+1) 시나리오 상황
+사용자 계정을 만들기 위해 관리자 계정으로 접속하여
+CREATE USER EMP IDENTIFIED BY EMP0123; 명령어를 실행한 뒤
+접속을 확인하였다.
+
+2) 에러 내용
+User EMP이(가) 생성되었습니다.
+ORA-01045: user EMP lacks CREATE SESSION privilege; logon denied
+
+1.1 원인   
+권한을 부여해주지 않았다.
+
+1.2 조치내용   
+Grant connect, resource to EMP;
+
+2.다음 두 개의 테이블을 조인하여 EMPNO, EMPNAME, DEPTNO, DEPTNAME 컬럼을 조회하였을 때 문제가 발생한다.
+아래의 내용과 문제상황을 보고, 발생한 원인(30점)과 해결할 수 있는 조치사항(30점)을 기술하시오. (총 60점)
+
+-- 사용한 테이블 생성 정보 --
+CREATE TABLE DEPARTMENT(
+DEPTCODE NUMBER PRIMARY KEY,
+DEPTNAME NVARCHAR2(10) NOT NULL
+);
+
+CREATE TABLE EMPLOYEE(
+EMPNO NUMBER PRIMARY KEY,
+EMPNAME VARCHAR2(10) NOT NULL,
+DEPTNO NUMBER REFERENCES DEPARTMENT(DEPTCODE)
+);
+
+-- 실행한 조인 쿼리 --
+SELECT EMPNO, EMPNAME, DEPTNO, DEPTNAME
+FROM EMPLOYEE
+JOIN DEPARTMENT USING(DEPTNO);
+
+-- 문제 상황
+ORA-00904: "DEPARTMENT"."DEPTNO": invalid identifier
+
+2.1 원인   
+1. 조인 방식이 잘못됐다. USING말고 ON써야됨
+2. EMPLOYEE에 DEPTNO는 DEPARTMENT에 DEPTCODE를 연결해줬는데 JOIN에서는 그걸 처리 안해줘서 불러 올 수 없다.
+
+조치내용   
+SELECT EMPNO, EMPNAME, DEPTNO, DEPTNAME
+FROM EMPLOYEE
+JOIN DEPARTMENT ON (DEPTCODE = DEPTNO);
