@@ -1,0 +1,83 @@
+.header{
+    background: #64b3f4;
+    padding: 20px;
+}
+
+.header>div{
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.site-logo>a{
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+}
+
+.header a{
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.link-box{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.link-box>a:hover{
+    text-decoration: underline;
+}
+
+/*
+강사님이 안이쁘다고 바꿈
+.header{
+    background: #c2e59c ;
+    background: -webkit-linear-gradient(
+        to right,
+        #64b3f4,
+        #c2e59c
+    );
+    background: linear-gradient(
+        to right,
+        #64b3f4,
+        #c2e59c
+    );
+    padding: 20px;
+}
+
+.header>div{
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.site-logo>a{
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+}
+
+.header a{
+    text-decoration: none;
+}
+
+.link-box{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.link-box>a{
+    color: dodgerblue;
+    font-weight: bold;
+}
+
+.link-box>a:hover{
+    text-decoration: underline;
+}
+*/
