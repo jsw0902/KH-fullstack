@@ -1,0 +1,34 @@
+다음은 회원정보에 대한 애플리케이션 설계 내용과 데이터베이스 테이블 생성 구문이다. 테이블이 생성되지 않는 원인을 분석하여 [원인]란에 작성하고 해결방안을 [조치내용]에 작성하시오.
+(각각의 원인에 대한 조치내용은 반드시 있어야 하며, 원인은 한 개일 수도 있고 여러 개일 수도 있습니다)
+<설계 내용>
+- 회원 정보를 저장할 테이블 이름은 `member`로 한다
+- 회원의 아이디(member_id)는 영문 소문자와 숫자를 사용하며 8~20자 이내로 저장
+- 회원의 비밀번호(member_pw)는 영문 대,소문자와 숫자를 사용하며 8~16자 이내로 저장
+- 회원의 닉네임(member_nickname)은 한글과 숫자를 사용하며 2~10자 이내로 저장(한글 글자당 3byte)
+- 회원의 가입일(member_join)은 날짜 형식으로 저장
+- 모든 항목의 값은 반드시 삽입되어야 한다
+- 아이디와 닉네임은 중복값 삽입이 불가능하다
+- 아이디는 테이블의 기본키로 설정한다
+- 가입일은 미지정 시 현재시각으로 자동 설정된다
+
+<구현 코드>
+create table (
+member_id char(20) primary key,
+member_pw char(16),
+member_nickname char(10) not null unique,
+member_join number not null
+);
+
+원인
+1. 테이블 이름을 member로 해야하는데 create table하고 테이블명 안작성함
+2. nickname은 3바이트로 char말고 varchar2로 해야함
+3. 가입일을 number말고 date로 해줘야되고 미지정시 현재시각으로 자동 설정해줘야해서 기본값을 설정해줘야된다.
+4. 모든 값은 값이 반드시 설정되어야하는데 비밀번호는 not null 지정이 안되서 null값이 들어가도 오류가 안난다
+
+조치내용   
+create table member(
+member_id char(20) primary key,
+member_pw char(16) not null,
+member_nickname varchar(10) not null unique,
+member_join date default sysdate
+);

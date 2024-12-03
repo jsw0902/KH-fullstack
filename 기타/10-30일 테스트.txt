@@ -1,0 +1,45 @@
+다음은 회원 가입 요청 시, 서버 측 처리를 위한 Servlet 코드 일부이다.
+
+요구사항은 다음과 같다.
+- 회원 가입 요청 시, 서블릿 매핑 주소는 `/user/join`
+클라이언트가 입력한 정보의 식별값은 아래와 같다.
+1) 회원 아이디 : userId
+2) 회원 비밀번호 : userPw
+3) 회원 이름 : userName
+4) 회원 나이 : userAge
+- 회원가입 페이지의 form 태그의 method 속성값은 post
+- 현재 프로젝트에 필터는 등록되지 않은 것으로 간주한다.
+- 클라이언트 요청에 대한, 인코딩 처리는 utf-8로 한다.
+- 생략된 코드 또는 클래스는 정상적으로 작동한다고 간주할 것
+서블릿이 정상 작동하지 않는 이유를 찾아 [원인], 해결책을 [조치내용]에 작성하시오.
+(원인과 조치내용은 여러개일 수 있으며, 반드시 원인에 대한 조치내용을 작성해야 합니다)
+
+@WebServlet
+public class UserJoinServlet extends HttpServlet {
+private static final long serialVersionUID = 1L;
+public UserJoinServlet() {
+super();
+}
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+String userId = response.getParameter("userId");
+String userPw = response.getParameter("userPw");
+String userName = response.getParameter("userName");
+int userAge = response.getParameter("userAge");
+//이하 코드 생략
+}
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+}
+}
+
+원인   
+1.utf-8 인코딩 처리를 해주지 않았다.
+2. 값을 가져올때는 response가 아닌 request를 해줘야함
+3. @WebServlet에 주소가 없다
+4. age는 int라 Integer.뭐기시하고 ()안에 request.getParameter넣어줘야함
+
+조치내용   
+1.setChest뭐시기 안에 "utf-8"을 넣고 인코딩을 해줘야됨
+2. 값을 가져올때는 response.getParameter가 아닌 request.getParameter로 가져와야됨.
+3. @WebServlet("/user/join") 해줘야함
+4. age는 int라 Integer.뭐기시하고 ()안에 request.getParameter넣어줘야함
