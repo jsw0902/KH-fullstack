@@ -14,5 +14,9 @@
 	<h4>ID : ${loginMember.memberId }</h4>
 	<h4>PW : ${loginMember.memberPw }</h4>
 	<h4>Name : ${loginMember.memberName }</h4>
+
+	<hr>
+	
+	<h4><a href="/">메인으로</a></h4>
 </body>
 </html>

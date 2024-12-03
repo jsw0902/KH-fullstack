@@ -85,15 +85,23 @@
 	 	<input type="submit" value="스프링 요청 및 응답">
 	 </form>
 	 
+	 <h2><a href="/ajax/movePage.kh">Ajax 테스트 페이지 이동</a></h2>
+	 
 	 <hr>
 	 
 	 <c:if test="${empty loginMember}">
 		<form action="/member/login.kh" method="post">
 			아이디 : <input type="text" name="memberId"> <br>
-			비밀번호 : <input type="text" name="memberPw"> <br>
+			비밀번호 : <input type="password" name="memberPw"> <br>
 			<input type="submit" value="로그인">
+			<a href="/member/joinFrm.kh">회원가입</a>
 		</form>	 
 	 </c:if>
-	 
+	 <c:if test="${not empty loginMember}">
+	 	<h3><a href="/member/logout.kh">로그아웃</a></h3>
+	 	<h3><a href="/member/mypage.kh">마이페이지</a></h3>
+	 	<h3><a href="/member/delete.kh?memberId=${loginMember.memberId}">회원탈퇴</a></h3>
+	 	<h3><a href="/member/allMemberList.kh">전체회원조회</a></h3>
+	 </c:if>
 </body>
 </html>
