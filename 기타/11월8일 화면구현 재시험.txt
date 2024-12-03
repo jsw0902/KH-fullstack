@@ -1,0 +1,42 @@
+다음은 사원 정보 등록 이전, 중복된 사원번호가 존재하는지 체크에 대한 인터페이스 요구사항과 구현 코드이다.
+정상적으로 실행되지 않는 원인을 분석하고 이에 대한 해결책을 각각 [원인]과 [조치내용] 란에 작성하시오.
+(모든 원인에 대한 조치내용이 작성되어야 하며, 원인과 조치내용은 개수가 여러 개일 수 있습니다)
+<요구사항>
+- 클라이언트와 서버는 비동기 방식인 AJAX로 데이터를 주고받는다
+- 서버에서는 클라이언트가 화면을 만들 수 있도록 데이터를 전송한다
+- 제시된 코드 외의 모든 내용은 오류가 없는 것으로 간주한다
+- 사원번호 중복 체크 페이지 url은 `/emp/empNoChk`라는 주소를 가진다
+- 사원 정보 등록 시, 클라이언트 입력 정보는 사원이름, 부서코드, 급여, 직급코드가 존재한다.
+
+<구현코드>
+@WebServlet("/emp")
+public class EmpNoChkServlet extends HttpServlet {
+private static final long serialVersionUID = 1L;
+public EmpNoChkServlet(){
+super();
+}
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+String empNo = request.getParameter("empNo"); //사원번호
+EmpService service = new EmpService();
+int empCount = service.chkDuplEmp(); //중복 사원번호 rowCount
+RequestDispatcher page = request.getRequestDispatcher("/WEB-INF/views/empIns.jsp");
+page.forward(request, response);
+}
+
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+doGet(request, response);
+}
+}
+
+원인   
+1. 사원번호 중복 체크 페이지 url은 /emp/empNoChk인데 @WebServlet은 /emp만 적혀 있음
+2. doGet에 인코딩 없음
+3. int empCount = service.chkDuplEmp()에 아무 값도 안넘겨줘서 중복체크 안됨
+4. AJAX는 비동기식이라 RequestDispatcher forward 방식을 해주면 안됨
+
+조치내용  
+1. @WebServlet("/emp/empNoChk")
+2. request.setch뭐시기 사용해서 utf-8 인코딩해주면 됨
+3. int empCount = service.chkDuplEmp(empNo);로 고쳐주면 됨
+4. response.getWriter().print(empCount) 헤주면 됨

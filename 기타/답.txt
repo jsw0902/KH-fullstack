@@ -1,0 +1,49 @@
+다음은 상품 정보 등록 이전, 중복된 상품명이 존재하는지 체크에 대한 인터페이스 요구사항과 구현 코드이다.
+정상적으로 실행되지 않는 원인을 분석하고 이에 대한 해결책을 각각 [원인]과 [조치내용] 란에 작성하시오.
+(모든 원인에 대한 조치내용이 작성되어야 하며, 원인과 조치내용은 개수가 여러 개일 수 있습니다)
+
+요구사항>
+- 클라이언트와 서버는 비동기 방식인 AJAX로 데이터를 주고받는다
+- 서버에서는 클라이언트가 화면을 만들 수 있도록 데이터를 전송한다
+- 제시된 코드 외의 모든 내용은 오류가 없는 것으로 간주한다
+- 상품명 중복 체크 페이지 url은 `/product/getInfo`라는 주소를 가진다
+- 상품 등록 시, 클라이언트 입력 정보는 상품명, 상품 종류, 상품 가격, 상품 소개가 존재한다.
+
+<구현코드>
+
+@WebServlet("/product")
+public class ProductGetInfoServlet extends HttpServlet {
+
+private static final long serialVersionUID = 1L;
+public ProductGetInfoServlet(){
+super();
+}
+
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+String prdNm = request.getParameter("prdNm"); //상품명
+ProductService service = new ProductService();
+int prodCount = service.chkDuplProduct(); //중복 상품명 rowCount
+RequestDispatcher page = request.getRequestDispatcher("/WEB-INF/views/prodIns.jsp");
+page.forward(request, response);
+}
+
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+doGet(request, response);
+}
+
+}
+
+원인
+1. url은 /product/getInfo 이거인데 @WebServlet은 /product임
+2. 상품명을 불러왔지만 중복 상품명에 파라미터로 추출한 상품명 값을 안넣어줘서 중복 체크 불가능
+3. AJAX는 비동기식이라 RequestDispatcher로 jsp 포워딩 해주면 안됨
+4. 인코딩 안해줌
+
+조치내용
+1. @WebServlet("/product/getInfo")로 바꾸면 됨
+2. service.chkDuplProduct(prdNm) 넣어주면 됨
+3. response.getWriter().print(cnt);
+4. request.setCharacterEncoding("utf-8"); 인코딩 해주면 됨
+
+
+

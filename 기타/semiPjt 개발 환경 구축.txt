@@ -1,0 +1,20 @@
+* 뽜이팅
+
+
+- workspace 설정
+
+1. Window - preferences - General - Editor - Text Editors - Spelling UTF-8
+2. Window - preferences - General - Workspace UTF-8
+3. Window - preferences - Web - CSS Files UTF-8
+4. Window - preferences - Web - HTML Files UTF-8
+5. Window - preferences - Web - JSP Files UTF-8
+6. Window - preferences - Java - Installed JREs에 jdk 17 선택
+7. Window - preferences - Server - Runtime Enviroments에 설치 톰캣 Add
+
+- project 설정
+
+1. Java Build Path - Libraries에 JavaSE 17로 수정
+2. Java Build Path - Add Libaray - Server Runtime - 톰캣 추가
+3. Java Compiler 17로 변경
+4. Project Facets에 Java 17 및 Dynamic Web Module 4.0 확인
+5. Targeted Runtimes에 설치 톰캣 체크

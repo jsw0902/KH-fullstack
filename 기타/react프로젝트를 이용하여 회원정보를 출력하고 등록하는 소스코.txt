@@ -1,0 +1,124 @@
+react프로젝트를 이용하여 회원정보를 출력하고 등록하는 소스코드를 작성하였으나, 프로젝트 실행결과 정상적으로 동작하지 않았습니다.
+다음 조건 및 소스코드를 분석하여 원인을 파악하고 조치사항을 작성하시오.
+
+[조건]
+1. 소스코드는 App.js파일에 모두 작성하여 메인페이지에서 바로 나타난다.
+2. css는 default.css파일로 App.js파일과 같은 경로에 파일이 존재한다.
+3. 기본적으로 3명의 회원이 화면에 나타난다.
+4. 회원정보를 입력한 후 등록하면 새로등록한 회원이 마지막에 추가되며, 입력한 input은 모두 초기화 된다.
+[App.js]
+import { useState } from "react";
+
+function App() {
+  const [userList, setUserList] = useState([
+    { name: "유저1", age: 24, gender: "남자", phone: "010-2732-2241" },
+    { name: "유저2", age: 27, gender: "여자", phone: "010-2674-0093" },
+    { name: "유저3", age: 30, gender: "남자", phone: "010-3784-2834" },
+  ]);
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [phone, setPhone] = useState("");
+  const registUser = function() {
+    const user = { name, age, gender, phone };
+    userList.push(user);
+    setUserList([...userList]);
+    setName("");
+    setAge("");
+    setGender("");
+    setPhone("");
+  };
+  return (
+    <div className="App">
+      <h1>회원 정보 출력</h1>
+      <hr></hr>
+      <table className="member_tbl">
+        <thead>
+          <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>성별</th>
+            <th>전화번호</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userList.map(function(item, index) {
+            <User key={"user" + index} item={item} />;
+          })}
+        </tbody>
+      </table>
+      <div className="regist-wrap">
+        <h3>회원 정보 등록</h3>
+        <hr></hr>
+        <InputWrap text="이름" data={name} setData={setName} />
+        <InputWrap text="나이" data={age} setData={setAge} />
+        <InputWrap text="성별" data={gender} setData={setGender} />
+        <InputWrap text="전화번호" data={phone} setData={setPhone} />
+        <button onClick={joinUser}>회원등록</button>
+      </div>
+    </div>
+  );
+}
+const User = function(props) {
+  const user = props.user;
+  return (
+    <tr>
+      <td>{user.name}</td>
+      <td>{user.age}</td>
+      <td>{user.gender}</td>
+      <td>{user.phone}</td>
+    </tr>
+  );
+};
+const InputWrap = function(props) {
+  const text = props.text;
+  const data = props.data;
+  const setData = props.setData;
+  const changeInputValue = function(e) {
+    setData(e.target.value);
+  };
+  return (
+    <div className="input_wrap">
+      <label>{text}</label>
+      <input type="text" value={data} onChange={changeInputValue} />
+    </div>
+  );
+};
+export default App;
+
+[default.css]
+.member_tbl {
+  border-spacing: 0;
+}
+
+.member_tbl th {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+}
+.member_tbl td {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 20px;
+}
+.input_wrap {
+  padding: 10px 0px;
+}
+.input_wrap > label {
+  display: inline-block;
+  width: 80px;
+}
+
+.input_wrap > input {
+  width: 150px;
+}
+
+원인 
+1. css  import 해주지 않아서 적용이 안됨
+3. 버튼에 onCLick이 joinUser인데 이 코드에서는 joinUser가 없음 아마도 이거  registUser​이 아닌 joinUser로 해줘야됨
+4. User에 prod 접근이 잘못 됨
+
+조치내용
+1. css import 해줘야됨
+3. onClick = {joinUser}를 해주기 위해 registUser가 아닌 joinUser로 해주면 됨
+4. const user = prod.item;

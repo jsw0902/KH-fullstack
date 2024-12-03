@@ -1,0 +1,99 @@
+다음은 Mybatis 프레임워크를 연동하여 로그인 처리 로직을 작성한 일부 코드이다.
+다음 조건 및 소스코드를 분석하여 정상 작동되지 않는 원인을 모두 파악하고, 조치사항을 작성하시오.
+
+[조건]
+1. 사용자에게 아이디(userId)와 비밀번호(userPw)를 입력받아 로그인 처리.
+2. 제시된 코드 이외에는 모두 정상 작성된것으로 간주한다.
+
+[파일 경로 : src/main/java/com/test/ncs/user/model/service/UserService.java]
+
+public class UserService {
+        
+        private UserDao userDao;
+        
+        public UserService() {
+                super();
+                userDao = new UserDao();
+        }
+
+        public User loginUser(String userId, String userPw) {
+                SqlSession session = SqlSessionTemplate.getSqlSession();
+                User loginUser = userDao.loginUser(session, userId, userPw);
+                session.close();
+                return loginUser;
+        }
+
+}
+
+[파일 경로 : src/main/java/com/test/ncs/user/model/dao/UserDao.java]
+
+public class UserDao {
+
+        public User loginUser(SqlSession session, String userId, String userPw) {
+
+                return session.selectOne("user.loginUser", userId, userPw);
+        }
+}
+
+[파일 경로 : src/main/java/com/test/ncs/user/model/vo/User.java]
+
+public class User {
+    
+    private String userId;
+    private String userPw;
+    private String userEmail;
+    private String userName;
+    private String userPhone;
+
+    //이하 코드 생략(생성자, getter, setter, toString)
+}
+
+[파일 경로 : resource/mybatis-config.xml]
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+        <settings>
+                <setting name="jdbcTypeForNull" value="NULL"/>
+        </settings>
+
+        <environments default="development">
+                <environment id="development">
+                        <transactionManager type="JDBC"/>
+                        <dataSource type="POOLED">
+                                <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+                                <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+                                <property name="username" value="mybatis"/>
+                                <property name="password" value="mybatis"/>
+                        </dataSource>
+                </environment>
+        </environments>
+        
+        <mappers>
+                <mapper resource="mapper/user-mapper.xml"/>
+        </mappers>
+</configuration>
+
+[파일 경로 : resource/mapper/user-mapper.xml]
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="userMapper">
+
+        <select id="loginUser" parameterType="user" resultType="user">
+        select user_id, user_pw, user_email, user_name, user_phone
+        from user_tbl where user_id = #{userId} and user_pw = #{userPw}
+        </select>
+    
+</mapper>​
+
+원인   
+1. select에 user_id, user_pw, user_email, user_name, user_phone 이렇게 값을 가져오는거 같은데 vo에 선언된거랑 달라서 문제임
+2.UserDao에서 user.loginUser라고 적혀 있는데 user-mapper.xml에는 mapper namespace에는 user말고 userMapper로 되어있어서 안됨
+3.user-mapper.xml에 parameterType이랑 resultType을 user라고 적었는데 mybatis-config에는 TypeAlias인지 뭔지하는거에 별칭을 user라는 별칭을 지정해주지 않아서 문제임
+
+조치내용   
+1. user_id as userId, user_pw as userPw, user_email as userEmail, user_name as userName, user_phone as userPhone으로 값을 리턴 받을 수 있게 해야됨 
+2.namespace에 user로 하든 Dao에서 userMapper.loginUser로 해주든 해야됨
+3. parameterType이랑 resultType에 user라는 별칭을 사용하고 싶으면 mybatis-config안에 TypeAlias인지 뭔지하는거 안에 사용할거 경로랑 별칭을 지정해줘야됨 안그러면 user-mapper.xml에 parameterType이랑 resultType에 com.test.ncs.user.model.vo.User를 적어줘야됨
